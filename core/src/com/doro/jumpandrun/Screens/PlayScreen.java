@@ -103,7 +103,7 @@ public class PlayScreen implements Screen{
             player.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), player.b2body.getWorldCenter(), true);
 
     }
-    //testkomentar
+    //testkomentar2
 
     public void update(float dt){
 
