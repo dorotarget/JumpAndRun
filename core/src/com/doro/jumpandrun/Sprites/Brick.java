@@ -15,7 +15,7 @@ public class Brick extends com.doro.jumpandrun.Tools.InteractiveTileObject {
     }
 
     @Override
-    public void onHeadHit() {
+    public void onHeadHit(Hero hero) {
         Gdx.app.log("Normaler Block", "Bumm");
     }
 

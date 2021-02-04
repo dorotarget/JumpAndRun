@@ -14,6 +14,11 @@ import com.doro.jumpandrun.JumpAndRun;
 import com.doro.jumpandrun.Screens.PlayScreen;
 
 public class Hero extends Sprite {
+    public enum State { WINNER, ELSE };
+    public State currentState;
+    public State previousState;
+
+    public boolean won;
 
     public World world;
     public Body b2body;
@@ -22,6 +27,8 @@ public class Hero extends Sprite {
     public Hero(World world, PlayScreen screen){
         super(screen.getAtlas().findRegion("little_mario"));
         this.world = world;
+
+        won = false;
 
 
         heroStand = new TextureRegion(getTexture(), 339, 27, 16, 16);
@@ -45,13 +52,23 @@ public class Hero extends Sprite {
 
         fdef.shape = shape;
         b2body.createFixture(fdef);
+        fdef.filter.categoryBits = JumpAndRun.MARIO_BIT;
+        fdef.filter.maskBits = JumpAndRun.GROUND_BIT |
+                JumpAndRun.COIN_BIT |
+                JumpAndRun.BRICK_BIT |
+                JumpAndRun.ENEMY_BIT |
+                JumpAndRun.OBJECT_BIT |
+                JumpAndRun.ENEMY_HEAD_BIT |
+                JumpAndRun.ITEM_BIT;
+
 
         EdgeShape head = new EdgeShape();
         head.set(new Vector2(-2 / JumpAndRun.PPM, 6 / JumpAndRun.PPM), new Vector2(2 / JumpAndRun.PPM, 6 / JumpAndRun.PPM));
+        fdef.filter.categoryBits = JumpAndRun.MARIO_HEAD_BIT;
         fdef.shape = head;
         fdef.isSensor = true;
 
-        b2body.createFixture(fdef).setUserData("head");
+        //b2body.createFixture(fdef).setUserData("head");
     }
     public void update(float dt){
         setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);

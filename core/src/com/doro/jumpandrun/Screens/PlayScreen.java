@@ -45,6 +45,9 @@ public class PlayScreen implements Screen{
     private Hero player;
 
 
+    private static boolean won = false;
+
+
     public PlayScreen(JumpAndRun game){
        atlas = new TextureAtlas("Mario_and_Enemies.pack");
 
@@ -146,18 +149,19 @@ public class PlayScreen implements Screen{
 
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
-        if(won()){
+        if(won){
             game.setScreen(new WinScreen(game));
             dispose();
         }
 
     }
-    public boolean won(){
+    public static void won(){
         /*if(player.currentState == Mario.State.DEAD && player.getStateTimer()>3){
             return true;
         }*/
+        won = true;
 
-        return true;
+
     }
 
 
