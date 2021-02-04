@@ -146,8 +146,21 @@ public class PlayScreen implements Screen{
 
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
+        if(won()){
+            game.setScreen(new WinScreen(game));
+            dispose();
+        }
 
     }
+    public boolean won(){
+        /*if(player.currentState == Mario.State.DEAD && player.getStateTimer()>3){
+            return true;
+        }*/
+
+        return true;
+    }
+
+
 
     @Override
     public void resize(int width, int height) {
