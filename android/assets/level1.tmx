@@ -126,9 +126,4 @@
  <objectgroup id="8" name="special_bricks">
   <object id="122" x="336" y="144" width="16" height="16"/>
  </objectgroup>
- <layer id="9" name="Himmel" width="240" height="13">
-  <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20KP6AAAAAAAAAAAAAAAAC+BjDAAAE=
-  </data>
- </layer>
 </map>

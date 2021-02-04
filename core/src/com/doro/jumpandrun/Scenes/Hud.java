@@ -50,10 +50,10 @@ public class Hud implements Disposable{
         //--------------Label-Definitionen
         countdownLabel = new Label(String.format("%03d", playTimer), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         scoreLabel =new Label(String.format("%06d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        liveLabel = new Label("Leben", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        liveLabel = new Label("Leben", new Label.LabelStyle(new BitmapFont(), Color.GREEN));
         liveCountLabel = new Label("3", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        timeLabel = new Label("Zeit", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        coinLabel = new Label("Coins", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        timeLabel = new Label("Zeit", new Label.LabelStyle(new BitmapFont(), Color.GREEN));
+        coinLabel = new Label("Coins", new Label.LabelStyle(new BitmapFont(), Color.GREEN));
 
         //-----------------Labels in tabelle anordnen und zu Stage packen
         table.add(coinLabel).expandX().padTop(10);
