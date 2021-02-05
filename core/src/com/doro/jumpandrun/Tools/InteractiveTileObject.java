@@ -53,6 +53,8 @@ public abstract class InteractiveTileObject {
     }
 
     public abstract void onHeadHit(Hero hero);
+    public abstract void reachGoal(Hero hero);
+
 
     public void setCategoryFilter(short filterBit){
         Filter filter = new Filter();

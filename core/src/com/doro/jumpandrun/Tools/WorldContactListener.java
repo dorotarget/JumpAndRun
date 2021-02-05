@@ -1,5 +1,6 @@
 package com.doro.jumpandrun.Tools;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -8,10 +9,16 @@ import com.badlogic.gdx.physics.box2d.Joint;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.doro.jumpandrun.JumpAndRun;
 import com.doro.jumpandrun.Screens.PlayScreen;
+import com.doro.jumpandrun.Screens.WinScreen;
 import com.doro.jumpandrun.Sprites.Hero;
+import com.doro.jumpandrun.Screens.PlayScreen;
+import com.doro.jumpandrun.Sprites.WinBrick;
 
 
 public class WorldContactListener implements ContactListener {
+    private JumpAndRun game;
+    private PlayScreen screen;
+
     @Override
     public void beginContact(Contact contact) {
         Fixture fixA = contact.getFixtureA();
@@ -37,8 +44,16 @@ public class WorldContactListener implements ContactListener {
                 else
                     ((InteractiveTileObject) fixA.getUserData()).onHeadHit((Hero) fixB.getUserData());
                 break;
-            case JumpAndRun.MARIO_BIT | JumpAndRun.WINNING_BIT:
-                PlayScreen.won();
+            case JumpAndRun.GROUND_BIT | JumpAndRun.WINNING_BIT:
+                //((InteractiveTileObject) fixB.getUserData()).reachGoal((Hero) fixA.getUserData());
+                //WinBrick.reachGoal();
+                //screen.won();
+                //game.setScreen(new WinScreen(game));
+                Gdx.app.log("Kontakt","Kontakt");
+                // screen.dispose();
+                //Hero.hit();
+                //game.setScreen(new WinScreen(game));
+                //dispose();
 /*
             case JumpAndRun.ENEMY_HEAD_BIT | JumpAndRun.MARIO_BIT:
                 if(fixA.getFilterData().categoryBits == JumpAndRun.ENEMY_HEAD_BIT)

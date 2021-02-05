@@ -19,4 +19,12 @@ public class Brick extends com.doro.jumpandrun.Tools.InteractiveTileObject {
         Gdx.app.log("Normaler Block", "Bumm");
     }
 
+    @Override
+    public void reachGoal(Hero hero) {
+
+    }
+
+
+
+
 }

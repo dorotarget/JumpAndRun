@@ -45,7 +45,7 @@ public class PlayScreen implements Screen{
     private Hero player;
 
 
-    private static boolean won = false;
+    //public boolean won = true;
 
 
     public PlayScreen(JumpAndRun game){
@@ -149,17 +149,20 @@ public class PlayScreen implements Screen{
 
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
-        if(won){
-            game.setScreen(new WinScreen(game));
-            dispose();
-        }
+
+        //if (won())
+            //game.setScreen(new WinScreen(game));
+            //dispose();
+
+
 
     }
-    public static void won(){
-        /*if(player.currentState == Mario.State.DEAD && player.getStateTimer()>3){
-            return true;
-        }*/
-        won = true;
+
+    public boolean won(){
+       // game.setScreen(new WinScreen(game));
+        //dispose();
+
+        return true;
 
 
     }

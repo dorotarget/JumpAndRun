@@ -1,6 +1,7 @@
 package com.doro.jumpandrun.Sprites;
 
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -8,21 +9,46 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.EdgeShape;
+import com.badlogic.gdx.physics.box2d.Filter;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.doro.jumpandrun.JumpAndRun;
 import com.doro.jumpandrun.Screens.PlayScreen;
 
 public class Hero extends Sprite {
+    public static boolean won;
+
     public enum State { WINNER, ELSE };
     public State currentState;
     public State previousState;
 
-    public boolean won;
 
     public World world;
     public Body b2body;
     private TextureRegion heroStand;
+
+    private boolean hasWon;
+
+
+    public void hit(){
+        won = true;
+
+    }
+    public State getState(){
+        //Test to Box2D for velocity on the X and Y-Axis
+        //if mario is going positive in Y-Axis he is jumping... or if he just jumped and is falling remain in jump state
+        if(hasWon)
+            return State.WINNER;
+        else
+            return State.ELSE;
+    }
+
+    public boolean isDead(){
+        return hasWon;
+    }
+
+
 
     public Hero(World world, PlayScreen screen){
         super(screen.getAtlas().findRegion("little_mario"));
@@ -39,6 +65,9 @@ public class Hero extends Sprite {
 
     }
 
+
+
+
     public void defineHero(){
 
         BodyDef bdef = new BodyDef();
@@ -51,7 +80,9 @@ public class Hero extends Sprite {
         shape.setRadius(6 / JumpAndRun.PPM);
 
         fdef.shape = shape;
-        b2body.createFixture(fdef);
+        b2body.createFixture(fdef).setUserData(this);
+
+        //b2body.createFixture(fdef);
         fdef.filter.categoryBits = JumpAndRun.MARIO_BIT;
         fdef.filter.maskBits = JumpAndRun.GROUND_BIT |
                 JumpAndRun.COIN_BIT |
@@ -59,6 +90,7 @@ public class Hero extends Sprite {
                 JumpAndRun.ENEMY_BIT |
                 JumpAndRun.OBJECT_BIT |
                 JumpAndRun.ENEMY_HEAD_BIT |
+                JumpAndRun.WINNING_BIT |
                 JumpAndRun.ITEM_BIT;
 
 
@@ -74,5 +106,6 @@ public class Hero extends Sprite {
         setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
 
     }
+
 
 }
