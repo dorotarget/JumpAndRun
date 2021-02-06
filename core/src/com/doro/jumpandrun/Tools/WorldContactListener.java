@@ -44,14 +44,16 @@ public class WorldContactListener implements ContactListener {
                 else
                     ((InteractiveTileObject) fixA.getUserData()).onHeadHit((Hero) fixB.getUserData());
                 break;
-            case JumpAndRun.GROUND_BIT | JumpAndRun.WINNING_BIT:
+            case JumpAndRun.MARIO_BIT | JumpAndRun.WINNING_BIT:
                 //((InteractiveTileObject) fixB.getUserData()).reachGoal((Hero) fixA.getUserData());
                 //WinBrick.reachGoal();
                 //screen.won();
                 //game.setScreen(new WinScreen(game));
+                Hero.won = true;
+
                 Gdx.app.log("Kontakt","Kontakt");
                 // screen.dispose();
-                //Hero.hit();
+                // Hero.hit();
                 //game.setScreen(new WinScreen(game));
                 //dispose();
 /*

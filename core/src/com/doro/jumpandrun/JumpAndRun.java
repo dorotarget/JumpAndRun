@@ -23,9 +23,13 @@ public class JumpAndRun extends Game {
 
 
 	public SpriteBatch batch;
+
+
+	private Boolean hasWon;
 	
 	@Override
 	public void create () {
+		hasWon = false;
 		batch = new SpriteBatch();
 		setScreen(new PlayScreen(this));
 	}
@@ -34,4 +38,15 @@ public class JumpAndRun extends Game {
 	public void render () {
 		super.render();
 	}
+
+	/** */
+
+	public Boolean getHasWon() {
+		return hasWon;
+	}
+
+	public void setHasWon(Boolean hasWon) {
+		this.hasWon = hasWon;
+	}
+
 }

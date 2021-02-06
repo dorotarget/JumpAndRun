@@ -19,7 +19,7 @@ import com.doro.jumpandrun.Screens.PlayScreen;
 public class Hero extends Sprite {
     public static boolean won;
 
-    public enum State { WINNER, ELSE };
+    public enum State { WINNER, ELSE }
     public State currentState;
     public State previousState;
 
@@ -28,24 +28,11 @@ public class Hero extends Sprite {
     public Body b2body;
     private TextureRegion heroStand;
 
-    private boolean hasWon;
 
 
     public void hit(){
         won = true;
 
-    }
-    public State getState(){
-        //Test to Box2D for velocity on the X and Y-Axis
-        //if mario is going positive in Y-Axis he is jumping... or if he just jumped and is falling remain in jump state
-        if(hasWon)
-            return State.WINNER;
-        else
-            return State.ELSE;
-    }
-
-    public boolean isDead(){
-        return hasWon;
     }
 
 
@@ -92,13 +79,14 @@ public class Hero extends Sprite {
                 JumpAndRun.ENEMY_HEAD_BIT |
                 JumpAndRun.WINNING_BIT |
                 JumpAndRun.ITEM_BIT;
-
+        b2body.createFixture(fdef).setUserData(this);
 
         EdgeShape head = new EdgeShape();
         head.set(new Vector2(-2 / JumpAndRun.PPM, 6 / JumpAndRun.PPM), new Vector2(2 / JumpAndRun.PPM, 6 / JumpAndRun.PPM));
         fdef.filter.categoryBits = JumpAndRun.MARIO_HEAD_BIT;
         fdef.shape = head;
         fdef.isSensor = true;
+        b2body.createFixture(fdef).setUserData(this);
 
         //b2body.createFixture(fdef).setUserData("head");
     }
@@ -106,6 +94,8 @@ public class Hero extends Sprite {
         setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
 
     }
+
+
 
 
 }
