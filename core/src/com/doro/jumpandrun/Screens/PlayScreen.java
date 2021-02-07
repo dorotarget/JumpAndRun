@@ -17,6 +17,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.doro.jumpandrun.JumpAndRun;
 import com.doro.jumpandrun.Scenes.Hud;
+import com.doro.jumpandrun.Sprites.Gegner;
+import com.doro.jumpandrun.Sprites.Gegner1;
 import com.doro.jumpandrun.Sprites.Hero;
 import com.doro.jumpandrun.Tools.B2WorldCreator;
 import com.doro.jumpandrun.Tools.WorldContactListener;
@@ -43,6 +45,7 @@ public class PlayScreen implements Screen{
 
     //-----------Held
     private Hero player;
+    private Gegner1 gegner1;
 
 
     public PlayScreen(JumpAndRun game){
@@ -74,10 +77,11 @@ public class PlayScreen implements Screen{
         b2dr = new Box2DDebugRenderer();
 
 
-        new B2WorldCreator(world, map);
+        new B2WorldCreator(this);
 
         //-------Held wird in Welt erstellt
-        player = new Hero(world, this);
+        player = new Hero(this);
+        gegner1 = new Gegner1(this, .32f, .32f);
 
         world.setContactListener(new WorldContactListener());
     }
@@ -101,7 +105,6 @@ public class PlayScreen implements Screen{
             player.b2body.applyLinearImpulse(new Vector2(0.1f, 0), player.b2body.getWorldCenter(), true);
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -2)
             player.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), player.b2body.getWorldCenter(), true);
-
     }
     //testkomentar2
 
@@ -114,6 +117,7 @@ public class PlayScreen implements Screen{
         world.step(1 / 60f, 6, 2);
 
         player.update(dt);
+        gegner1.update(dt);
 
         //----------gamecam bleibt bei Held
         gamecam.position.x = player.b2body.getPosition().x;
@@ -142,6 +146,7 @@ public class PlayScreen implements Screen{
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         player.draw(game.batch);
+        gegner1.draw(game.batch);
         game.batch.end();
 
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
@@ -153,6 +158,12 @@ public class PlayScreen implements Screen{
     public void resize(int width, int height) {
         gamePort.update(width,height);
 
+    }
+    public TiledMap getMap(){
+        return map;
+    }
+    public World getWorld(){
+        return world;
     }
 
     @Override

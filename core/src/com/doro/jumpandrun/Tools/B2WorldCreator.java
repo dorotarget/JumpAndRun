@@ -10,10 +10,13 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.doro.jumpandrun.JumpAndRun;
+import com.doro.jumpandrun.Screens.PlayScreen;
 
 
 public class B2WorldCreator {
-    public B2WorldCreator(World world, TiledMap map){
+    public B2WorldCreator(PlayScreen screen){
+        World world = screen.getWorld();
+        TiledMap map = screen.getMap();
 
         //-------------Körper
         BodyDef bdef = new BodyDef();
@@ -47,6 +50,7 @@ public class B2WorldCreator {
 
             shape.setAsBox(rect.getWidth() / 2 / JumpAndRun.PPM, rect.getHeight() / 2 / JumpAndRun.PPM);
             fdef.shape = shape;
+            //fdef.filter.categoryBits = JumpAndRun.OBJEKT_BIT;
             body.createFixture(fdef);
         }
 

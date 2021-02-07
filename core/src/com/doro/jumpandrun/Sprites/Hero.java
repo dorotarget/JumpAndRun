@@ -19,9 +19,9 @@ public class Hero extends Sprite {
     public Body b2body;
     private TextureRegion heroStand;
 
-    public Hero(World world, PlayScreen screen){
+    public Hero(PlayScreen screen){
         super(screen.getAtlas().findRegion("little_mario"));
-        this.world = world;
+        this.world = screen.getWorld();
 
 
         heroStand = new TextureRegion(getTexture(), 339, 27, 16, 16);
@@ -42,6 +42,9 @@ public class Hero extends Sprite {
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
         shape.setRadius(6 / JumpAndRun.PPM);
+        fdef.filter.categoryBits = JumpAndRun.HERO_BIT;
+        fdef.filter.maskBits = JumpAndRun.BODEN_BIT |
+                JumpAndRun.GEGNER_KOPF_BIT;
 
         fdef.shape = shape;
         b2body.createFixture(fdef);
