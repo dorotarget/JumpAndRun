@@ -18,7 +18,7 @@ public class WorldContactListener implements ContactListener {
 
         int cDef = fixA.getFilterData().categoryBits | fixB.getFilterData().categoryBits;
 
-        if(fixA.getUserData() == "head" || fixB.getUserData() == "head"){
+/*        if(fixA.getUserData() == "head" || fixB.getUserData() == "head"){
             Fixture head = fixA.getUserData() == "head" ? fixA : fixB;
             Fixture object = head == fixA ? fixB : fixA;
 
@@ -26,7 +26,7 @@ public class WorldContactListener implements ContactListener {
                 ((InteractiveTileObject) object.getUserData()).onHeadHit();
             }
 
-        }
+        }*/
         switch (cDef){
             case JumpAndRun.GEGNER_KOPF_BIT | JumpAndRun.HERO_BIT:
                 if(fixA.getFilterData().categoryBits == JumpAndRun.GEGNER_KOPF_BIT)
@@ -42,6 +42,7 @@ public class WorldContactListener implements ContactListener {
                 break;
             case JumpAndRun.HERO_BIT | JumpAndRun.GEGNER_BIT:
                 Gdx.app.log("HERO", "DIED");
+
         }
     }
 
