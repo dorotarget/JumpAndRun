@@ -80,7 +80,7 @@ public class PlayScreen implements Screen{
         new B2WorldCreator(this);
 
         //-------Held wird in Welt erstellt
-        heroSprite = new Hero(this);
+        heroSprite = new Hero(world, this);
         gegner1 = new Gegner1(this, .32f, .32f);
 
         world.setContactListener(new WorldContactListener());
