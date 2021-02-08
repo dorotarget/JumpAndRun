@@ -85,7 +85,7 @@ public class B2WorldCreator {
 
             shape.setAsBox(rect.getWidth() / 2/ JumpAndRun.PPM, rect.getHeight() / 2/ JumpAndRun.PPM);
             fdef.shape = shape;
-            fdef.filter.categoryBits = JumpAndRun.WINNING_BIT;
+            fdef.filter.categoryBits = JumpAndRun.GEWINN_BIT;
             body.createFixture(fdef);
         }
     }

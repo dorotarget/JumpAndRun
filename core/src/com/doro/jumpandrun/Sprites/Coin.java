@@ -14,7 +14,7 @@ public class Coin extends InteractiveTileObject {
     public Coin(World world, TiledMap map, Rectangle bounds){
         super(world, map, bounds);
         fixture.setUserData(this);
-        setCategoryFilter(JumpAndRun.COIN_BIT);
+        setCategoryFilter(JumpAndRun.GELD_BIT);
 
     }
 

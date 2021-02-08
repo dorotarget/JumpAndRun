@@ -20,9 +20,9 @@ public class WinBrick extends InteractiveTileObject {
         FixtureDef fdef = new FixtureDef();
 
         fixture.setUserData(this);
-        setCategoryFilter(JumpAndRun.BRICK_BIT);
-        fdef.filter.categoryBits = JumpAndRun.MARIO_BIT;
-        fdef.filter.maskBits = JumpAndRun.GROUND_BIT ;
+        setCategoryFilter(JumpAndRun.BLOCK_BIT);
+        fdef.filter.categoryBits = JumpAndRun.HERO_BIT;
+        fdef.filter.maskBits = JumpAndRun.BODEN_BIT ;
 
         gewonnen = false;
 

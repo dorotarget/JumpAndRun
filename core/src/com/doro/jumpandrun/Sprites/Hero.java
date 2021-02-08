@@ -70,20 +70,20 @@ public class Hero extends Sprite {
         b2body.createFixture(fdef).setUserData(this);
 
         //b2body.createFixture(fdef);
-        fdef.filter.categoryBits = JumpAndRun.MARIO_BIT;
-        fdef.filter.maskBits = JumpAndRun.GROUND_BIT |
-                JumpAndRun.COIN_BIT |
-                JumpAndRun.BRICK_BIT |
-                JumpAndRun.ENEMY_BIT |
-                JumpAndRun.OBJECT_BIT |
-                JumpAndRun.ENEMY_HEAD_BIT |
-                JumpAndRun.WINNING_BIT |
+        fdef.filter.categoryBits = JumpAndRun.HERO_BIT;
+        fdef.filter.maskBits = JumpAndRun.BODEN_BIT |
+                JumpAndRun.GELD_BIT |
+                JumpAndRun.BLOCK_BIT |
+                JumpAndRun.GEGNER_BIT |
+                JumpAndRun.OBJEKT_BIT |
+                JumpAndRun.GEGNER_KOPF_BIT |
+                JumpAndRun.GEWINN_BIT |
                 JumpAndRun.ITEM_BIT;
         b2body.createFixture(fdef).setUserData(this);
 
         EdgeShape head = new EdgeShape();
         head.set(new Vector2(-2 / JumpAndRun.PPM, 6 / JumpAndRun.PPM), new Vector2(2 / JumpAndRun.PPM, 6 / JumpAndRun.PPM));
-        fdef.filter.categoryBits = JumpAndRun.MARIO_HEAD_BIT;
+        fdef.filter.categoryBits = JumpAndRun.HERO_KOPF_BIT;
         fdef.shape = head;
         fdef.isSensor = true;
         b2body.createFixture(fdef).setUserData(this);

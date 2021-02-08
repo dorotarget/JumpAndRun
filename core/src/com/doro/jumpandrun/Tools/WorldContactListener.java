@@ -37,14 +37,14 @@ public class WorldContactListener implements ContactListener {
 
         }*/
         switch (cDef){
-            case JumpAndRun.MARIO_HEAD_BIT | JumpAndRun.BRICK_BIT:
-            case JumpAndRun.MARIO_HEAD_BIT | JumpAndRun.COIN_BIT:
-                if(fixA.getFilterData().categoryBits == JumpAndRun.MARIO_HEAD_BIT)
+            case JumpAndRun.HERO_BIT | JumpAndRun.BLOCK_BIT:
+            case JumpAndRun.HERO_KOPF_BIT | JumpAndRun.GELD_BIT:
+                if(fixA.getFilterData().categoryBits == JumpAndRun.HERO_KOPF_BIT)
                     ((InteractiveTileObject) fixB.getUserData()).onHeadHit((Hero) fixA.getUserData());
                 else
                     ((InteractiveTileObject) fixA.getUserData()).onHeadHit((Hero) fixB.getUserData());
                 break;
-            case JumpAndRun.MARIO_BIT | JumpAndRun.WINNING_BIT:
+            case JumpAndRun.HERO_BIT | JumpAndRun.GEWINN_BIT:
                 //((InteractiveTileObject) fixB.getUserData()).reachGoal((Hero) fixA.getUserData());
                 //WinBrick.reachGoal();
                 //screen.won();
