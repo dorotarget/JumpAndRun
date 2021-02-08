@@ -22,7 +22,7 @@ public class B2WorldCreator {
         Body body;
 
         //------------Boden
-        for(MapObject object : map.getLayers().get(0).getObjects().getByType(RectangleMapObject.class)){
+        for(MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)){
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
             bdef.type = BodyDef.BodyType.StaticBody;
@@ -37,7 +37,7 @@ public class B2WorldCreator {
 
 
         //-----------------Hindernisse
-        for(MapObject object : map.getLayers().get(1).getObjects().getByType(RectangleMapObject.class)){
+        for(MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)){
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
             bdef.type = BodyDef.BodyType.StaticBody;
@@ -51,7 +51,7 @@ public class B2WorldCreator {
         }
 
         //---------------Blöcke
-        for(MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)){
+        for(MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)){
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
             bdef.type = BodyDef.BodyType.StaticBody;
@@ -65,7 +65,7 @@ public class B2WorldCreator {
         }
 
         //----------------Münzen/Sonderblöcke
-        for(MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)){
+        for(MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)){
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
             //new Coin(world, map, rect);
@@ -75,7 +75,7 @@ public class B2WorldCreator {
 
 //------------winblock
 
-        for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
+        for (MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
             bdef.type = BodyDef.BodyType.StaticBody;
