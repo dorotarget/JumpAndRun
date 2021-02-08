@@ -92,8 +92,6 @@ public class PlayScreen implements Screen{
 
     @Override
     public void show() {
-
-
     }
 
     public void handleInput(float dt){
@@ -102,7 +100,7 @@ public class PlayScreen implements Screen{
                 heroSprite.b2body.applyLinearImpulse(new Vector2(0, 4f), heroSprite.b2body.getWorldCenter(), true);
         if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN))
             heroSprite.b2body.applyLinearImpulse(new Vector2(0, -2f), heroSprite.b2body.getWorldCenter(), true);
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && heroSprite.b2body.getLinearVelocity().x <= 3)
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && heroSprite.b2body.getLinearVelocity().x <= 2)
             heroSprite.b2body.applyLinearImpulse(new Vector2(0.1f, 0), heroSprite.b2body.getWorldCenter(), true);
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && heroSprite.b2body.getLinearVelocity().x >= -2)
             heroSprite.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), heroSprite.b2body.getWorldCenter(), true);
