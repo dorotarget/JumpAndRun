@@ -96,7 +96,7 @@ public class PlayScreen implements Screen{
     }
 
     public void handleInput(float dt){
-        if(Gdx.input.isKeyJustPressed(Input.Keys.UP))
+        if(Gdx.input.isKeyJustPressed(Input.Keys.UP) && heroSprite.b2body.getLinearVelocity().y <= 0 && heroSprite.b2body.getLinearVelocity().y >= 0)
             heroSprite.b2body.applyLinearImpulse(new Vector2(0, 4f), heroSprite.b2body.getWorldCenter(), true);
         if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN))
             heroSprite.b2body.applyLinearImpulse(new Vector2(0, -2f), heroSprite.b2body.getWorldCenter(), true);
