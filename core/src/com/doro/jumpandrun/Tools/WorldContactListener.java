@@ -34,12 +34,14 @@ public class WorldContactListener implements ContactListener {
                 else
                     ((Gegner)fixB.getUserData()).hitOnKopf();
                 break;
+
             case JumpAndRun.GEGNER_BIT | JumpAndRun.OBJEKT_BIT:
                 if(fixA.getFilterData().categoryBits == JumpAndRun.GEGNER_BIT)
                     ((Gegner)fixA.getUserData()).umdrehTempo(true, false);
                 else
                     ((Gegner)fixB.getUserData()).umdrehTempo(true, false);
                 break;
+
             case JumpAndRun.HERO_BIT | JumpAndRun.GEGNER_BIT:
                 Gdx.app.log("HERO", "DIED");
 
