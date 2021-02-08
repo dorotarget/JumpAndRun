@@ -44,7 +44,7 @@ public class PlayScreen implements Screen{
 
 
     //-----------Held
-    private Hero player;
+    private Hero heroSprite;
     private Gegner1 gegner1;
 
 
@@ -80,7 +80,7 @@ public class PlayScreen implements Screen{
         new B2WorldCreator(this);
 
         //-------Held wird in Welt erstellt
-        player = new Hero(this);
+        heroSprite = new Hero(this);
         gegner1 = new Gegner1(this, .32f, .32f);
 
         world.setContactListener(new WorldContactListener());
@@ -98,13 +98,14 @@ public class PlayScreen implements Screen{
 
     public void handleInput(float dt){
         if(Gdx.input.isKeyJustPressed(Input.Keys.UP))
-            player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
+            heroSprite.b2body.applyLinearImpulse(new Vector2(0, 4f), heroSprite.b2body.getWorldCenter(), true);
         if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN))
-            player.b2body.applyLinearImpulse(new Vector2(0, -2f), player.b2body.getWorldCenter(), true);
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2)
-            player.b2body.applyLinearImpulse(new Vector2(0.1f, 0), player.b2body.getWorldCenter(), true);
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -2)
-            player.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), player.b2body.getWorldCenter(), true);
+            heroSprite.b2body.applyLinearImpulse(new Vector2(0, -2f), heroSprite.b2body.getWorldCenter(), true);
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && heroSprite.b2body.getLinearVelocity().x <= 2)
+            heroSprite.b2body.applyLinearImpulse(new Vector2(0.1f, 0), heroSprite.b2body.getWorldCenter(), true);
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && heroSprite.b2body.getLinearVelocity().x >= -2)
+            heroSprite.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), heroSprite.b2body.getWorldCenter(), true);
+
     }
     //testkomentar2
 
@@ -116,15 +117,20 @@ public class PlayScreen implements Screen{
         //-------------wie oft pro sekunde
         world.step(1 / 60f, 6, 2);
 
-        player.update(dt);
+        heroSprite.update(dt);
         gegner1.update(dt);
 
         //----------gamecam bleibt bei Held
-        gamecam.position.x = player.b2body.getPosition().x;
+        gamecam.position.x = heroSprite.b2body.getPosition().x;
 
         //-------------aktualisiert gamecam
         gamecam.update();
-        //-------------das was man sieht wird gerendert
+        //-------------das was man sieht wird gerender
+
+        if (Hero.won == true) {
+            game.setScreen(new WinScreen(game));
+        }
+
         renderer.setView(gamecam);
     }
 
@@ -145,7 +151,7 @@ public class PlayScreen implements Screen{
 
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
-        player.draw(game.batch);
+        heroSprite.draw(game.batch);
         gegner1.draw(game.batch);
         game.batch.end();
 
@@ -153,6 +159,17 @@ public class PlayScreen implements Screen{
         hud.stage.draw();
 
     }
+
+    public boolean won(){
+       // game.setScreen(new WinScreen(game));
+        //dispose();
+
+        return true;
+
+
+    }
+
+
 
     @Override
     public void resize(int width, int height) {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="125">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="15" nextobjectid="131">
  <tileset firstgid="1" name="tileset_gutter" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="924" columns="33">
   <image source="tileset_gutter.png" width="594" height="504"/>
   <tile id="0">
@@ -111,6 +111,16 @@
    </properties>
   </tile>
  </tileset>
+ <layer id="13" name="Hintergrund" width="240" height="13">
+  <data encoding="base64" compression="zlib">
+   eJztzjERADAIBLCn/g3hriIYevQyZE+fpAEAAAAAAAAAAAAAWK0y8/rP/y5t79vp
+  </data>
+ </layer>
+ <layer id="14" name="Graphik" width="240" height="13">
+  <data encoding="base64" compression="zlib">
+   eJzt0yEKACAUREG/x/GInt5gMFgURFBm4JXtmxIAAAAAAAAAAL/JixtwV4ke8J6T/615P2AITcErGg03B0I=
+  </data>
+ </layer>
  <objectgroup id="3" name="floor">
   <object id="5" x="0" y="192" width="1104" height="18"/>
   <object id="11" x="1136" y="192" width="256" height="16"/>
@@ -118,6 +128,8 @@
  <objectgroup id="4" name="obstacles">
   <object id="66" x="192" y="159" width="32" height="32"/>
   <object id="121" x="1427" y="323"/>
+  <object id="129" x="0" y="160" width="16.7968" height="33.1627"/>
+  <object id="130" x="-55.3305" y="9.38642"/>
  </objectgroup>
  <objectgroup id="7" name="bricks">
   <object id="123" x="416" y="144" width="16" height="16"/>
@@ -125,5 +137,10 @@
  </objectgroup>
  <objectgroup id="8" name="special_bricks">
   <object id="122" x="336" y="144" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="11" name="victory">
+  <object id="125" x="496" y="176" width="16" height="16"/>
+  <object id="126" x="512" y="176" width="192" height="16"/>
+  <object id="127" x="663" y="386"/>
  </objectgroup>
 </map>
