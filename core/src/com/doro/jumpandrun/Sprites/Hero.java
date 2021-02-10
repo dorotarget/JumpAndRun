@@ -4,6 +4,7 @@ package com.doro.jumpandrun.Sprites;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -32,6 +33,8 @@ public class Hero extends Sprite {
     private float statusTimer;
     private boolean rennenRechts;
 
+    private TextureAtlas heroAtlas;
+
 
 /*
     public void hit(){
@@ -42,7 +45,12 @@ public class Hero extends Sprite {
 
 
     public Hero(World world, PlayScreen screen){
-        super(screen.getAtlas().findRegion("little_mario"));
+        //super(screen.getAtlas().findRegion("little_mario"));
+
+
+        super(screen.getHeroAtlas().findRegion("hero_gehen"));
+
+
         this.world = world;
 
         currentState = State.STEHEN;
@@ -55,17 +63,17 @@ public class Hero extends Sprite {
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
         for(int i = 1; i < 4; i++)
-            frames.add(new TextureRegion(getTexture(), i * 16, 0, 16, 16));
+            frames.add(new TextureRegion(getTexture(), 1 +i * 32, 35, 32, 32));
         heroRennen = new Animation(0.1f, frames);
         frames.clear();
 
-        for(int i = 4; i < 6; i++)
-            frames.add(new TextureRegion(getTexture(), i * 16, 0, 16, 16));
+        for(int i = 5; i < 6; i++)
+            frames.add(new TextureRegion(getTexture(), 1, 1, 32, 32));
         heroSpringen = new Animation(0.1f, frames);
 
 
 
-        heroStehen = new TextureRegion(getTexture(), 0, 0, 16, 16);
+        heroStehen = new TextureRegion(getTexture(), 259, 67, 32, 32);
 
         defineHero();
         setBounds(0, 0, 16 / JumpAndRun.PPM, 16 / JumpAndRun.PPM);
