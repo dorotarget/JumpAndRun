@@ -12,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.doro.jumpandrun.JumpAndRun;
 import com.doro.jumpandrun.Screens.PlayScreen;
@@ -60,8 +61,15 @@ public class Hero extends Sprite {
         b2body = world.createBody(bdef);
 
         FixtureDef fdef = new FixtureDef();
-        CircleShape shape = new CircleShape();
-        shape.setRadius(6 / JumpAndRun.PPM);
+        PolygonShape shape = new PolygonShape();
+        Vector2[] vertice = new Vector2[4];
+        vertice[0] = new Vector2(-2, -6).scl(1 / JumpAndRun.PPM);
+        vertice[1] = new Vector2(2, -6).scl(1 / JumpAndRun.PPM);
+        vertice[2] = new Vector2(-2, 4).scl(1 / JumpAndRun.PPM);
+        vertice[3] = new Vector2(2, 4).scl(1 / JumpAndRun.PPM);
+        shape.set(vertice);
+    //    CircleShape shape = new CircleShape();
+    //    shape.setRadius(6 / JumpAndRun.PPM);
         fdef.filter.categoryBits = JumpAndRun.HERO_BIT;
         fdef.filter.maskBits = JumpAndRun.BODEN_BIT |
                 JumpAndRun.GEGNER_KOPF_BIT;
