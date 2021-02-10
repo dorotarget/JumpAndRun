@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -14,6 +15,7 @@ import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.doro.jumpandrun.JumpAndRun;
@@ -92,8 +94,14 @@ public class Hero extends Sprite {
         b2body = world.createBody(bdef);
 
         FixtureDef fdef = new FixtureDef();
-        CircleShape shape = new CircleShape();
-        shape.setRadius(6 / JumpAndRun.PPM);
+        PolygonShape shape = new PolygonShape();
+        Vector2[] vertice = new Vector2[4];
+        vertice[0] = new Vector2(-2, -6).scl(1 / JumpAndRun.PPM);
+        vertice[1] = new Vector2(2, -6).scl(1 / JumpAndRun.PPM);
+        vertice[2] = new Vector2(-2, 4).scl(1 / JumpAndRun.PPM);
+        vertice[3] = new Vector2(2, 4).scl(1 / JumpAndRun.PPM);
+        shape.set(vertice);
+        //shape.setRadius(6 / JumpAndRun.PPM);
 
         fdef.shape = shape;
         b2body.createFixture(fdef).setUserData(this);
