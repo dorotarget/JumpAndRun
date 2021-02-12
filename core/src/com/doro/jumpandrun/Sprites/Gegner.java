@@ -19,8 +19,8 @@ public abstract class Gegner extends Sprite {
         setPosition(x, y);
         defineGegner();
         tempo = new Vector2(1 , 0);
-
     }
+
     protected abstract void defineGegner();
     public abstract void hitOnKopf();
 
