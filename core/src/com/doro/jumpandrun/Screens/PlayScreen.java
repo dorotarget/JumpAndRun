@@ -17,6 +17,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.doro.jumpandrun.JumpAndRun;
 import com.doro.jumpandrun.Scenes.Hud;
+import com.doro.jumpandrun.Sprites.Gegner;
+import com.doro.jumpandrun.Sprites.Gegner1;
 import com.doro.jumpandrun.Sprites.Hero;
 import com.doro.jumpandrun.Tools.B2WorldCreator;
 import com.doro.jumpandrun.Tools.WorldContactListener;
@@ -45,9 +47,7 @@ public class PlayScreen implements Screen{
 
     //-----------Held
     private Hero heroSprite;
-
-
-    //public boolean won = true;
+    private Gegner1 gegner1;
 
 
     public PlayScreen(JumpAndRun game){
@@ -81,10 +81,11 @@ public class PlayScreen implements Screen{
         b2dr = new Box2DDebugRenderer();
 
 
-        new B2WorldCreator(world, map);
+        new B2WorldCreator(this);
 
         //-------Held wird in Welt erstellt
         heroSprite = new Hero(world, this);
+        gegner1 = new Gegner1(this, .32f, .32f);
 
         world.setContactListener(new WorldContactListener());
     }
@@ -125,6 +126,7 @@ public class PlayScreen implements Screen{
         world.step(1 / 60f, 6, 2);
 
         heroSprite.update(dt);
+        gegner1.update(dt);
 
         //----------gamecam bleibt bei Held
         gamecam.position.x = heroSprite.b2body.getPosition().x;
@@ -158,6 +160,7 @@ public class PlayScreen implements Screen{
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         heroSprite.draw(game.batch);
+        gegner1.draw(game.batch);
         game.batch.end();
 
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
@@ -186,6 +189,12 @@ public class PlayScreen implements Screen{
     public void resize(int width, int height) {
         gamePort.update(width,height);
 
+    }
+    public TiledMap getMap(){
+        return map;
+    }
+    public World getWorld(){
+        return world;
     }
 
     @Override

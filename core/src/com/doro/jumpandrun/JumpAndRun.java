@@ -26,7 +26,7 @@ public class JumpAndRun extends Game {
 
 
 	private Boolean hasWon;
-	
+
 	@Override
 	public void create () {
 		hasWon = false;

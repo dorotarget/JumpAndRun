@@ -101,7 +101,11 @@ public class Hero extends Sprite {
         vertice[2] = new Vector2(-2, 4).scl(1 / JumpAndRun.PPM);
         vertice[3] = new Vector2(2, 4).scl(1 / JumpAndRun.PPM);
         shape.set(vertice);
-        //shape.setRadius(6 / JumpAndRun.PPM);
+    //    CircleShape shape = new CircleShape();
+    //    shape.setRadius(6 / JumpAndRun.PPM);
+        fdef.filter.categoryBits = JumpAndRun.HERO_BIT;
+        fdef.filter.maskBits = JumpAndRun.BODEN_BIT |
+                JumpAndRun.GEGNER_KOPF_BIT;
 
         fdef.shape = shape;
         b2body.createFixture(fdef).setUserData(this);
