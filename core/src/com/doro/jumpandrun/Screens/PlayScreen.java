@@ -167,22 +167,9 @@ public class PlayScreen implements Screen{
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
 
-        //if (won())
-            //game.setScreen(new WinScreen(game));
-            //dispose();
-        /*if(gameOver()){
-            game.setScreen(new LostScreen(game));
-            dispose();
-        }*/
-        if (Hud.playTimer == 1){
-            Gdx.app.log("Zei", "vorbei");
-        }
-        if ((Hero.lost == true && heroSprite.getStatusTimer() > 2) | Hud.playTimer == -1){
-            /*try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }*/
+
+        if ((Hero.lost == true && heroSprite.getStatusTimer() > 2) | Hud.playTimer < 0){
+
             game.setScreen(new LostScreen(game));
             dispose();
         }
