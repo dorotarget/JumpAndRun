@@ -19,12 +19,17 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.doro.jumpandrun.JumpAndRun;
+import com.doro.jumpandrun.Scenes.Hud;
 import com.doro.jumpandrun.Screens.PlayScreen;
+
+import java.sql.Struct;
 
 public class Hero extends Sprite {
     public static boolean won;
+    public static boolean lost;
 
-    public enum State {FALLEN, SPRINGEN, STEHEN, RENNEN, TOT  }
+
+    public enum State {FALLEN, SPRINGEN, STEHEN, RENNEN, TOT, VERLETZT  }
     public State currentState;
     public State previousState;
     public World world;
@@ -33,10 +38,14 @@ public class Hero extends Sprite {
     private Animation<TextureRegion> heroRennen;
     private Animation <TextureRegion> heroSpringen;
     private TextureRegion heroTot;
+    private TextureRegion heroVerletzt;
+
 
     private float statusTimer;
     private boolean rennenRechts;
     private boolean heroIstTot;
+    private boolean heroIstVerletzt;
+
 
 
     private TextureAtlas heroAtlas;
@@ -65,6 +74,7 @@ public class Hero extends Sprite {
         rennenRechts = true;
 
         won = false;
+        lost= false;
 
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
@@ -83,6 +93,8 @@ public class Hero extends Sprite {
 
         heroTot = new TextureRegion(getTexture(), 133, 1, 64, 64);
 
+        heroVerletzt = new TextureRegion(getTexture(), 133, 1, 64, 64);
+
 
        // heroTot = new TextureRegion(screen.getHeroAtlas().findRegion("hero_sterben"), 0, 0, 64, 64);
 
@@ -95,22 +107,32 @@ public class Hero extends Sprite {
 
     public void die() {
 
-        if (!istTot()) {
+        if (!istTot() && !istVerletzt()) {
 
             // MarioBros.manager.get("audio/music/mario_music.ogg", Music.class).stop();
-            heroIstTot = true;
-            Filter filter = new Filter();
-            filter.maskBits = JumpAndRun.NOTHING_BIT;
+            if (Hud.verloren()) {
+                heroIstTot = true;
+                Filter filter = new Filter();
+                filter.maskBits = JumpAndRun.NOTHING_BIT;
 
-            for (Fixture fixture : b2body.getFixtureList()) {
-                fixture.setFilterData(filter);
+                for (Fixture fixture : b2body.getFixtureList()) {
+                    fixture.setFilterData(filter);
+                }
+
+                b2body.applyLinearImpulse(new Vector2(0, 4f), b2body.getWorldCenter(), true);
             }
+            else {
+                heroIstVerletzt = true;
+                //b2body.applyLinearImpulse(new Vector2(0, 4f), b2body.getWorldCenter(), true);
 
-            b2body.applyLinearImpulse(new Vector2(0, 4f), b2body.getWorldCenter(), true);
+            }
         }
     }
     public boolean istTot(){
         return heroIstTot;
+    }
+    public boolean istVerletzt(){
+        return heroIstVerletzt;
     }
     public float getStatusTimer(){
         return statusTimer;
@@ -118,11 +140,18 @@ public class Hero extends Sprite {
 
 
     public void getroffen(Gegner gegner){
-
+        Hud.verliereLeben(1);
         die();
 
 
+
     }
+    /*public boolean todesCheck{
+        if (Hud.verloren())
+            return true;
+        else
+            return false;
+    }*/
     public void defineHero(){
 
         BodyDef bdef = new BodyDef();
@@ -176,6 +205,8 @@ public class Hero extends Sprite {
     }
     public TextureRegion getFrame(float dt){
         currentState = getState();
+        statusTimer = currentState == previousState ? statusTimer + dt : 0;
+        previousState = currentState;
 
         TextureRegion region;
         switch(currentState){
@@ -185,13 +216,22 @@ public class Hero extends Sprite {
             case RENNEN:
                 region = heroRennen.getKeyFrame(statusTimer, true);
                 break;
-            case FALLEN:
-            case STEHEN:
+
             default:
                 region = heroStehen;
                 break;
             case TOT:
                 region = heroTot;
+                break;
+            case VERLETZT:
+                if (statusTimer < 1  )
+                    region = heroVerletzt;
+                else{
+                    region = heroStehen;
+                    getState();
+                    heroIstVerletzt = false;
+                }
+
                 break;
         }if((b2body.getLinearVelocity().x < 0 || !rennenRechts) && !region.isFlipX()){
             region.flip(true, false);
@@ -202,14 +242,18 @@ public class Hero extends Sprite {
             rennenRechts = true;
         }
 
-        statusTimer = currentState == previousState ? statusTimer + dt : 0;
-        previousState = currentState;
+
         return region;
 
     }
     public State getState(){
         if(heroIstTot)
             return State.TOT;
+        //if (previousState == State.VERLETZT) {
+           // return State.STEHEN;
+        //}
+        if(heroIstVerletzt)
+            return State.VERLETZT;
         if(b2body.getLinearVelocity().y > 0 || (b2body.getLinearVelocity().y < 0 && previousState == State.SPRINGEN))
             return State.SPRINGEN;
         else if(b2body.getLinearVelocity().y < 0)
@@ -218,7 +262,12 @@ public class Hero extends Sprite {
             return State.RENNEN;
         else
             return State.STEHEN;
+
     }
+    public State wiederbeleben(){
+        return State.STEHEN;
+    }
+
 
 
 

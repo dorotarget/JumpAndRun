@@ -105,13 +105,13 @@ public class PlayScreen implements Screen{
     }
 
     public void handleInput(float dt){
-        if(Gdx.input.isKeyJustPressed(Input.Keys.UP) && heroSprite.b2body.getLinearVelocity().y <= 0 && heroSprite.b2body.getLinearVelocity().y >= 0)
+        if(Gdx.input.isKeyJustPressed(Input.Keys.UP) && heroSprite.b2body.getLinearVelocity().y <= 0 && heroSprite.b2body.getLinearVelocity().y >= 0 && heroSprite.getState() != Hero.State.VERLETZT)
             heroSprite.b2body.applyLinearImpulse(new Vector2(0, 4f), heroSprite.b2body.getWorldCenter(), true);
-        if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN))
+        if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN) &&heroSprite.getState() != Hero.State.VERLETZT)
             heroSprite.b2body.applyLinearImpulse(new Vector2(0, -2f), heroSprite.b2body.getWorldCenter(), true);
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && heroSprite.b2body.getLinearVelocity().x <= 2)
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && heroSprite.b2body.getLinearVelocity().x <= 2 && heroSprite.getState() != Hero.State.VERLETZT)
             heroSprite.b2body.applyLinearImpulse(new Vector2(0.1f, 0), heroSprite.b2body.getWorldCenter(), true);
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && heroSprite.b2body.getLinearVelocity().x >= -2)
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && heroSprite.b2body.getLinearVelocity().x >= -2 && heroSprite.getState() != Hero.State.VERLETZT)
             heroSprite.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), heroSprite.b2body.getWorldCenter(), true);
 
     }
@@ -170,10 +170,15 @@ public class PlayScreen implements Screen{
         //if (won())
             //game.setScreen(new WinScreen(game));
             //dispose();
-        if(gameOver()){
+        /*if(gameOver()){
+            game.setScreen(new LostScreen(game));
+            dispose();
+        }*/
+        if (Hud.lost == true){
             game.setScreen(new LostScreen(game));
             dispose();
         }
+
 
 
     }
