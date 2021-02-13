@@ -21,11 +21,11 @@ public class Hud implements Disposable{
     //------------Score und Zeit
     private Integer playTimer;
     private float timeCount;
-    private Integer score;
+    private static Integer score;
 
     //Scene2D widgets
     private Label countdownLabel;
-    private Label scoreLabel;
+    static Label scoreLabel;
     private Label liveLabel;
     private Label liveCountLabel;
     private Label timeLabel;
@@ -67,6 +67,18 @@ public class Hud implements Disposable{
 
         stage.addActor(table);
 
+    }
+    public void update (float dt){
+        timeCount += dt;
+        if(timeCount>=1){
+            playTimer -=1;
+            countdownLabel.setText(String.format("%03d", playTimer));
+            timeCount = 0;
+        }
+    }
+    public static void addScore(int value){
+        score += value;
+        scoreLabel.setText(String.format("%06d", score));
     }
 
     @Override

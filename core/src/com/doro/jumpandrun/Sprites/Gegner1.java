@@ -11,6 +11,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.utils.Array;
 import com.doro.jumpandrun.JumpAndRun;
+import com.doro.jumpandrun.Scenes.Hud;
 import com.doro.jumpandrun.Screens.PlayScreen;
 
 public class Gegner1 extends Gegner
@@ -74,6 +75,8 @@ public class Gegner1 extends Gegner
             destroyed = true;
             setRegion(new TextureRegion(screen.getHeroAtlas().findRegion("Bandit_sterben"), 1, -3, 64, 64));
             statusZeit = 0;
+            Hud.addScore(500);
+
         }
         else if(!destroyed){
             b2Body.setLinearVelocity(tempo);

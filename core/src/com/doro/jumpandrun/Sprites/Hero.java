@@ -112,6 +112,10 @@ public class Hero extends Sprite {
     public boolean istTot(){
         return heroIstTot;
     }
+    public float getStatusTimer(){
+        return statusTimer;
+    }
+
 
     public void getroffen(Gegner gegner){
 

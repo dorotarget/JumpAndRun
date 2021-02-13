@@ -138,6 +138,7 @@ public class PlayScreen implements Screen{
         if (Hero.won == true) {
             game.setScreen(new WinScreen(game));
         }
+        hud.update(dt);
 
         renderer.setView(gamecam);
     }
@@ -169,9 +170,18 @@ public class PlayScreen implements Screen{
         //if (won())
             //game.setScreen(new WinScreen(game));
             //dispose();
+        if(gameOver()){
+            game.setScreen(new LostScreen(game));
+            dispose();
+        }
 
 
-
+    }
+    public boolean gameOver(){
+        if(heroSprite.currentState == Hero.State.TOT && heroSprite.getStatusTimer() > 3){
+            return true;
+        }
+        return false;
     }
 
     public boolean won(){
