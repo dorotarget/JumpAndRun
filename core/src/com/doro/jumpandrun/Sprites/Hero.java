@@ -120,6 +120,9 @@ public class Hero extends Sprite {
                 }
 
                 b2body.applyLinearImpulse(new Vector2(0, 4f), b2body.getWorldCenter(), true);
+
+                heroIstTot = true;
+
             }
             else {
                 heroIstVerletzt = true;

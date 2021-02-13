@@ -58,12 +58,17 @@ public class WorldContactListener implements ContactListener {
 
             case JumpAndRun.HERO_BIT | JumpAndRun.GEGNER_BIT:
                 Gdx.app.log("HERO", "DIED");
-                if(fixA.getFilterData().categoryBits == JumpAndRun.HERO_BIT)
+                if(fixA.getFilterData().categoryBits == JumpAndRun.HERO_BIT) {
                     ((Hero) fixA.getUserData()).getroffen((Gegner) fixB.getUserData());
-                else
-                    ((Hero) fixB.getUserData()).getroffen((Gegner) fixA.getUserData());
+                    ((Gegner)fixB.getUserData()).umdrehTempo(true, false);
+                }
 
-                break;
+                else {
+                    ((Hero) fixB.getUserData()).getroffen((Gegner) fixA.getUserData());
+                    ((Gegner) fixA.getUserData()).umdrehTempo(true, false);
+                }
+
+                    break;
 
             case JumpAndRun.HERO_BIT | JumpAndRun.BLOCK_BIT:
             case JumpAndRun.HERO_KOPF_BIT | JumpAndRun.GELD_BIT:

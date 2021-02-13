@@ -101,6 +101,11 @@ public class Hud implements Disposable{
     public static boolean verloren (){
 
         if (leben == 0){
+            /*try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }*/
             Hero.lost = true;
             return true;}
         else

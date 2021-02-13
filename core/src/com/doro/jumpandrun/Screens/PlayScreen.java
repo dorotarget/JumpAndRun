@@ -174,7 +174,12 @@ public class PlayScreen implements Screen{
             game.setScreen(new LostScreen(game));
             dispose();
         }*/
-        if (Hud.lost == true){
+        if (Hero.lost == true && heroSprite.getStatusTimer() > 2){
+            /*try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }*/
             game.setScreen(new LostScreen(game));
             dispose();
         }

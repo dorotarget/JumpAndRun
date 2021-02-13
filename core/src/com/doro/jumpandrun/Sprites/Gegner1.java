@@ -120,6 +120,10 @@ public class Gegner1 extends Gegner
 
 
     }
+    public void gegnerTrifftHero(Gegner gegner){
+        reverseVelocity(true, false);
+
+    }
     //Verschwindet nach 1 sek
     public void draw(Batch batch){
         if(!destroyed || statusZeit < 1)
