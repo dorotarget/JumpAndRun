@@ -167,10 +167,10 @@ public class Hero extends Sprite {
         FixtureDef fdef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
         Vector2[] vertice = new Vector2[4];
-        vertice[0] = new Vector2(-2, -6).scl(1 / JumpAndRun.PPM);
-        vertice[1] = new Vector2(2, -6).scl(1 / JumpAndRun.PPM);
-        vertice[2] = new Vector2(-2, 4).scl(1 / JumpAndRun.PPM);
-        vertice[3] = new Vector2(2, 4).scl(1 / JumpAndRun.PPM);
+        vertice[0] = new Vector2(-3, -6).scl(1 / JumpAndRun.PPM);
+        vertice[1] = new Vector2(3, -6).scl(1 / JumpAndRun.PPM);
+        vertice[2] = new Vector2(-3, 4).scl(1 / JumpAndRun.PPM);
+        vertice[3] = new Vector2(3, 4).scl(1 / JumpAndRun.PPM);
         shape.set(vertice);
     //    CircleShape shape = new CircleShape();
     //    shape.setRadius(6 / JumpAndRun.PPM);

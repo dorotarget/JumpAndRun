@@ -92,8 +92,15 @@ public class Gegner1 extends Gegner
         b2Body = world.createBody(bdef);
 
         FixtureDef fdef = new FixtureDef();
-        CircleShape shape = new CircleShape();
-        shape.setRadius(6 / JumpAndRun.PPM);
+   //     CircleShape shape = new CircleShape();
+   //     shape.setRadius(6 / JumpAndRun.PPM);
+        PolygonShape shape = new PolygonShape();
+        Vector2[] vertice = new Vector2[4];
+        vertice[0] = new Vector2(-4, 3).scl(1 / JumpAndRun.PPM);
+        vertice[1] = new Vector2(4, 3).scl(1 / JumpAndRun.PPM);
+        vertice[2] = new Vector2(-4, -5).scl(1 / JumpAndRun.PPM);
+        vertice[3] = new Vector2(4, -5).scl(1 / JumpAndRun.PPM);
+        shape.set(vertice);
         fdef.filter.categoryBits = JumpAndRun.GEGNER_BIT;
         fdef.filter.maskBits = JumpAndRun.BODEN_BIT | JumpAndRun.OBJEKT_BIT | JumpAndRun.HERO_BIT;
 
@@ -101,12 +108,12 @@ public class Gegner1 extends Gegner
         b2Body.createFixture(fdef).setUserData(this);
 
         PolygonShape kopf = new PolygonShape();
-        Vector2[] vertice = new Vector2[4];
-        vertice[0] = new Vector2(-4, 8).scl(1 / JumpAndRun.PPM);
-        vertice[1] = new Vector2(4, 8).scl(1 / JumpAndRun.PPM);
-        vertice[2] = new Vector2(-3, 3).scl(1 / JumpAndRun.PPM);
-        vertice[3] = new Vector2(3, 3).scl(1 / JumpAndRun.PPM);
-        kopf.set(vertice);
+        Vector2[] vertice2 = new Vector2[4];
+        vertice2[0] = new Vector2(-3, 9).scl(1 / JumpAndRun.PPM);
+        vertice2[1] = new Vector2(3, 9).scl(1 / JumpAndRun.PPM);
+        vertice2[2] = new Vector2(-1, 4).scl(1 / JumpAndRun.PPM);
+        vertice2[3] = new Vector2(1, 4).scl(1 / JumpAndRun.PPM);
+        kopf.set(vertice2);
 
         fdef.shape = kopf;
         fdef.restitution = 1.0f;
