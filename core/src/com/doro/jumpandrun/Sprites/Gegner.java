@@ -22,13 +22,26 @@ public abstract class Gegner extends Sprite {
     }
 
     protected abstract void defineGegner();
+    public abstract void update(float dt);
     public abstract void hitOnKopf();
+    public abstract void gegnerTrifftGegner(Gegner gegner);
 
     public void umdrehTempo(boolean x, boolean y) {
         if (x)
             tempo.x = -tempo.x;
         if (y)
             tempo.y = -tempo.y;
+    }
+
+    public void reverseVelocity(boolean x, boolean y){
+
+        if(x) {
+            tempo.x = -tempo.x;
+
+        }
+        if(y) {
+            tempo.y = -tempo.y;
+        }
     }
 
 }

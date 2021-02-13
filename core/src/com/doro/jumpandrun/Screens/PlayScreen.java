@@ -52,7 +52,7 @@ public class PlayScreen implements Screen{
 
     public PlayScreen(JumpAndRun game){
        atlas = new TextureAtlas("Mario_and_Enemies.pack");
-       heroAtlas = new TextureAtlas("hero.pack");
+       heroAtlas = new TextureAtlas("Hero_und_Bandit.pack");
 
 
         this.game = game;

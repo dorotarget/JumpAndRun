@@ -50,7 +50,7 @@ public class Hero extends Sprite {
         //super(screen.getAtlas().findRegion("little_mario"));
 
 
-        super(screen.getHeroAtlas().findRegion("hero_gehen"));
+        super(screen.getHeroAtlas().findRegion("Hero_gehen"));
 
 
         this.world = world;
@@ -65,17 +65,17 @@ public class Hero extends Sprite {
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
         for(int i = 1; i < 4; i++)
-            frames.add(new TextureRegion(getTexture(), 1 +i * 32, 35, 32, 32));
-        heroRennen = new Animation(0.1f, frames);
+            frames.add(new TextureRegion(getTexture(), 1 +i * 64, 67, 64, 64));
+        heroRennen = new Animation(0.2f, frames);
         frames.clear();
 
         for(int i = 5; i < 6; i++)
-            frames.add(new TextureRegion(getTexture(), 1, 1, 32, 32));
+            frames.add(new TextureRegion(getTexture(), 67, 1, 64, 64));
         heroSpringen = new Animation(0.1f, frames);
 
 
 
-        heroStehen = new TextureRegion(getTexture(), 259, 67, 32, 32);
+        heroStehen = new TextureRegion(getTexture(), 839, 131, 64, 64);
 
         defineHero();
         setBounds(0, 0, 16 / JumpAndRun.PPM, 16 / JumpAndRun.PPM);

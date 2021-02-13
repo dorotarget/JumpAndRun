@@ -2,6 +2,7 @@ package com.doro.jumpandrun.Sprites;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -19,35 +20,65 @@ public class Gegner1 extends Gegner
         setToDestroy = true;
     }
 
-    private float stateTime;
-    private Animation<TextureRegion> walkAnimation;
+
+
+    private float statusZeit;
+    private Animation<TextureRegion> laufAnimation;
     private Array<TextureRegion> frames;
     private boolean setToDestroy;
     private boolean destroyed;
+
 
     public Gegner1(PlayScreen screen, float x, float y) {
         super(screen,x+1, y);
         frames = new Array<TextureRegion>();
         for(int i = 0; i < 2; i++)
-            frames.add(new TextureRegion(screen.getAtlas().findRegion("gegner1"), i * 16, 0, 16, 16));
-        walkAnimation = new Animation(0.4f, frames);
-        stateTime = 0;
+            //frames.add(new TextureRegion(screen.getAtlas().findRegion("gegner1"), i * 16, 0, 16, 16));
+            frames.add(new TextureRegion(screen.getHeroAtlas().findRegion("Bandit_gehen"), 1+i * 64, 4, 64, 64));
+
+        laufAnimation = new Animation(0.4f, frames);
+        statusZeit = 0;
         setBounds(getX(), getY(), 16 / JumpAndRun.PPM, 16 / JumpAndRun.PPM);
         setToDestroy = false;
+
         destroyed = false;
+
+
+
+
+    }
+    public TextureRegion getFrame(float dt){
+        TextureRegion region;
+
+
+        region = laufAnimation.getKeyFrame(statusZeit, true);
+
+
+        if(tempo.x > 0 && region.isFlipX() == true && !setToDestroy){
+            region.flip(true, false);
+        }
+        if(tempo.x < 0 && region.isFlipX() == false && !setToDestroy){
+            region.flip(true, false);
+        }
+
+
+        return region;
     }
     public void update(float dt){
-        stateTime += dt;
+        if (!setToDestroy)
+            setRegion(getFrame(dt));
+
+        statusZeit += dt;
         if(setToDestroy && !destroyed){
             world.destroyBody(b2Body);
             destroyed = true;
-            setRegion(new TextureRegion(screen.getAtlas().findRegion("gegner1"), 32, 0, 16, 16));
-            stateTime = 0;
+            setRegion(new TextureRegion(screen.getHeroAtlas().findRegion("Bandit_sterben"), 1, -3, 64, 64));
+            statusZeit = 0;
         }
         else if(!destroyed){
             b2Body.setLinearVelocity(tempo);
             setPosition(b2Body.getPosition().x - getWidth() / 2, b2Body.getPosition().y - getHeight() / 2);
-            setRegion(walkAnimation.getKeyFrame(stateTime, true));}
+            setRegion(laufAnimation.getKeyFrame(statusZeit, true));}
     }
     @Override
     protected void defineGegner(){
@@ -79,9 +110,16 @@ public class Gegner1 extends Gegner
         fdef.filter.categoryBits = JumpAndRun.GEGNER_KOPF_BIT;
         b2Body.createFixture(fdef).setUserData(this);
     }
+
+    public void gegnerTrifftGegner(Gegner gegner){
+            reverseVelocity(true, false);
+
+
+
+    }
     //Verschwindet nach 1 sek
     public void draw(Batch batch){
-        if(!destroyed || stateTime < 1)
+        if(!destroyed || statusZeit < 1)
             super.draw(batch);
     }
 }

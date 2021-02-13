@@ -51,6 +51,10 @@ public class WorldContactListener implements ContactListener {
                 else
                     ((Gegner)fixB.getUserData()).umdrehTempo(true, false);
                 break;
+            case JumpAndRun.GEGNER_BIT | JumpAndRun.GEGNER_BIT:
+                ((Gegner)fixA.getUserData()).gegnerTrifftGegner((Gegner)fixB.getUserData());
+                ((Gegner)fixB.getUserData()).gegnerTrifftGegner((Gegner)fixA.getUserData());
+                break;
 
             case JumpAndRun.HERO_BIT | JumpAndRun.GEGNER_BIT:
                 Gdx.app.log("HERO", "DIED");
@@ -70,7 +74,8 @@ public class WorldContactListener implements ContactListener {
                 //game.setScreen(new WinScreen(game));
                 Hero.won = true;
 
-                Gdx.app.log("Kontakt","Kontakt");
+                //Gdx.app.log("Kontakt","Kontakt");
+
 
         }
     }
