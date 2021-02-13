@@ -58,6 +58,11 @@ public class WorldContactListener implements ContactListener {
 
             case JumpAndRun.HERO_BIT | JumpAndRun.GEGNER_BIT:
                 Gdx.app.log("HERO", "DIED");
+                if(fixA.getFilterData().categoryBits == JumpAndRun.HERO_BIT)
+                    ((Hero) fixA.getUserData()).getroffen((Gegner) fixB.getUserData());
+                else
+                    ((Hero) fixB.getUserData()).getroffen((Gegner) fixA.getUserData());
+
                 break;
 
             case JumpAndRun.HERO_BIT | JumpAndRun.BLOCK_BIT:

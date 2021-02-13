@@ -24,7 +24,7 @@ import com.doro.jumpandrun.Screens.PlayScreen;
 public class Hero extends Sprite {
     public static boolean won;
 
-    public enum State {FALLEN, SPRINGEN, STEHEN, RENNEN  }
+    public enum State {FALLEN, SPRINGEN, STEHEN, RENNEN, TOT  }
     public State currentState;
     public State previousState;
     public World world;
@@ -32,8 +32,12 @@ public class Hero extends Sprite {
     private TextureRegion heroStehen;
     private Animation<TextureRegion> heroRennen;
     private Animation <TextureRegion> heroSpringen;
+    private TextureRegion heroTot;
+
     private float statusTimer;
     private boolean rennenRechts;
+    private boolean heroIstTot;
+
 
     private TextureAtlas heroAtlas;
 
@@ -77,15 +81,44 @@ public class Hero extends Sprite {
 
         heroStehen = new TextureRegion(getTexture(), 839, 131, 64, 64);
 
+        heroTot = new TextureRegion(getTexture(), 133, 1, 64, 64);
+
+
+       // heroTot = new TextureRegion(screen.getHeroAtlas().findRegion("hero_sterben"), 0, 0, 64, 64);
+
+
         defineHero();
         setBounds(0, 0, 16 / JumpAndRun.PPM, 16 / JumpAndRun.PPM);
         setRegion(heroStehen);
 
     }
 
+    public void die() {
+
+        if (!istTot()) {
+
+            // MarioBros.manager.get("audio/music/mario_music.ogg", Music.class).stop();
+            heroIstTot = true;
+            Filter filter = new Filter();
+            filter.maskBits = JumpAndRun.NOTHING_BIT;
+
+            for (Fixture fixture : b2body.getFixtureList()) {
+                fixture.setFilterData(filter);
+            }
+
+            b2body.applyLinearImpulse(new Vector2(0, 4f), b2body.getWorldCenter(), true);
+        }
+    }
+    public boolean istTot(){
+        return heroIstTot;
+    }
+
+    public void getroffen(Gegner gegner){
+
+        die();
 
 
-
+    }
     public void defineHero(){
 
         BodyDef bdef = new BodyDef();
@@ -153,6 +186,9 @@ public class Hero extends Sprite {
             default:
                 region = heroStehen;
                 break;
+            case TOT:
+                region = heroTot;
+                break;
         }if((b2body.getLinearVelocity().x < 0 || !rennenRechts) && !region.isFlipX()){
             region.flip(true, false);
             rennenRechts = false;
@@ -168,6 +204,8 @@ public class Hero extends Sprite {
 
     }
     public State getState(){
+        if(heroIstTot)
+            return State.TOT;
         if(b2body.getLinearVelocity().y > 0 || (b2body.getLinearVelocity().y < 0 && previousState == State.SPRINGEN))
             return State.SPRINGEN;
         else if(b2body.getLinearVelocity().y < 0)
