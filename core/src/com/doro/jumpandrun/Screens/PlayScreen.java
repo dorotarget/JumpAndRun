@@ -178,7 +178,7 @@ public class PlayScreen implements Screen{
 
     }
     public boolean gameOver(){
-        if(heroSprite.currentState == Hero.State.TOT && heroSprite.getStatusTimer() > 3){
+        if(heroSprite.currentState == Hero.State.TOT && heroSprite.getStatusTimer() > 2){
             return true;
         }
         return false;
