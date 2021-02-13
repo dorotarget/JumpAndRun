@@ -174,7 +174,10 @@ public class PlayScreen implements Screen{
             game.setScreen(new LostScreen(game));
             dispose();
         }*/
-        if (Hero.lost == true && heroSprite.getStatusTimer() > 2){
+        if (Hud.playTimer == 1){
+            Gdx.app.log("Zei", "vorbei");
+        }
+        if ((Hero.lost == true && heroSprite.getStatusTimer() > 2) | Hud.playTimer == -1){
             /*try {
                 Thread.sleep(5000);
             } catch (InterruptedException e) {
@@ -241,4 +244,6 @@ public class PlayScreen implements Screen{
         hud.dispose();
 
     }
+    public Hud getHud(){ return hud; }
+
 }

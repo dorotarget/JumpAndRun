@@ -39,6 +39,8 @@ public class Hero extends Sprite {
     private Animation <TextureRegion> heroSpringen;
     private TextureRegion heroTot;
     private TextureRegion heroVerletzt;
+    private PlayScreen screen;
+
 
 
     private float statusTimer;
@@ -203,6 +205,9 @@ public class Hero extends Sprite {
     public void update(float dt){
         setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
         setRegion(getFrame(dt));
+        /*if (screen.getHud().isTimeUp() && !istTot()) {
+            die();
+        }*/
 
 
     }

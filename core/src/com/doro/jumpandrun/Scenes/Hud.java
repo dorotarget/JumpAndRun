@@ -22,10 +22,11 @@ public class Hud implements Disposable{
     public static boolean lost;
 
     //------------Score und Zeit
-    private Integer playTimer;
+    public static Integer playTimer;
     private float timeCount;
     private static Integer score;
     private static Integer leben;
+    private boolean zeitVorbei;
 
     //Scene2D widgets
     private Label countdownLabel;
@@ -37,7 +38,7 @@ public class Hud implements Disposable{
 
     public Hud(SpriteBatch sb){
         //------------Variablen zu Beginn: Zeitguthaben, Zeitzähler, Punkte
-        playTimer = 300;
+        playTimer = 7;
         timeCount = 0;
         score = 0;
         leben = 3;
@@ -76,10 +77,17 @@ public class Hud implements Disposable{
     public void update (float dt){
         timeCount += dt;
 
-        if(timeCount>=1){
-            playTimer -=1;
-            countdownLabel.setText(String.format("%03d", playTimer));
-            timeCount = 0;
+        if(timeCount>=1) {
+            if (timeCount >= 1) {
+                if (playTimer > 0) {
+                    playTimer--;
+                } else {
+                    zeitVorbei = true;
+                }
+                playTimer -= 1;
+                countdownLabel.setText(String.format("%03d", playTimer));
+                timeCount = 0;
+            }
         }
 
         if (verloren())
@@ -117,4 +125,9 @@ public class Hud implements Disposable{
     public void dispose() {
         stage.dispose();
     }
+    public boolean isTimeUp() { return zeitVorbei; }
+
+
+
+
 }
