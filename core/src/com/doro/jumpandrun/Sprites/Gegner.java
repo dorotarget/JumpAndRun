@@ -18,7 +18,7 @@ public abstract class Gegner extends Sprite {
         this.screen = screen;
         setPosition(x, y);
         defineGegner();
-        tempo = new Vector2(1 , 0);
+
     }
 
     protected abstract void defineGegner();
@@ -33,15 +33,5 @@ public abstract class Gegner extends Sprite {
             tempo.y = -tempo.y;
     }
 
-    public void reverseVelocity(boolean x, boolean y){
-
-        if(x) {
-            tempo.x = -tempo.x;
-
-        }
-        if(y) {
-            tempo.y = -tempo.y;
-        }
-    }
 
 }

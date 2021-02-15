@@ -190,7 +190,8 @@ public class Hero extends Sprite {
                 JumpAndRun.OBJEKT_BIT |
                 JumpAndRun.GEGNER_KOPF_BIT |
                 JumpAndRun.GEWINN_BIT |
-                JumpAndRun.ITEM_BIT;
+                JumpAndRun.ITEM_BIT |
+                JumpAndRun.FAHRZEUG_BIT;
         b2body.createFixture(fdef).setUserData(this);
 
         EdgeShape head = new EdgeShape();
