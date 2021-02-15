@@ -87,7 +87,7 @@ public class Gegner1 extends Gegner
     protected void defineGegner(){
 
         BodyDef bdef = new BodyDef();
-        bdef.position.set(getX(), getY());
+        bdef.position.set(getX() , getY()+ 48/JumpAndRun.PPM);
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2Body = world.createBody(bdef);
 

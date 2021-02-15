@@ -54,6 +54,7 @@ public class B2WorldCreator {
             body.createFixture(fdef);
         }
 
+        /*
         //---------------Blöcke
         for(MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)){
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
@@ -75,11 +76,11 @@ public class B2WorldCreator {
             //new Coin(world, map, rect);
 
 
-        }
+        }*/
 
 //------------winblock
 
-        for (MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)) {
+        for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
             bdef.type = BodyDef.BodyType.StaticBody;
