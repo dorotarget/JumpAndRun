@@ -109,10 +109,10 @@ public class Gegner1 extends Gegner
 
         PolygonShape kopf = new PolygonShape();
         Vector2[] vertice2 = new Vector2[4];
-        vertice2[0] = new Vector2(-3, 9).scl(1 / JumpAndRun.PPM);
-        vertice2[1] = new Vector2(3, 9).scl(1 / JumpAndRun.PPM);
-        vertice2[2] = new Vector2(-1, 4).scl(1 / JumpAndRun.PPM);
-        vertice2[3] = new Vector2(1, 4).scl(1 / JumpAndRun.PPM);
+        vertice2[0] = new Vector2(-2, 8).scl(1 / JumpAndRun.PPM);
+        vertice2[1] = new Vector2(2, 8).scl(1 / JumpAndRun.PPM);
+        vertice2[2] = new Vector2(-1, 5).scl(1 / JumpAndRun.PPM);
+        vertice2[3] = new Vector2(1, 5).scl(1 / JumpAndRun.PPM);
         kopf.set(vertice2);
 
         fdef.shape = kopf;
