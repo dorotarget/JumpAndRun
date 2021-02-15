@@ -1,6 +1,8 @@
 package com.doro.jumpandrun.Sprites;
 
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -263,11 +265,11 @@ public class Hero extends Sprite {
         //}
         if(heroIstVerletzt)
             return State.VERLETZT;
-        if(b2body.getLinearVelocity().y > 0 || (b2body.getLinearVelocity().y < 0 && previousState == State.SPRINGEN))
+        if(b2body.getLinearVelocity().y > 0.1f || (b2body.getLinearVelocity().y < 0 && previousState == State.SPRINGEN))
             return State.SPRINGEN;
         else if(b2body.getLinearVelocity().y < 0)
             return State.FALLEN;
-        else if(b2body.getLinearVelocity().x != 0)
+        else if( b2body.getLinearVelocity().x != 0 )
             return State.RENNEN;
         else
             return State.STEHEN;
