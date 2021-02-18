@@ -24,7 +24,7 @@ turtle
   orig: 96, 24
   offset: 0, 0
   index: -1
-goomba
+gegner1
   rotate: false
   xy: 227, 1
   size: 48, 16

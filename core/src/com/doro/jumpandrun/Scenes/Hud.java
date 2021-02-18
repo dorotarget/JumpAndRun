@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.doro.jumpandrun.JumpAndRun;
+import com.doro.jumpandrun.Sprites.Hero;
 
 
 public class Hud implements Disposable{
@@ -18,16 +19,20 @@ public class Hud implements Disposable{
     public Stage stage;
     private Viewport viewport;
 
+    public static boolean lost;
+
     //------------Score und Zeit
-    private Integer playTimer;
+    public static Integer playTimer;
     private float timeCount;
-    private Integer score;
+    private static Integer score;
+    private static Integer leben;
+    private boolean zeitVorbei;
 
     //Scene2D widgets
     private Label countdownLabel;
-    private Label scoreLabel;
+    static Label scoreLabel;
     private Label liveLabel;
-    private Label liveCountLabel;
+    static Label liveCountLabel;
     private Label timeLabel;
     private Label coinLabel;
 
@@ -36,6 +41,7 @@ public class Hud implements Disposable{
         playTimer = 300;
         timeCount = 0;
         score = 0;
+        leben = 3;
 
 
         //--------------neue Kamera für HUD viewport
@@ -51,7 +57,7 @@ public class Hud implements Disposable{
         countdownLabel = new Label(String.format("%03d", playTimer), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         scoreLabel =new Label(String.format("%06d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         liveLabel = new Label("Leben", new Label.LabelStyle(new BitmapFont(), Color.GREEN));
-        liveCountLabel = new Label("3", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        liveCountLabel = new Label(String.format("%01d", leben), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         timeLabel = new Label("Zeit", new Label.LabelStyle(new BitmapFont(), Color.GREEN));
         coinLabel = new Label("Coins", new Label.LabelStyle(new BitmapFont(), Color.GREEN));
 
@@ -68,9 +74,63 @@ public class Hud implements Disposable{
         stage.addActor(table);
 
     }
+    public void update (float dt){
+        timeCount += dt;
+
+        if(timeCount>=1) {
+            if (timeCount >= 1) {
+                if (playTimer > 0) {
+                    playTimer--;
+                } else {
+                    zeitVorbei = true;
+                }
+                playTimer -= 1;
+                countdownLabel.setText(String.format("%03d", playTimer));
+                timeCount = 0;
+            }
+        }
+
+        if (verloren())
+            lost = true;
+        else
+            lost = false;
+
+    }
+    public static void addScore(int value){
+        score += value;
+        scoreLabel.setText(String.format("%06d", score));
+    }
+
+    public static void verliereLeben (int value){
+        leben -= value;
+        if (leben < 0) {
+            leben = 0;
+        }
+        liveCountLabel.setText(String.format("%01d", leben));
+    }
+
+    public static boolean verloren (){
+
+        if (leben == 0){
+            /*try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }*/
+            Hero.lost = true;
+            return true;}
+        else
+            return false;
+
+    }
 
     @Override
     public void dispose() {
         stage.dispose();
     }
+    public boolean isTimeUp() { return zeitVorbei; }
+
+
+
+
 }

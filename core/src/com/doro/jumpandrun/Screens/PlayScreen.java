@@ -17,6 +17,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.doro.jumpandrun.JumpAndRun;
 import com.doro.jumpandrun.Scenes.Hud;
+import com.doro.jumpandrun.Sprites.Gegner;
+import com.doro.jumpandrun.Sprites.Gegner1;
 import com.doro.jumpandrun.Sprites.Hero;
 import com.doro.jumpandrun.Tools.B2WorldCreator;
 import com.doro.jumpandrun.Tools.WorldContactListener;
@@ -26,6 +28,8 @@ public class PlayScreen implements Screen{
 
     private JumpAndRun game;
     private TextureAtlas atlas;
+    private TextureAtlas heroAtlas;
+
 
     private OrthographicCamera gamecam;
     private Viewport gamePort;
@@ -43,13 +47,13 @@ public class PlayScreen implements Screen{
 
     //-----------Held
     private Hero heroSprite;
-
-
-    //public boolean won = true;
+    private Gegner1 gegner1;
 
 
     public PlayScreen(JumpAndRun game){
        atlas = new TextureAtlas("Mario_and_Enemies.pack");
+       heroAtlas = new TextureAtlas("Hero_und_Bandit.pack");
+
 
         this.game = game;
 
@@ -64,7 +68,7 @@ public class PlayScreen implements Screen{
 
         //----------map wird geladen
         maploader = new TmxMapLoader();
-        map = maploader.load("level1.tmx");
+        map = maploader.load("Test2.tmx");
         renderer = new OrthogonalTiledMapRenderer(map, 1  / JumpAndRun.PPM);
 
         //--------------gamecam ist anfangs am Mapbeginn
@@ -77,10 +81,11 @@ public class PlayScreen implements Screen{
         b2dr = new Box2DDebugRenderer();
 
 
-        new B2WorldCreator(world, map);
+        new B2WorldCreator(this);
 
         //-------Held wird in Welt erstellt
         heroSprite = new Hero(world, this);
+        gegner1 = new Gegner1(this, .32f, .32f);
 
         world.setContactListener(new WorldContactListener());
     }
@@ -88,6 +93,10 @@ public class PlayScreen implements Screen{
     public TextureAtlas getAtlas(){
         return atlas;
     }
+    public TextureAtlas getHeroAtlas(){
+        return heroAtlas;
+    }
+
 
     @Override
     public void show() {
@@ -96,13 +105,13 @@ public class PlayScreen implements Screen{
     }
 
     public void handleInput(float dt){
-        if(Gdx.input.isKeyJustPressed(Input.Keys.UP) && heroSprite.b2body.getLinearVelocity().y <= 0 && heroSprite.b2body.getLinearVelocity().y >= 0)
+        if(Gdx.input.isKeyJustPressed(Input.Keys.UP) && heroSprite.b2body.getLinearVelocity().y <= 0 && heroSprite.b2body.getLinearVelocity().y >= 0 && heroSprite.getState() != Hero.State.VERLETZT)
             heroSprite.b2body.applyLinearImpulse(new Vector2(0, 4f), heroSprite.b2body.getWorldCenter(), true);
-        if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN))
+        if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN) &&heroSprite.getState() != Hero.State.VERLETZT)
             heroSprite.b2body.applyLinearImpulse(new Vector2(0, -2f), heroSprite.b2body.getWorldCenter(), true);
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && heroSprite.b2body.getLinearVelocity().x <= 2)
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && heroSprite.b2body.getLinearVelocity().x <= 2 && heroSprite.getState() != Hero.State.VERLETZT)
             heroSprite.b2body.applyLinearImpulse(new Vector2(0.1f, 0), heroSprite.b2body.getWorldCenter(), true);
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && heroSprite.b2body.getLinearVelocity().x >= -2)
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && heroSprite.b2body.getLinearVelocity().x >= -2 && heroSprite.getState() != Hero.State.VERLETZT)
             heroSprite.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), heroSprite.b2body.getWorldCenter(), true);
 
     }
@@ -117,6 +126,7 @@ public class PlayScreen implements Screen{
         world.step(1 / 60f, 6, 2);
 
         heroSprite.update(dt);
+        gegner1.update(dt);
 
         //----------gamecam bleibt bei Held
         gamecam.position.x = heroSprite.b2body.getPosition().x;
@@ -128,6 +138,7 @@ public class PlayScreen implements Screen{
         if (Hero.won == true) {
             game.setScreen(new WinScreen(game));
         }
+        hud.update(dt);
 
         renderer.setView(gamecam);
     }
@@ -150,17 +161,27 @@ public class PlayScreen implements Screen{
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         heroSprite.draw(game.batch);
+        gegner1.draw(game.batch);
         game.batch.end();
 
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
 
-        //if (won())
-            //game.setScreen(new WinScreen(game));
-            //dispose();
+
+        if ((Hero.lost == true && heroSprite.getStatusTimer() > 2) | Hud.playTimer < 0){
+
+            game.setScreen(new LostScreen(game));
+            dispose();
+        }
 
 
 
+    }
+    public boolean gameOver(){
+        if(heroSprite.currentState == Hero.State.TOT && heroSprite.getStatusTimer() > 2){
+            return true;
+        }
+        return false;
     }
 
     public boolean won(){
@@ -178,6 +199,12 @@ public class PlayScreen implements Screen{
     public void resize(int width, int height) {
         gamePort.update(width,height);
 
+    }
+    public TiledMap getMap(){
+        return map;
+    }
+    public World getWorld(){
+        return world;
     }
 
     @Override
@@ -204,4 +231,6 @@ public class PlayScreen implements Screen{
         hud.dispose();
 
     }
+    public Hud getHud(){ return hud; }
+
 }

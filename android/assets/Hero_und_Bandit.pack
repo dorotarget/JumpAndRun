@@ -1,0 +1,54 @@
+
+Hero_und_Bandit.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Hero_gehen
+  rotate: false
+  xy: 1, 67
+  size: 512, 128
+  orig: 512, 128
+  offset: 0, 0
+  index: -1
+Bandit_gehen
+  rotate: false
+  xy: 515, 67
+  size: 256, 128
+  orig: 256, 128
+  offset: 0, 0
+  index: -1
+Bandit_stehen
+  rotate: false
+  xy: 1, 1
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+Bandit_sterben
+  rotate: false
+  xy: 773, 131
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+Hero_springen
+  rotate: false
+  xy: 67, 1
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+Hero_stehen
+  rotate: false
+  xy: 839, 131
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+Hero_sterben
+  rotate: false
+  xy: 133, 1
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
