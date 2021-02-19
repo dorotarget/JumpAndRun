@@ -43,7 +43,7 @@ public class PlayScreen implements Screen{
     //----------Variablen für Box2D
     private World world;
     private Box2DDebugRenderer b2dr;
-
+    private B2WorldCreator creator;
 
     //-----------Held
     private Hero heroSprite;
@@ -81,11 +81,11 @@ public class PlayScreen implements Screen{
         b2dr = new Box2DDebugRenderer();
 
 
-        new B2WorldCreator(this);
+        creator = new B2WorldCreator(this);
 
         //-------Held wird in Welt erstellt
         heroSprite = new Hero(world, this);
-        gegner1 = new Gegner1(this, .32f, .32f);
+        //gegner1 = new Gegner1(this, .32f, .32f);
 
         world.setContactListener(new WorldContactListener());
     }
@@ -126,7 +126,9 @@ public class PlayScreen implements Screen{
         world.step(1 / 60f, 6, 2);
 
         heroSprite.update(dt);
-        gegner1.update(dt);
+        for (Gegner gegner : creator.getGegner1Array())
+            gegner.update(dt);
+        //gegner1.update(dt);
 
         //----------gamecam bleibt bei Held
         gamecam.position.x = heroSprite.b2body.getPosition().x;
@@ -161,7 +163,9 @@ public class PlayScreen implements Screen{
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         heroSprite.draw(game.batch);
-        gegner1.draw(game.batch);
+        for (Gegner gegner : creator.getGegner1Array())
+            gegner.draw(game.batch);
+        //gegner1.draw(game.batch);
         game.batch.end();
 
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
