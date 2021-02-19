@@ -126,10 +126,12 @@ public class PlayScreen implements Screen{
         world.step(1 / 60f, 6, 2);
 
         heroSprite.update(dt);
-        for (Gegner gegner : creator.getGegner1Array())
+        for (Gegner gegner : creator.getGegner1Array()) {
             gegner.update(dt);
-        //gegner1.update(dt);
-
+            if (gegner.getX() < heroSprite.getX() + 1)
+                gegner.b2Body.setActive(true);
+            //gegner1.update(dt);
+        }
         //----------gamecam bleibt bei Held
         gamecam.position.x = heroSprite.b2body.getPosition().x;
 

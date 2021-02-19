@@ -102,7 +102,7 @@ public class Gegner1 extends Gegner
         vertice[3] = new Vector2(4, -5).scl(1 / JumpAndRun.PPM);
         shape.set(vertice);
         fdef.filter.categoryBits = JumpAndRun.GEGNER_BIT;
-        fdef.filter.maskBits = JumpAndRun.BODEN_BIT | JumpAndRun.OBJEKT_BIT | JumpAndRun.HERO_BIT;
+        fdef.filter.maskBits = JumpAndRun.BODEN_BIT | JumpAndRun.OBJEKT_BIT | JumpAndRun.HERO_BIT | JumpAndRun.GEGNER_BIT;
 
         fdef.shape = shape;
         b2Body.createFixture(fdef).setUserData(this);
