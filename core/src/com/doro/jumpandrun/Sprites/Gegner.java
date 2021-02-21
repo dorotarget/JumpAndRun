@@ -17,7 +17,7 @@ public abstract class Gegner extends Sprite {
     public Gegner(PlayScreen screen, float x, float y){
         this.world = screen.getWorld();
         this.screen = screen;
-        setPosition(x -64 /JumpAndRun.PPM, y + 8/ JumpAndRun.PPM);
+        setPosition(x -64 /JumpAndRun.PPM, y + 4/ JumpAndRun.PPM);
         defineGegner();
         tempo = new Vector2(1 , 0);
         b2Body.setActive(false);

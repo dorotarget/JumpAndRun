@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="240" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="175">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="240" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="177">
  <tileset firstgid="1" name="" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="1475" columns="59">
   <image source="Test2.png" width="1068" height="455"/>
  </tileset>
@@ -135,7 +135,10 @@
   <object id="173" x="400" y="160" width="16" height="16"/>
   <object id="174" x="464" y="160" width="16" height="16"/>
  </objectgroup>
- <objectgroup id="7" name="ziel"/>
+ <objectgroup id="7" name="ziel">
+  <object id="175" x="3728" y="160" width="80" height="16"/>
+  <object id="176" x="557.201" y="184.006" width="0.370233"/>
+ </objectgroup>
  <objectgroup id="8" name="gegner1">
   <object id="162" x="256" y="160" width="16" height="16"/>
   <object id="163" x="352" y="160" width="16" height="16"/>
