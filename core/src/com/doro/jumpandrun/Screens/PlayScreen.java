@@ -142,6 +142,9 @@ public class PlayScreen implements Screen{
         if (Hero.won == true) {
             game.setScreen(new WinScreen(game));
         }
+        if (Hero.unten ){
+            game.setScreen(new LostScreen(game));
+        }
         hud.update(dt);
 
         renderer.setView(gamecam);
