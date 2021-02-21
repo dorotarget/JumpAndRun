@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="240" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="144">
- <tileset firstgid="1" name="JN Nachhilfe" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="1475" columns="59">
-  <image source="../Downloads/JN Nachhilfe.png" width="1068" height="455"/>
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="240" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="162">
+ <tileset firstgid="1" name="" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="1475" columns="59">
+  <image source="Test2.png" width="1068" height="455"/>
  </tileset>
  <layer id="1" name="Hintergrund" width="240" height="16">
   <data encoding="base64" compression="zlib">
@@ -10,7 +10,7 @@
  </layer>
  <layer id="3" name="Grafik" width="240" height="16">
   <data encoding="base64" compression="zlib">
-   eJztmT1SGzEYhrV/wZA2BO7g3CBF6LhACpvMeFwlh6DRDHACSApIAe5wOs+k5ABQ2FAkaTlCqtR5NdaCLFY/61171+vvmXlH+rSSkbT77icbxgiCIIh15yaoegYEQRAEQRAEsXj2A7cIgqg/7+NZEQTRPLqRXa5+dWU3Yn1b3DQGwaxUPoWMCx1AXaiSCS6Rf1j/z/Cl0M7Vfh30607FO0Hz92VRfMQzBT2VZbAj/Woq14lv2Fehr9BZyf69xf26C+31lHOcAy+g77E7Pi5wZhyF7DGrHR7uq/EpvHs2FT9don//BqzfVuaix1nfe7Py5onynj5Z8HfjXmhWmbyV/nSVq4rMrzzPmNS799AEsuXqvMR4lpLIXk/5BU/+hv7EfrEvIt+qudXXv2OMm0zFxzXKv/Drni0W+JyZi9JTcmpPy69l5lrBtvSlb2mjnTD2LineXjaK53geDz9I776OGN+KnscV9a7gA56XvcheLxvdr/Dl5Ujxpq9/N/H8bU3FNwueS1w5VY9t6L8z5/3deV4v9zJ8uizeSF/6ljY+w4tfMvyYt/0ontVhaBbmJd4t4nwgzviFYv3atqYU4V/XZz2GzypjbjvaZ2apyFqrin3+91MH1WW/suKWjFuO2HXvr+DFQfLyetru2z9PTKw2Id7PERRDCfQK2oBaUrbrpnbbmHmvEUST+BGTSMVFVEPV953UDBHL5xr7PpT7P09dlam9LA0z6kPPfqYxpvGmdej7YPq7rr4+66iz0rWp+g91keKI
+   eJztmb9O3DAcxx0noQXWAn0H+gYdytYXYOBa6XQTvIallic42qEwUKQOHBtSxz4ADNAObcWCeIROnfu1YhefiR3n4rvkjt9H+sr++U/O8fkbO3eMEQRBEI+db0nbIyAIgiAIgiCI6fM6qRZBEN3nZTYugiAWj17qV1W7rvI8ZQNfvGicJOMyecuZkHoD9aBWBjhD/uL+v/KHQrkw2+2gXa+Q2EkWf16mxTbWFPQ/jcGG8qsrfUx8xLxKfYAOIvv3At/XJffnNZ9wDjyEjrLq+H2DM+M5Z3dl5fDwwIyH8O5BITGcoX//JGywaYzFjsvee8v2zX3jOb0/5XfjPncrJuvKn1XpvKL2V1Gnj/bud+ga8u3VdcmwlvLUn9f8hCd/Qb+zsDgUud+ae2uof6/Q77qQuOrQ/gu/bvliSciZuSl9Y0/tW/trzL1WsqZ8GZr62MwZe5E3L4+N4TlRx8M/lHdXUyZW0vt+Tb0reYX1spX687Gx/QpfHp8b3gz17zLW30ohsdzwXFK1p9qxD/t35rq/O0/q5X6JT2fFM+XL0NTHLry4V+LHuuXvsnF9YezYJYxLPlvk+UCe8VmT2K5bs6SR/q261h2/V4yxbVjXLFPo9W54IV1nx2V9dRupGPei45D/frqgmOssdnyrvvtb7o9d61zHn+HFk/xhvS4PbV8nJuYbjudzCmVQDi1BT6CnSr56V7mvz6R1hJ9h2wMganGWkUiFpHeHE64Joh3aXjOkbkh7l/w7P5xi3kdq/ifJm3KVx9KoJD8KbOfq4+rvug97HlyfW9XWNSb5fhuSti19b6b+Aa2o8oM=
   </data>
  </layer>
  <objectgroup id="4" name="boden">
@@ -26,13 +26,20 @@
   <object id="125" x="3136" y="240" width="16" height="16"/>
   <object id="126" x="3168" y="240" width="16" height="16"/>
   <object id="127" x="3200" y="240" width="16" height="16"/>
-  <object id="128" x="3232" y="240" width="523.333" height="16"/>
+  <object id="128" x="3232" y="240" width="352.333" height="16"/>
+  <object id="145" x="1488" y="176" width="16" height="79.6667"/>
+  <object id="146" x="1328" y="176" width="112" height="16"/>
+  <object id="147" x="1264" y="176" width="32" height="16"/>
+  <object id="148" x="1072.5" y="176" width="159.5" height="16"/>
+  <object id="149" x="3616" y="176" width="223.75" height="16"/>
+  <object id="151" x="3616" y="175.75" width="16" height="31.25"/>
+  <object id="152" x="3600" y="208" width="16" height="16"/>
+  <object id="153" x="3584" y="224" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="5" name="objekt">
   <object id="23" x="432" y="144" width="64"/>
-  <object id="25" x="1073.5" y="176" width="430.5" height="14.922"/>
   <object id="27" x="2000" y="176" width="1087.33" height="16"/>
-  <object id="28" x="3328" y="176" width="512" height="16"/>
+  <object id="28" x="3328" y="176" width="247.75" height="16"/>
   <object id="30" x="144" y="160" width="64" height="16"/>
   <object id="31" x="160" y="144" width="32" height="16"/>
   <object id="46" x="656.5" y="176.434" width="287.5" height="15.1316"/>
@@ -82,7 +89,6 @@
   <object id="95" x="2096" y="128" width="80" height="16"/>
   <object id="96" x="2096" y="144" width="16" height="32"/>
   <object id="97" x="2160" y="144" width="16" height="32"/>
-  <object id="98" x="2359" y="381.5"/>
   <object id="99" x="2432" y="102.75" width="96" height="6.5"/>
   <object id="100" x="2272.25" y="102.75" width="127" height="5.75"/>
   <object id="101" x="2176" y="135.25" width="63.75" height="5.5"/>
@@ -117,5 +123,15 @@
   <object id="143" x="3493.88" y="148.875">
    <polygon points="0,0 -3.875,0 -5.5,0.9375 -5.6875,2.9375 -6.5,3.9375 -6.5625,4.9375 -8.25,5.0625 -10.4375,6.875 -11.5625,7.875 -12.4375,9.8125 -12.5,10.75 -11.625,15.0625 -9.9375,16.875 -9.8125,20.75 -11.75,22.8125 -13.6875,23.0625 -13.6875,24.75 -15.6875,24.75 -15.75,26.625 -13.875,26.875 -13.875,27.875 -12.6875,28.0625 -12.5625,28.875 -8.8125,28.9375 -8.8125,27.9375 -9.75,28 -9.75,27.0625 -3.875,27.125 -3.875,27.9375 -2.75,27.9375 -2.75,28.9375 -0.75,28.9375 -0.75,27.9375 2.3125,28 2.375,27 1.125,27 1.1875,26.0625 0.1875,26.0625 0.25,22.9375 -0.625,22 -1.5625,19.9375 -2.625,18 -1.625,17.1875 -1.625,16.0625 0.375,15.125 2.3125,15 4.0625,13.25 4.1875,11.125 0.25,10.9375 0.25,9.1875 1.25,8 2.125,8 2.3125,3.0625 1.4375,3.0625 1.25,0"/>
   </object>
+  <object id="144" x="3589.5" y="148.5">
+   <polygon points="0,0 -3.875,0 -5.5,0.9375 -5.6875,2.9375 -6.5,3.9375 -6.5625,4.9375 -8.25,5.0625 -10.4375,6.875 -11.5625,7.875 -12.4375,9.8125 -12.5,10.75 -11.625,15.0625 -9.9375,16.875 -9.8125,20.75 -11.75,22.8125 -13.6875,23.0625 -13.6875,24.75 -15.6875,24.75 -15.75,26.625 -13.875,26.875 -13.875,27.875 -12.6875,28.0625 -12.5625,28.875 -8.8125,28.9375 -8.8125,27.9375 -9.75,28 -9.75,27.0625 -3.875,27.125 -3.875,27.9375 -2.75,27.9375 -2.75,28.9375 -0.75,28.9375 -0.75,27.9375 2.3125,28 2.375,27 1.125,27 1.1875,26.0625 0.1875,26.0625 0.25,22.9375 -0.625,22 -1.5625,19.9375 -2.625,18 -1.625,17.1875 -1.625,16.0625 0.375,15.125 2.3125,15 4.0625,13.25 4.1875,11.125 0.25,10.9375 0.25,9.1875 1.25,8 2.125,8 2.3125,3.0625 1.4375,3.0625 1.25,0"/>
+  </object>
+  <object id="156" x="3072" y="176" width="16" height="32"/>
+  <object id="157" x="3104" y="176" width="16" height="32"/>
+  <object id="158" x="3136" y="176" width="16" height="32"/>
+  <object id="159" x="3168" y="176" width="16" height="32"/>
+  <object id="160" x="3200" y="176" width="16" height="32"/>
+  <object id="161" x="3232" y="176" width="16" height="32"/>
  </objectgroup>
+ <objectgroup id="7" name="ziel"/>
 </map>

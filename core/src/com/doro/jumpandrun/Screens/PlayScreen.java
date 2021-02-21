@@ -68,7 +68,7 @@ public class PlayScreen implements Screen{
 
         //----------map wird geladen
         maploader = new TmxMapLoader();
-        map = maploader.load("level1.tmx");
+        map = maploader.load("Test2.tmx");
         renderer = new OrthogonalTiledMapRenderer(map, 1  / JumpAndRun.PPM);
 
         //--------------gamecam ist anfangs am Mapbeginn
