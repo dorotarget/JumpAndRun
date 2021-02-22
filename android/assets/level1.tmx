@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="15" nextobjectid="131">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="15" nextobjectid="132">
  <tileset firstgid="1" name="tileset_gutter" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="924" columns="33">
   <image source="tileset_gutter.png" width="594" height="504"/>
   <tile id="0">
@@ -130,6 +130,7 @@
   <object id="121" x="1427" y="323"/>
   <object id="129" x="0" y="160" width="16.7968" height="33.1627"/>
   <object id="130" x="-55.3305" y="9.38642"/>
+  <object id="131" x="-21.737" y="8.8924"/>
  </objectgroup>
  <objectgroup id="7" name="bricks">
   <object id="123" x="416" y="144" width="16" height="16"/>

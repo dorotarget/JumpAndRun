@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
+import com.doro.jumpandrun.JumpAndRun;
 import com.doro.jumpandrun.Screens.PlayScreen;
 
 public abstract class Gegner extends Sprite {
@@ -16,9 +17,10 @@ public abstract class Gegner extends Sprite {
     public Gegner(PlayScreen screen, float x, float y){
         this.world = screen.getWorld();
         this.screen = screen;
-        setPosition(x, y);
+        setPosition(x -64 /JumpAndRun.PPM, y + 4/ JumpAndRun.PPM);
         defineGegner();
         tempo = new Vector2(1 , 0);
+        b2Body.setActive(false);
     }
 
     protected abstract void defineGegner();
