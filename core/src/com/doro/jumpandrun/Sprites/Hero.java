@@ -213,8 +213,8 @@ public class Hero extends Sprite {
         /*if (screen.getHud().isTimeUp() && !istTot()) {
             die();
         }*/
-        Gdx.app.log(String.valueOf(b2body.getPosition().x), "nein");
-        if (b2body.getPosition().x < -2.5f)
+
+        if (b2body.getPosition().y < -2.5f)
             unten = true;
 
 
