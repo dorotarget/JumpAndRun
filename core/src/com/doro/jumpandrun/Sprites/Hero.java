@@ -30,6 +30,8 @@ public class Hero extends Sprite {
     public static boolean won;
     public static boolean lost;
 
+    public static boolean unten;
+
 
     public enum State {FALLEN, SPRINGEN, STEHEN, RENNEN, TOT, VERLETZT  }
     public State currentState;
@@ -79,6 +81,7 @@ public class Hero extends Sprite {
 
         won = false;
         lost= false;
+        unten = false;
 
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
@@ -210,6 +213,9 @@ public class Hero extends Sprite {
         /*if (screen.getHud().isTimeUp() && !istTot()) {
             die();
         }*/
+        Gdx.app.log(String.valueOf(b2body.getPosition().x), "nein");
+        if (b2body.getPosition().x < -2.5f)
+            unten = true;
 
 
     }

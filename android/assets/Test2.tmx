@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="240" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="162">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="240" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="177">
  <tileset firstgid="1" name="" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="1475" columns="59">
   <image source="Test2.png" width="1068" height="455"/>
  </tileset>
@@ -14,7 +14,7 @@
   </data>
  </layer>
  <objectgroup id="4" name="boden">
-  <object id="1" x="0" y="180" width="393.333" height="12"/>
+  <object id="1" x="0" y="180" width="431.837" height="12"/>
   <object id="5" x="393.334" y="179.334">
    <polygon points="0,0 37.9506,-34 38.6666,-0.62963"/>
   </object>
@@ -132,6 +132,21 @@
   <object id="159" x="3168" y="176" width="16" height="32"/>
   <object id="160" x="3200" y="176" width="16" height="32"/>
   <object id="161" x="3232" y="176" width="16" height="32"/>
+  <object id="173" x="400" y="160" width="16" height="16"/>
+  <object id="174" x="464" y="160" width="16" height="16"/>
  </objectgroup>
- <objectgroup id="7" name="ziel"/>
+ <objectgroup id="7" name="ziel">
+  <object id="175" x="3728" y="160" width="80" height="16"/>
+  <object id="176" x="557.201" y="184.006" width="0.370233"/>
+ </objectgroup>
+ <objectgroup id="8" name="gegner1">
+  <object id="162" x="256" y="160" width="16" height="16"/>
+  <object id="163" x="352" y="160" width="16" height="16"/>
+  <object id="164" x="544" y="160" width="16" height="16"/>
+  <object id="165" x="800" y="160" width="16" height="16"/>
+  <object id="166" x="1152" y="160" width="16" height="16"/>
+  <object id="167" x="1664" y="160" width="16" height="16"/>
+  <object id="168" x="2305" y="80" width="16" height="16"/>
+  <object id="171" x="80" y="160" width="16" height="16"/>
+ </objectgroup>
 </map>

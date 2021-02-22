@@ -52,8 +52,10 @@ public class WorldContactListener implements ContactListener {
                     ((Gegner)fixB.getUserData()).umdrehTempo(true, false);
                 break;
             case JumpAndRun.GEGNER_BIT | JumpAndRun.GEGNER_BIT:
-                ((Gegner)fixA.getUserData()).gegnerTrifftGegner((Gegner)fixB.getUserData());
-                ((Gegner)fixB.getUserData()).gegnerTrifftGegner((Gegner)fixA.getUserData());
+                //((Gegner)fixA.getUserData()).gegnerTrifftGegner((Gegner)fixB.getUserData());
+                //((Gegner)fixB.getUserData()).gegnerTrifftGegner((Gegner)fixA.getUserData());
+                ((Gegner)fixA.getUserData()).reverseVelocity(true, false);
+                ((Gegner)fixB.getUserData()).reverseVelocity(true, false);
                 break;
 
             case JumpAndRun.HERO_BIT | JumpAndRun.GEGNER_BIT:
