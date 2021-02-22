@@ -128,7 +128,7 @@ public class PlayScreen implements Screen{
         heroSprite.update(dt);
         for (Gegner gegner : creator.getGegner1Array()) {
             gegner.update(dt);
-            if (gegner.getX() < heroSprite.getX() + 1)
+            if (gegner.getX() < heroSprite.getX() + 1.75f)
                 gegner.b2Body.setActive(true);
             //gegner1.update(dt);
         }
