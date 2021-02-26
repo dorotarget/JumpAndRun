@@ -30,6 +30,8 @@ public class Hero extends Sprite {
     public static boolean won;
     public static boolean lost;
 
+    public static boolean unten;
+
 
     public enum State {FALLEN, SPRINGEN, STEHEN, RENNEN, TOT, VERLETZT  }
     public State currentState;
@@ -79,6 +81,7 @@ public class Hero extends Sprite {
 
         won = false;
         lost= false;
+        unten = false;
 
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
@@ -162,7 +165,7 @@ public class Hero extends Sprite {
     public void defineHero(){
 
         BodyDef bdef = new BodyDef();
-        bdef.position.set(32 / JumpAndRun.PPM, 32 / JumpAndRun.PPM);
+        bdef.position.set(32 / JumpAndRun.PPM, 80 / JumpAndRun.PPM);
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2body = world.createBody(bdef);
 
@@ -192,8 +195,7 @@ public class Hero extends Sprite {
                 JumpAndRun.OBJEKT_BIT |
                 JumpAndRun.GEGNER_KOPF_BIT |
                 JumpAndRun.GEWINN_BIT |
-                JumpAndRun.ITEM_BIT |
-                JumpAndRun.FAHRZEUG_BIT;
+                JumpAndRun.ITEM_BIT;
         b2body.createFixture(fdef).setUserData(this);
 
         EdgeShape head = new EdgeShape();
@@ -211,6 +213,9 @@ public class Hero extends Sprite {
         /*if (screen.getHud().isTimeUp() && !istTot()) {
             die();
         }*/
+
+        if (b2body.getPosition().y < -2.5f)
+            unten = true;
 
 
     }
@@ -269,7 +274,9 @@ public class Hero extends Sprite {
             return State.SPRINGEN;
         else if(b2body.getLinearVelocity().y < 0)
             return State.FALLEN;
-        else if( b2body.getLinearVelocity().x != 0 )
+        //else if(Gdx.input.isKeyPressed(Input.Keys.LEFT) | Gdx.input.isKeyPressed(Input.Keys.RIGHT))
+        else if(b2body.getLinearVelocity().x != 0)
+
             return State.RENNEN;
         else
             return State.STEHEN;

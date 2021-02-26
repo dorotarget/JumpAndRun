@@ -19,7 +19,6 @@ import com.doro.jumpandrun.JumpAndRun;
 import com.doro.jumpandrun.Scenes.Hud;
 import com.doro.jumpandrun.Sprites.Gegner;
 import com.doro.jumpandrun.Sprites.Gegner1;
-import com.doro.jumpandrun.Sprites.Gegner2;
 import com.doro.jumpandrun.Sprites.Hero;
 import com.doro.jumpandrun.Tools.B2WorldCreator;
 import com.doro.jumpandrun.Tools.WorldContactListener;
@@ -44,12 +43,11 @@ public class PlayScreen implements Screen{
     //----------Variablen für Box2D
     private World world;
     private Box2DDebugRenderer b2dr;
-
+    private B2WorldCreator creator;
 
     //-----------Held
     private Hero heroSprite;
     private Gegner1 gegner1;
-    private Gegner2 gegner2;
 
 
     public PlayScreen(JumpAndRun game){
@@ -70,7 +68,7 @@ public class PlayScreen implements Screen{
 
         //----------map wird geladen
         maploader = new TmxMapLoader();
-        map = maploader.load("level1.tmx");
+        map = maploader.load("Test2.tmx");
         renderer = new OrthogonalTiledMapRenderer(map, 1  / JumpAndRun.PPM);
 
         //--------------gamecam ist anfangs am Mapbeginn
@@ -83,12 +81,11 @@ public class PlayScreen implements Screen{
         b2dr = new Box2DDebugRenderer();
 
 
-        new B2WorldCreator(this);
+        creator = new B2WorldCreator(this);
 
         //-------Held wird in Welt erstellt
         heroSprite = new Hero(world, this);
-        gegner1 = new Gegner1(this, .32f, .32f);
-        gegner2 = new Gegner2(this, .32f, .32f);
+        //gegner1 = new Gegner1(this, .32f, .32f);
 
         world.setContactListener(new WorldContactListener());
     }
@@ -108,7 +105,7 @@ public class PlayScreen implements Screen{
     }
 
     public void handleInput(float dt){
-        if(Gdx.input.isKeyJustPressed(Input.Keys.UP) && heroSprite.b2body.getLinearVelocity().y <= 0.1f && heroSprite.b2body.getLinearVelocity().y >= -0.1f && heroSprite.getState() != Hero.State.VERLETZT)
+        if(Gdx.input.isKeyJustPressed(Input.Keys.UP) && heroSprite.b2body.getLinearVelocity().y <= 0 && heroSprite.b2body.getLinearVelocity().y >= 0 && heroSprite.getState() != Hero.State.VERLETZT)
             heroSprite.b2body.applyLinearImpulse(new Vector2(0, 4f), heroSprite.b2body.getWorldCenter(), true);
         if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN) &&heroSprite.getState() != Hero.State.VERLETZT)
             heroSprite.b2body.applyLinearImpulse(new Vector2(0, -2f), heroSprite.b2body.getWorldCenter(), true);
@@ -129,9 +126,12 @@ public class PlayScreen implements Screen{
         world.step(1 / 60f, 6, 2);
 
         heroSprite.update(dt);
-        gegner1.update(dt);
-        gegner2.update(dt);
-
+        for (Gegner gegner : creator.getGegner1Array()) {
+            gegner.update(dt);
+            if (gegner.getX() < heroSprite.getX() + 1.75f)
+                gegner.b2Body.setActive(true);
+            //gegner1.update(dt);
+        }
         //----------gamecam bleibt bei Held
         gamecam.position.x = heroSprite.b2body.getPosition().x;
 
@@ -141,6 +141,9 @@ public class PlayScreen implements Screen{
 
         if (Hero.won == true) {
             game.setScreen(new WinScreen(game));
+        }
+        if (Hero.unten ){
+            game.setScreen(new LostScreen(game));
         }
         hud.update(dt);
 
@@ -165,8 +168,9 @@ public class PlayScreen implements Screen{
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         heroSprite.draw(game.batch);
-        gegner1.draw(game.batch);
-        gegner2.draw(game.batch);
+        for (Gegner gegner : creator.getGegner1Array())
+            gegner.draw(game.batch);
+        //gegner1.draw(game.batch);
         game.batch.end();
 
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
