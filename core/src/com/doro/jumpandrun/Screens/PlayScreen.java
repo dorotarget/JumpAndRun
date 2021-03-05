@@ -13,6 +13,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.doro.jumpandrun.JumpAndRun;
@@ -20,8 +21,13 @@ import com.doro.jumpandrun.Scenes.Hud;
 import com.doro.jumpandrun.Sprites.Gegner;
 import com.doro.jumpandrun.Sprites.Gegner1;
 import com.doro.jumpandrun.Sprites.Hero;
+import com.doro.jumpandrun.Sprites.PowerUps.ExtraHerz;
+import com.doro.jumpandrun.Sprites.PowerUps.PowerUp;
+import com.doro.jumpandrun.Sprites.PowerUps.PowerUpDef;
 import com.doro.jumpandrun.Tools.B2WorldCreator;
 import com.doro.jumpandrun.Tools.WorldContactListener;
+
+import java.util.PriorityQueue;
 
 
 public class PlayScreen implements Screen{
@@ -48,6 +54,9 @@ public class PlayScreen implements Screen{
     //-----------Held
     private Hero heroSprite;
     private Gegner1 gegner1;
+
+    private Array<PowerUp> powerUps;
+    private PriorityQueue<PowerUpDef> powerUpsZuErstellen;
 
 
     public PlayScreen(JumpAndRun game){
@@ -88,6 +97,22 @@ public class PlayScreen implements Screen{
         //gegner1 = new Gegner1(this, .32f, .32f);
 
         world.setContactListener(new WorldContactListener());
+
+        powerUps = new Array<PowerUp>();
+        powerUpsZuErstellen = new PriorityQueue<PowerUpDef>();
+
+    }
+
+    public void erstellePowerUps (PowerUpDef pdef){
+        powerUpsZuErstellen.add(pdef);
+    }
+    public void handlePowerUpErstellung(){
+        if (!powerUpsZuErstellen.isEmpty()){
+            PowerUpDef pdef = powerUpsZuErstellen.poll();
+            if (pdef.type == ExtraHerz.class){
+                powerUps.add(new ExtraHerz(this, pdef.position.x, pdef.position.y));
+            }
+        }
     }
 
     public TextureAtlas getAtlas(){
@@ -121,6 +146,7 @@ public class PlayScreen implements Screen{
 
         //------------Input vom Spieler geht vor
         handleInput(dt);
+        handlePowerUpErstellung();
 
         //-------------wie oft pro sekunde
         world.step(1 / 60f, 6, 2);
@@ -132,6 +158,10 @@ public class PlayScreen implements Screen{
                 gegner.b2Body.setActive(true);
             //gegner1.update(dt);
         }
+
+        for (PowerUp powerUp : powerUps)
+            powerUp.update(dt);
+
         //----------gamecam bleibt bei Held
         gamecam.position.x = heroSprite.b2body.getPosition().x;
 
@@ -171,6 +201,8 @@ public class PlayScreen implements Screen{
         for (Gegner gegner : creator.getGegner1Array())
             gegner.draw(game.batch);
         //gegner1.draw(game.batch);
+        for (PowerUp powerUp : powerUps)
+            powerUp.draw(game.batch);
         game.batch.end();
 
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);

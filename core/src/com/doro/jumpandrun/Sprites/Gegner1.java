@@ -13,6 +13,8 @@ import com.badlogic.gdx.utils.Array;
 import com.doro.jumpandrun.JumpAndRun;
 import com.doro.jumpandrun.Scenes.Hud;
 import com.doro.jumpandrun.Screens.PlayScreen;
+import com.doro.jumpandrun.Sprites.PowerUps.ExtraHerz;
+import com.doro.jumpandrun.Sprites.PowerUps.PowerUpDef;
 
 public class Gegner1 extends Gegner
 {
@@ -76,6 +78,8 @@ public class Gegner1 extends Gegner
             setRegion(new TextureRegion(screen.getHeroAtlas().findRegion("Bandit_sterben"), 1, -3, 64, 64));
             statusZeit = 0;
             Hud.addScore(500);
+            screen.erstellePowerUps(new PowerUpDef(new Vector2(b2Body.getPosition().x, b2Body.getPosition().y + 16/JumpAndRun.PPM),
+                    ExtraHerz.class));
 
         }
         else if(!destroyed){
