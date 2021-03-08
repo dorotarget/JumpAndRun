@@ -16,7 +16,7 @@ public class MuenzenSilber extends Muenzen {
 
 
     private float statusZeit;
-    private Animation<TextureRegion> laufAnimation;
+    private Animation<TextureRegion> drehAnimation;
     private Array<TextureRegion> frames;
     private boolean setToDestroy;
     private boolean destroyed;
@@ -27,9 +27,11 @@ public class MuenzenSilber extends Muenzen {
         frames = new Array<TextureRegion>();
         for(int i = 0; i < 2; i++)
             //frames.add(new TextureRegion(screen.getAtlas().findRegion("gegner1"), i * 16, 0, 16, 16));
-            frames.add(new TextureRegion(screen.getHeroAtlas().findRegion("Bandit_gehen"), 1+i * 64, 4, 64, 64));
+            //frames.add(new TextureRegion(screen.getHeroAtlas().findRegion("Bandit_gehen"), 1+i * 64, 4, 64, 64));
 
-        laufAnimation = new Animation(0.4f, frames);
+            frames.add(new TextureRegion(screen.getMuenzenAtlas().findRegion("muenzen_silber"), i * 64, 1, 32, 32));
+
+        drehAnimation = new Animation(0.4f, frames);
         statusZeit = 0;
         setBounds(getX(), getY(), 16 / JumpAndRun.PPM, 16 / JumpAndRun.PPM);
         setToDestroy = false;
@@ -43,7 +45,7 @@ public class MuenzenSilber extends Muenzen {
         TextureRegion region;
 
 
-        region = laufAnimation.getKeyFrame(statusZeit, true);
+        region = drehAnimation.getKeyFrame(statusZeit, true);
 
 
         return region;
@@ -56,7 +58,7 @@ public class MuenzenSilber extends Muenzen {
         if(setToDestroy && !destroyed){
             world.destroyBody(b2Body);
             destroyed = true;
-            setRegion(new TextureRegion(screen.getHeroAtlas().findRegion("Bandit_sterben"), 1, -3, 64, 64));
+           // setRegion(new TextureRegion(screen.getHeroAtlas().findRegion("Bandit_sterben"), 1, -3, 64, 64));
             statusZeit = 0;
             Hud.addScore(1000);
 
@@ -64,7 +66,7 @@ public class MuenzenSilber extends Muenzen {
         else if(!destroyed){
             b2Body.setLinearVelocity(tempo);
             setPosition(b2Body.getPosition().x - getWidth() / 2, b2Body.getPosition().y - getHeight() / 2);
-            setRegion(laufAnimation.getKeyFrame(statusZeit, true));}
+            setRegion(drehAnimation.getKeyFrame(statusZeit, true));}
     }
 
     @Override

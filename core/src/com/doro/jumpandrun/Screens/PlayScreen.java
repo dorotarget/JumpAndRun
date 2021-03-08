@@ -30,6 +30,8 @@ public class PlayScreen implements Screen{
     private JumpAndRun game;
     private TextureAtlas atlas;
     private TextureAtlas heroAtlas;
+    private TextureAtlas muenzenAtlas;
+
 
 
     private OrthographicCamera gamecam;
@@ -54,6 +56,7 @@ public class PlayScreen implements Screen{
     public PlayScreen(JumpAndRun game){
        atlas = new TextureAtlas("Mario_and_Enemies.pack");
        heroAtlas = new TextureAtlas("Hero_und_Bandit.pack");
+        muenzenAtlas = new TextureAtlas("Muenzen.pack");
 
 
         this.game = game;
@@ -97,6 +100,10 @@ public class PlayScreen implements Screen{
     public TextureAtlas getHeroAtlas(){
         return heroAtlas;
     }
+    public TextureAtlas getMuenzenAtlas(){
+        return muenzenAtlas;
+    }
+
 
 
     @Override
