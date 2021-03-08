@@ -181,6 +181,7 @@ public class Hero extends Sprite {
     //    shape.setRadius(6 / JumpAndRun.PPM);
         fdef.filter.categoryBits = JumpAndRun.HERO_BIT;
         fdef.filter.maskBits = JumpAndRun.BODEN_BIT |
+                JumpAndRun.MUENZEN_BIT|
                 JumpAndRun.GEGNER_KOPF_BIT;
 
         fdef.shape = shape;
@@ -189,7 +190,7 @@ public class Hero extends Sprite {
         //b2body.createFixture(fdef);
         fdef.filter.categoryBits = JumpAndRun.HERO_BIT;
         fdef.filter.maskBits = JumpAndRun.BODEN_BIT |
-                JumpAndRun.GELD_BIT |
+                JumpAndRun.MUENZEN_BIT |
                 JumpAndRun.BLOCK_BIT |
                 JumpAndRun.GEGNER_BIT |
                 JumpAndRun.OBJEKT_BIT |

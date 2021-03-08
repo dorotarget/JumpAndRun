@@ -20,6 +20,7 @@ import com.doro.jumpandrun.Scenes.Hud;
 import com.doro.jumpandrun.Sprites.Gegner;
 import com.doro.jumpandrun.Sprites.Gegner1;
 import com.doro.jumpandrun.Sprites.Hero;
+import com.doro.jumpandrun.Sprites.Muenzen;
 import com.doro.jumpandrun.Tools.B2WorldCreator;
 import com.doro.jumpandrun.Tools.WorldContactListener;
 
@@ -132,6 +133,8 @@ public class PlayScreen implements Screen{
                 gegner.b2Body.setActive(true);
             //gegner1.update(dt);
         }
+        for (Muenzen muenzen : creator.getMuenzenSilberArray()) {
+            muenzen.update(dt);}
         //----------gamecam bleibt bei Held
         gamecam.position.x = heroSprite.b2body.getPosition().x;
 
@@ -170,6 +173,9 @@ public class PlayScreen implements Screen{
         heroSprite.draw(game.batch);
         for (Gegner gegner : creator.getGegner1Array())
             gegner.draw(game.batch);
+        //gegner1.draw(game.batch);
+        for (Muenzen muenzen : creator.getMuenzenSilberArray())
+            muenzen.draw(game.batch);
         //gegner1.draw(game.batch);
         game.batch.end();
 

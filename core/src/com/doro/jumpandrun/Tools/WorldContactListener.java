@@ -44,6 +44,14 @@ public class WorldContactListener implements ContactListener {
                 else
                     ((Gegner)fixB.getUserData()).hitOnKopf();
                 break;
+            case JumpAndRun.MUENZEN_BIT | JumpAndRun.HERO_BIT:
+                if(fixA.getFilterData().categoryBits == JumpAndRun.MUENZEN_BIT)
+                    Gdx.app.log("Münze", "Silber");
+
+                else
+                    Gdx.app.log("Münze", "Silber");
+                break;
+
 
             case JumpAndRun.GEGNER_BIT | JumpAndRun.OBJEKT_BIT:
                 if(fixA.getFilterData().categoryBits == JumpAndRun.GEGNER_BIT)
@@ -73,11 +81,8 @@ public class WorldContactListener implements ContactListener {
                     break;
 
             case JumpAndRun.HERO_BIT | JumpAndRun.BLOCK_BIT:
-            case JumpAndRun.HERO_KOPF_BIT | JumpAndRun.GELD_BIT:
-                if(fixA.getFilterData().categoryBits == JumpAndRun.HERO_KOPF_BIT)
-                    ((InteractiveTileObject) fixB.getUserData()).onHeadHit((Hero) fixA.getUserData());
-                else
-                    ((InteractiveTileObject) fixA.getUserData()).onHeadHit((Hero) fixB.getUserData());
+            case JumpAndRun.HERO_KOPF_BIT | JumpAndRun.MUENZEN_BIT:
+                Gdx.app.log("Münze", "Silber");
                 break;
             case JumpAndRun.HERO_BIT | JumpAndRun.GEWINN_BIT:
                 //((InteractiveTileObject) fixB.getUserData()).reachGoal((Hero) fixA.getUserData());
