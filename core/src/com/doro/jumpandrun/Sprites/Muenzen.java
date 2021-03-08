@@ -18,10 +18,12 @@ public abstract class Muenzen extends Sprite {
 
     public Muenzen(PlayScreen screen, float x, float y){
         this.world = screen.getWorld();
+        //world = new World(new Vector2(0, 0), true);
+
         this.screen = screen;
         setPosition(x -64 / JumpAndRun.PPM, y + 4/ JumpAndRun.PPM);
         defineMuenze();
-        tempo = new Vector2(0 , 0);
+        tempo = new Vector2(0, 0);
         b2Body.setActive(true);
     }
 

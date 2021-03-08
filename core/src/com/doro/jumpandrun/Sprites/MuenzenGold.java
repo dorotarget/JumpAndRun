@@ -1,18 +1,20 @@
+
 package com.doro.jumpandrun.Sprites;
 
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.badlogic.gdx.utils.Array;
-import com.doro.jumpandrun.JumpAndRun;
-import com.doro.jumpandrun.Scenes.Hud;
-import com.doro.jumpandrun.Screens.PlayScreen;
+        import com.badlogic.gdx.graphics.g2d.Animation;
+        import com.badlogic.gdx.graphics.g2d.Batch;
+        import com.badlogic.gdx.graphics.g2d.TextureRegion;
+        import com.badlogic.gdx.math.Vector2;
+        import com.badlogic.gdx.physics.box2d.BodyDef;
+        import com.badlogic.gdx.physics.box2d.FixtureDef;
+        import com.badlogic.gdx.physics.box2d.PolygonShape;
+        import com.badlogic.gdx.utils.Array;
+        import com.doro.jumpandrun.JumpAndRun;
+        import com.doro.jumpandrun.Scenes.Hud;
+        import com.doro.jumpandrun.Screens.PlayScreen;
+        import com.sun.xml.internal.bind.v2.TODO;
 
-public class MuenzenSilber extends Muenzen {
+public class MuenzenGold extends Muenzen {
 
 
     private float statusZeit;
@@ -22,14 +24,14 @@ public class MuenzenSilber extends Muenzen {
     private boolean destroyed;
 
 
-    public MuenzenSilber(PlayScreen screen, float x, float y) {
+    public MuenzenGold(PlayScreen screen, float x, float y) {
         super(screen,x+1, y);
         frames = new Array<TextureRegion>();
         for(int i = 0; i < 2; i++)
             //frames.add(new TextureRegion(screen.getAtlas().findRegion("gegner1"), i * 16, 0, 16, 16));
             //frames.add(new TextureRegion(screen.getHeroAtlas().findRegion("Bandit_gehen"), 1+i * 64, 4, 64, 64));
 
-            frames.add(new TextureRegion(screen.getMuenzenAtlas().findRegion("muenzen_silber"), i * 64, 1, 32, 32));
+            frames.add(new TextureRegion(screen.getMuenzenAtlas().findRegion("muenzen_gold"), i * 64, 1, 32, 32));
 
         drehAnimation = new Animation(0.4f, frames);
         statusZeit = 0;
@@ -41,6 +43,7 @@ public class MuenzenSilber extends Muenzen {
 
     }
 
+    // TODO: Münzen Gold erstelenn, v. a. unterscheiden ob gold oder silber (s. Goomba vs. Turtle)
     public TextureRegion getFrame(float dt){
         TextureRegion region;
 
@@ -58,7 +61,7 @@ public class MuenzenSilber extends Muenzen {
         if(setToDestroy && !destroyed){
             world.destroyBody(b2Body);
             destroyed = true;
-           // setRegion(new TextureRegion(screen.getHeroAtlas().findRegion("Bandit_sterben"), 1, -3, 64, 64));
+            // setRegion(new TextureRegion(screen.getHeroAtlas().findRegion("Bandit_sterben"), 1, -3, 64, 64));
             statusZeit = 0;
             Hud.addScore(1000);
 
