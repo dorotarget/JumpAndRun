@@ -1,6 +1,7 @@
 package com.doro.jumpandrun.Sprites;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -57,13 +58,18 @@ public class MuenzenSilber extends Muenzen {
             destroyed = true;
             setRegion(new TextureRegion(screen.getHeroAtlas().findRegion("Bandit_sterben"), 1, -3, 64, 64));
             statusZeit = 0;
-            Hud.addScore(500);
+            Hud.addScore(1000);
 
         }
         else if(!destroyed){
             b2Body.setLinearVelocity(tempo);
             setPosition(b2Body.getPosition().x - getWidth() / 2, b2Body.getPosition().y - getHeight() / 2);
             setRegion(laufAnimation.getKeyFrame(statusZeit, true));}
+    }
+
+    @Override
+    public void eingesammelt() {
+        setToDestroy = true;
     }
 
     @Override
@@ -103,6 +109,10 @@ public class MuenzenSilber extends Muenzen {
         fdef.restitution = 1.0f;
         fdef.filter.categoryBits = JumpAndRun.GEGNER_KOPF_BIT;
         b2Body.createFixture(fdef).setUserData(this);*/
+    }
+    public void draw(Batch batch){
+        if(!destroyed || statusZeit < 0.5f)
+            super.draw(batch);
     }
 
 

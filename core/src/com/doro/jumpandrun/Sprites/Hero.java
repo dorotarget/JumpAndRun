@@ -154,6 +154,10 @@ public class Hero extends Sprite {
         die();
 
 
+    }
+    public void geld(Muenzen muenzen){
+        Hud.sammleGeld(1);
+
 
     }
     /*public boolean todesCheck{
@@ -188,7 +192,7 @@ public class Hero extends Sprite {
         b2body.createFixture(fdef).setUserData(this);
 
         //b2body.createFixture(fdef);
-        fdef.filter.categoryBits = JumpAndRun.HERO_BIT;
+        //fdef.filter.categoryBits = JumpAndRun.HERO_BIT;
         fdef.filter.maskBits = JumpAndRun.BODEN_BIT |
                 JumpAndRun.MUENZEN_BIT |
                 JumpAndRun.BLOCK_BIT |
