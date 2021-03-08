@@ -109,6 +109,12 @@ public class Hud implements Disposable{
         liveCountLabel.setText(String.format("%01d", leben));
     }
 
+    public static void sammleGeld (int value){
+        score += value;
+
+        scoreLabel.setText(String.format("%01d", leben));
+    }
+
     public static boolean verloren (){
 
         if (leben == 0){
