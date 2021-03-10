@@ -12,7 +12,6 @@ package com.doro.jumpandrun.Sprites;
         import com.doro.jumpandrun.JumpAndRun;
         import com.doro.jumpandrun.Scenes.Hud;
         import com.doro.jumpandrun.Screens.PlayScreen;
-        import com.sun.xml.internal.bind.v2.TODO;
 
 public class MuenzenGold extends Muenzen {
 
@@ -28,8 +27,6 @@ public class MuenzenGold extends Muenzen {
         super(screen,x+1, y);
         frames = new Array<TextureRegion>();
         for(int i = 0; i < 2; i++)
-            //frames.add(new TextureRegion(screen.getAtlas().findRegion("gegner1"), i * 16, 0, 16, 16));
-            //frames.add(new TextureRegion(screen.getHeroAtlas().findRegion("Bandit_gehen"), 1+i * 64, 4, 64, 64));
 
             frames.add(new TextureRegion(screen.getMuenzenAtlas().findRegion("muenzen_gold"), i * 64, 1, 32, 32));
 
@@ -43,7 +40,6 @@ public class MuenzenGold extends Muenzen {
 
     }
 
-    // TODO: Münzen Gold erstelenn, v. a. unterscheiden ob gold oder silber (s. Goomba vs. Turtle)
     public TextureRegion getFrame(float dt){
         TextureRegion region;
 
@@ -61,14 +57,13 @@ public class MuenzenGold extends Muenzen {
         if(setToDestroy && !destroyed){
             world.destroyBody(b2Body);
             destroyed = true;
-            // setRegion(new TextureRegion(screen.getHeroAtlas().findRegion("Bandit_sterben"), 1, -3, 64, 64));
             statusZeit = 0;
-            Hud.addScore(1000);
+            Hud.addScore(10000);
 
         }
         else if(!destroyed){
             b2Body.setLinearVelocity(tempo);
-            setPosition(b2Body.getPosition().x - getWidth() / 2, b2Body.getPosition().y - getHeight() / 2);
+            setPosition(b2Body.getPosition().x - ( getWidth() / 2), b2Body.getPosition().y - getHeight() / 2);
             setRegion(drehAnimation.getKeyFrame(statusZeit, true));}
     }
 
@@ -86,8 +81,6 @@ public class MuenzenGold extends Muenzen {
         b2Body = world.createBody(bdef);
 
         FixtureDef fdef = new FixtureDef();
-        //     CircleShape shape = new CircleShape();
-        //     shape.setRadius(6 / JumpAndRun.PPM);
         PolygonShape shape = new PolygonShape();
         Vector2[] vertice = new Vector2[4];
         vertice[0] = new Vector2(-4, 3).scl(1 / JumpAndRun.PPM);

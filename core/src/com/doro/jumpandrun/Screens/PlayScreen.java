@@ -140,8 +140,10 @@ public class PlayScreen implements Screen{
                 gegner.b2Body.setActive(true);
             //gegner1.update(dt);
         }
-        for (Muenzen muenzen : creator.getMuenzenSilberArray()) {
+        for (Muenzen muenzen : creator.getMuenzen()) {
             muenzen.update(dt);}
+       // for (Muenzen muenzen : creator.getMuenzenGoldArray()) {
+         //   muenzen.update(dt);}
         //----------gamecam bleibt bei Held
         gamecam.position.x = heroSprite.b2body.getPosition().x;
 
@@ -181,7 +183,7 @@ public class PlayScreen implements Screen{
         for (Gegner gegner : creator.getGegner1Array())
             gegner.draw(game.batch);
         //gegner1.draw(game.batch);
-        for (Muenzen muenzen : creator.getMuenzenSilberArray())
+        for (Muenzen muenzen : creator.getMuenzen())
             muenzen.draw(game.batch);
         //gegner1.draw(game.batch);
         game.batch.end();
