@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Joint;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.doro.jumpandrun.JumpAndRun;
+import com.doro.jumpandrun.Scenes.Hud;
 import com.doro.jumpandrun.Screens.PlayScreen;
 import com.doro.jumpandrun.Screens.WinScreen;
 import com.doro.jumpandrun.Sprites.Hero;
@@ -71,7 +72,7 @@ public class WorldContactListener implements ContactListener {
                 }
 
                     break;
-
+/*
             case JumpAndRun.HERO_BIT | JumpAndRun.BLOCK_BIT:
             case JumpAndRun.HERO_KOPF_BIT | JumpAndRun.GELD_BIT:
                 if(fixA.getFilterData().categoryBits == JumpAndRun.HERO_KOPF_BIT)
@@ -79,14 +80,15 @@ public class WorldContactListener implements ContactListener {
                 else
                     ((InteractiveTileObject) fixA.getUserData()).onHeadHit((Hero) fixB.getUserData());
                 break;
-            case JumpAndRun.HERO_BIT | JumpAndRun.GEWINN_BIT:
-                //((InteractiveTileObject) fixB.getUserData()).reachGoal((Hero) fixA.getUserData());
-                //WinBrick.reachGoal();
-                //screen.won();
-                //game.setScreen(new WinScreen(game));
-                Hero.won = true;
+*/
+            case JumpAndRun.HERO_BIT | JumpAndRun.ITEM_BIT:
+                Gdx.app.log("Item", "collision");
+                Hud.gewinneLeben();
+                break;
 
-                //Gdx.app.log("Kontakt","Kontakt");
+            case JumpAndRun.HERO_BIT | JumpAndRun.GEWINN_BIT:
+                Hero.won = true;
+                break;
 
 
         }

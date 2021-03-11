@@ -179,12 +179,14 @@ public class Hero extends Sprite {
         shape.set(vertice);
     //    CircleShape shape = new CircleShape();
     //    shape.setRadius(6 / JumpAndRun.PPM);
-        fdef.filter.categoryBits = JumpAndRun.HERO_BIT;
+        /*fdef.filter.categoryBits = JumpAndRun.HERO_BIT;
         fdef.filter.maskBits = JumpAndRun.BODEN_BIT |
-                JumpAndRun.GEGNER_KOPF_BIT;
+                JumpAndRun.GEGNER_KOPF_BIT|
+                JumpAndRun.ITEM_BIT;*/
 
         fdef.shape = shape;
-        b2body.createFixture(fdef).setUserData(this);
+        //b2body.createFixture(fdef).setUserData(this);
+
 
         //b2body.createFixture(fdef);
         fdef.filter.categoryBits = JumpAndRun.HERO_BIT;
@@ -198,13 +200,14 @@ public class Hero extends Sprite {
                 JumpAndRun.ITEM_BIT;
         b2body.createFixture(fdef).setUserData(this);
 
+        /*
         EdgeShape head = new EdgeShape();
         head.set(new Vector2(-2 / JumpAndRun.PPM, 6 / JumpAndRun.PPM), new Vector2(2 / JumpAndRun.PPM, 6 / JumpAndRun.PPM));
         fdef.filter.categoryBits = JumpAndRun.HERO_KOPF_BIT;
         fdef.shape = head;
         fdef.isSensor = true;
         b2body.createFixture(fdef).setUserData(this);
-
+*/
         //b2body.createFixture(fdef).setUserData("head");
     }
     public void update(float dt){

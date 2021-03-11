@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.doro.jumpandrun.JumpAndRun;
 import com.doro.jumpandrun.Screens.PlayScreen;
+import com.doro.jumpandrun.Sprites.Hero;
 
 public abstract class PowerUp extends Sprite{
     protected PlayScreen screen;
@@ -27,7 +28,7 @@ public abstract class PowerUp extends Sprite{
     }
 
     public abstract void definierePowerUp();
-    public abstract void use();
+    public abstract void use(Hero hero);
 
     public void update(float dt){
         if(zuEntfernen && !entfernt){
@@ -45,6 +46,12 @@ public abstract class PowerUp extends Sprite{
 
     public void entfernen(){
         zuEntfernen = true;
+    }
+    public void umdrehTempo(boolean x, boolean y) {
+        if (x)
+            tempo.x = -tempo.x;
+        if (y)
+            tempo.y = -tempo.y;
     }
 
 }

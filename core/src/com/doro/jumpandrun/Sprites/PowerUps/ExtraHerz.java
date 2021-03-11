@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.doro.jumpandrun.JumpAndRun;
 import com.doro.jumpandrun.Screens.PlayScreen;
+import com.doro.jumpandrun.Sprites.Hero;
 
 public class ExtraHerz extends PowerUp {
 
@@ -26,7 +27,10 @@ public class ExtraHerz extends PowerUp {
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(6/JumpAndRun.PPM);
+        shape.setRadius(4/JumpAndRun.PPM);
+
+        fdef.filter.categoryBits = JumpAndRun.ITEM_BIT;
+        fdef.filter.maskBits = JumpAndRun.BODEN_BIT | JumpAndRun.OBJEKT_BIT | JumpAndRun.HERO_BIT;
 
         fdef.shape = shape;
         body.createFixture(fdef).setUserData(this);
@@ -34,8 +38,8 @@ public class ExtraHerz extends PowerUp {
     }
 
     @Override
-    public void use() {
-
+    public void use(Hero hero) {
+        entfernen();
     }
 
     @Override
