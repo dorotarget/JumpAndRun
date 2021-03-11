@@ -186,6 +186,7 @@ public class Hero extends Sprite {
         fdef.filter.categoryBits = JumpAndRun.HERO_BIT;
         fdef.filter.maskBits = JumpAndRun.BODEN_BIT |
                 JumpAndRun.MUENZEN_BIT|
+                JumpAndRun.ITEM_BIT|
                 JumpAndRun.GEGNER_KOPF_BIT;
 
         fdef.shape = shape;

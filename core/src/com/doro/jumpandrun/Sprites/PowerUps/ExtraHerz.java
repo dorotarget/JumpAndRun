@@ -14,7 +14,7 @@ public class ExtraHerz extends PowerUp {
     public ExtraHerz(PlayScreen screen, float x, float y) {
         super(screen, x, y);
         setRegion(screen.getAtlas().findRegion("turtle"), 0, 0, 16, 16);
-        tempo = new Vector2(0, 0);
+        tempo = new Vector2(0.1f, 0);
     }
 
     @Override
@@ -27,7 +27,7 @@ public class ExtraHerz extends PowerUp {
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(4/JumpAndRun.PPM);
+        shape.setRadius(2/JumpAndRun.PPM);
 
         fdef.filter.categoryBits = JumpAndRun.ITEM_BIT;
         fdef.filter.maskBits = JumpAndRun.BODEN_BIT | JumpAndRun.OBJEKT_BIT | JumpAndRun.HERO_BIT;

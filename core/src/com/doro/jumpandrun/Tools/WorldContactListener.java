@@ -14,6 +14,7 @@ import com.doro.jumpandrun.Screens.WinScreen;
 import com.doro.jumpandrun.Sprites.Hero;
 import com.doro.jumpandrun.Screens.PlayScreen;
 import com.doro.jumpandrun.Sprites.Muenzen;
+import com.doro.jumpandrun.Sprites.PowerUps.PowerUp;
 import com.doro.jumpandrun.Sprites.WinBrick;
 import com.doro.jumpandrun.Sprites.Gegner;
 
@@ -46,31 +47,6 @@ public class WorldContactListener implements ContactListener {
                 else
                     ((Gegner)fixB.getUserData()).hitOnKopf();
                 break;
-            case JumpAndRun.MUENZEN_BIT | JumpAndRun.HERO_BIT:
-                if(fixA.getFilterData().categoryBits == JumpAndRun.MUENZEN_BIT){
-                    Gdx.app.log("Münze", "Silber");
-
-                    ((Muenzen)fixA.getUserData()).eingesammelt();
-
-                }
-                else {
-                    Gdx.app.log("Münze", "Silber");
-                    ((Muenzen)fixB.getUserData()).eingesammelt();
-                }
-                break;
-            case JumpAndRun.MUENZEN_BIT | JumpAndRun.HERO_KOPF_BIT:
-                if(fixA.getFilterData().categoryBits == JumpAndRun.MUENZEN_BIT){
-                    Gdx.app.log("Münze", "Silber");
-
-                    ((Muenzen)fixA.getUserData()).eingesammelt();
-
-                }
-                else {
-                    Gdx.app.log("Münze", "Silber");
-                    ((Muenzen)fixB.getUserData()).eingesammelt();
-                }
-                break;
-
 
             case JumpAndRun.GEGNER_BIT | JumpAndRun.OBJEKT_BIT:
                 if(fixA.getFilterData().categoryBits == JumpAndRun.GEGNER_BIT)
@@ -83,6 +59,18 @@ public class WorldContactListener implements ContactListener {
                 //((Gegner)fixB.getUserData()).gegnerTrifftGegner((Gegner)fixA.getUserData());
                 ((Gegner)fixA.getUserData()).reverseVelocity(true, false);
                 ((Gegner)fixB.getUserData()).reverseVelocity(true, false);
+                break;
+            case JumpAndRun.MUENZEN_BIT | JumpAndRun.HERO_BIT:
+                if(fixA.getFilterData().categoryBits == JumpAndRun.MUENZEN_BIT){
+                    Gdx.app.log("Münze", "Silber");
+
+                    ((Muenzen)fixA.getUserData()).eingesammelt();
+
+                }
+                else {
+                    Gdx.app.log("Münze", "Silber");
+                    ((Muenzen)fixB.getUserData()).eingesammelt();
+                }
                 break;
 
             case JumpAndRun.HERO_BIT | JumpAndRun.GEGNER_BIT:
@@ -106,14 +94,34 @@ public class WorldContactListener implements ContactListener {
                 else
                     ((InteractiveTileObject) fixA.getUserData()).onHeadHit((Hero) fixB.getUserData());
                 break;
-*/
+
             case JumpAndRun.HERO_BIT | JumpAndRun.ITEM_BIT:
                 Gdx.app.log("Item", "collision");
                 Hud.gewinneLeben();
                 break;
-
+*/
             case JumpAndRun.HERO_BIT | JumpAndRun.GEWINN_BIT:
                 Hero.won = true;
+                break;
+            case JumpAndRun.HERO_BIT | JumpAndRun.ITEM_BIT:
+                Gdx.app.log("Item", "collision");
+                Hud.gewinneLeben();
+                if (fixA.getFilterData().categoryBits == JumpAndRun.ITEM_BIT)
+                    ((PowerUp) fixA.getUserData()).use((Hero) fixB.getUserData());
+                else
+                    ((PowerUp) fixB.getUserData()).use((Hero) fixA.getUserData());
+
+                break;
+            case JumpAndRun.OBJEKT_BIT | JumpAndRun.ITEM_BIT:
+
+                if(fixA.getFilterData().categoryBits == JumpAndRun.OBJEKT_BIT) {
+                    ((PowerUp)fixB.getUserData()).umdrehTempo(true, false);
+                }
+
+                else {
+                    ((PowerUp) fixA.getUserData()).umdrehTempo(true, false);
+                }
+
                 break;
 
 

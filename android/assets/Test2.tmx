@@ -182,8 +182,8 @@
   <object id="275" x="2544" y="162.333" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="9" name="MuenzenSilber">
-  <object id="277" x="111.5" y="144" width="16" height="16"/>
-  <object id="278" x="130.5" y="127" width="16" height="16"/>
+  <object id="277" x="111.5" y="128" width="16" height="16"/>
+  <object id="278" x="130.5" y="114" width="16" height="16"/>
   <object id="306" x="3232" y="224" width="16" height="16"/>
   <object id="309" x="3018" y="223.5" width="16" height="16"/>
   <object id="310" x="2925.5" y="222.5" width="16" height="16"/>
@@ -199,7 +199,7 @@
   <object id="320" x="273.5" y="93.5" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="10" name="MuenzenGold">
-  <object id="280" x="147.5" y="127" width="16.5" height="15"/>
+  <object id="280" x="147.5" y="115" width="16.5" height="15"/>
   <object id="281" x="265.75" y="164" width="16.5" height="15"/>
   <object id="282" x="1372.75" y="101" width="16.5" height="15"/>
   <object id="283" x="1229.75" y="121" width="16.5" height="15"/>
