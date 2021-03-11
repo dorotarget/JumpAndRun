@@ -103,6 +103,7 @@ public class WorldContactListener implements ContactListener {
             case JumpAndRun.HERO_BIT | JumpAndRun.GEWINN_BIT:
                 Hero.won = true;
                 break;
+                /*
             case JumpAndRun.HERO_BIT | JumpAndRun.ITEM_BIT:
                 Gdx.app.log("Item", "collision");
                 Hud.gewinneLeben();
@@ -111,18 +112,29 @@ public class WorldContactListener implements ContactListener {
                 else
                     ((PowerUp) fixB.getUserData()).use((Hero) fixA.getUserData());
 
+                break;*/
+            case JumpAndRun.ITEM_BIT | JumpAndRun.HERO_BIT:
+                if(fixA.getFilterData().categoryBits == JumpAndRun.ITEM_BIT){
+                    //Gdx.app.log("Item", "Hero");
+                    ((PowerUp)fixA.getUserData()).eingesammelt();
+                }
+                else {
+                        Gdx.app.log("Item", "Hero");
+                        ((PowerUp)fixB.getUserData()).eingesammelt();
+                    }
                 break;
-            case JumpAndRun.OBJEKT_BIT | JumpAndRun.ITEM_BIT:
+/**TODO: mache PowerUp bouncy**/
+            /*case JumpAndRun.OBJEKT_BIT | JumpAndRun.ITEM_BIT:
 
-                if(fixA.getFilterData().categoryBits == JumpAndRun.OBJEKT_BIT) {
-                    ((PowerUp)fixB.getUserData()).umdrehTempo(true, false);
+                if(fixA.getFilterData().categoryBits == JumpAndRun.ITEM_BIT) {
+                    ((PowerUp)fixA.getUserData()).umdrehTempo(true, false);
                 }
 
                 else {
-                    ((PowerUp) fixA.getUserData()).umdrehTempo(true, false);
+                    ((PowerUp) fixB.getUserData()).umdrehTempo(true, false);
                 }
 
-                break;
+                break;*/
 
 
         }

@@ -29,7 +29,7 @@ public class MuenzenSilber extends Muenzen {
             //frames.add(new TextureRegion(screen.getAtlas().findRegion("gegner1"), i * 16, 0, 16, 16));
             //frames.add(new TextureRegion(screen.getHeroAtlas().findRegion("Bandit_gehen"), 1+i * 64, 4, 64, 64));
 
-            frames.add(new TextureRegion(screen.getMuenzenAtlas().findRegion("muenzen_silber"), i * 64, 1, 32, 32));
+            frames.add(new TextureRegion(screen.getMuenzenHerzAtlas().findRegion("muenzen_silber"), i * 64, 1, 32, 32));
 
         drehAnimation = new Animation(0.4f, frames);
         statusZeit = 0;

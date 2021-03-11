@@ -19,8 +19,8 @@ public class MuenzenGold extends Muenzen {
     private float statusZeit;
     private Animation<TextureRegion> drehAnimation;
     private Array<TextureRegion> frames;
-    private boolean setToDestroy;
-    private boolean destroyed;
+    private boolean zuEntfernen;
+    private boolean entfernt;
 
 
     public MuenzenGold(PlayScreen screen, float x, float y) {
@@ -28,14 +28,14 @@ public class MuenzenGold extends Muenzen {
         frames = new Array<TextureRegion>();
         for(int i = 0; i < 2; i++)
 
-            frames.add(new TextureRegion(screen.getMuenzenAtlas().findRegion("muenzen_gold"), i * 64, 1, 32, 32));
+            frames.add(new TextureRegion(screen.getMuenzenHerzAtlas().findRegion("muenzen_gold"), i * 64, 1, 32, 32));
 
         drehAnimation = new Animation(0.4f, frames);
         statusZeit = 0;
         setBounds(getX(), getY(), 16 / JumpAndRun.PPM, 16 / JumpAndRun.PPM);
-        setToDestroy = false;
+        zuEntfernen = false;
 
-        destroyed = false;
+        entfernt = false;
 
 
     }
@@ -50,18 +50,18 @@ public class MuenzenGold extends Muenzen {
         return region;
     }
     public void update(float dt){
-        if (!setToDestroy)
+        if (!zuEntfernen)
             setRegion(getFrame(dt));
 
         statusZeit += dt;
-        if(setToDestroy && !destroyed){
+        if(zuEntfernen && !entfernt){
             world.destroyBody(b2Body);
-            destroyed = true;
+            entfernt = true;
             statusZeit = 0;
             Hud.addScore(10000);
 
         }
-        else if(!destroyed){
+        else if(!entfernt){
             b2Body.setLinearVelocity(tempo);
             b2Body.applyForceToCenter(0,10, true);
             setPosition(b2Body.getPosition().x - ( getWidth() / 2), b2Body.getPosition().y - getHeight() / 2);
@@ -70,7 +70,7 @@ public class MuenzenGold extends Muenzen {
 
     @Override
     public void eingesammelt() {
-        setToDestroy = true;
+        zuEntfernen = true;
     }
 
     @Override
@@ -110,7 +110,7 @@ public class MuenzenGold extends Muenzen {
         b2Body.createFixture(fdef).setUserData(this);*/
     }
     public void draw(Batch batch){
-        if(!destroyed || statusZeit < 0.1f)
+        if(!entfernt || statusZeit < 0.1f)
             super.draw(batch);
     }
 

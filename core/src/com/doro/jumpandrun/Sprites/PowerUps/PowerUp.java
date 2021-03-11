@@ -23,30 +23,30 @@ public abstract class PowerUp extends Sprite{
         setPosition(x, y);
         setBounds(getX(), getY(), 16/ JumpAndRun.PPM, 16/JumpAndRun.PPM);
         definierePowerUp();
-        zuEntfernen = false;
-        entfernt = false;
+        //zuEntfernen = false;
+        //entfernt = false;
     }
 
     public abstract void definierePowerUp();
     public abstract void use(Hero hero);
 
     public void update(float dt){
-        if(zuEntfernen && !entfernt){
+       /* if(zuEntfernen && !entfernt){
             world.destroyBody(body);
             entfernt = true;
             ;
-        }
+        }*/
     }
 
-
+/*
     public void draw(Batch batch){
         if (!entfernt)
             super.draw(batch);
-    }
-
+    }*/
+/*
     public void entfernen(){
         zuEntfernen = true;
-    }
+    }*/
     public void umdrehTempo(boolean x, boolean y) {
         if (x)
             tempo.x = -tempo.x;
@@ -54,4 +54,5 @@ public abstract class PowerUp extends Sprite{
             tempo.y = -tempo.y;
     }
 
+    public abstract void eingesammelt();
 }
