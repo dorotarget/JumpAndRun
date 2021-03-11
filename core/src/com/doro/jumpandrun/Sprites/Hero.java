@@ -154,6 +154,10 @@ public class Hero extends Sprite {
         die();
 
 
+    }
+    public void geld(Muenzen muenzen){
+        Hud.sammleGeld(1);
+
 
     }
     /*public boolean todesCheck{
@@ -179,19 +183,19 @@ public class Hero extends Sprite {
         shape.set(vertice);
     //    CircleShape shape = new CircleShape();
     //    shape.setRadius(6 / JumpAndRun.PPM);
-        /*fdef.filter.categoryBits = JumpAndRun.HERO_BIT;
+        fdef.filter.categoryBits = JumpAndRun.HERO_BIT;
         fdef.filter.maskBits = JumpAndRun.BODEN_BIT |
-                JumpAndRun.GEGNER_KOPF_BIT|
-                JumpAndRun.ITEM_BIT;*/
+                JumpAndRun.MUENZEN_BIT|
+                JumpAndRun.GEGNER_KOPF_BIT;
 
         fdef.shape = shape;
         //b2body.createFixture(fdef).setUserData(this);
 
 
         //b2body.createFixture(fdef);
-        fdef.filter.categoryBits = JumpAndRun.HERO_BIT;
+        //fdef.filter.categoryBits = JumpAndRun.HERO_BIT;
         fdef.filter.maskBits = JumpAndRun.BODEN_BIT |
-                JumpAndRun.GELD_BIT |
+                JumpAndRun.MUENZEN_BIT |
                 JumpAndRun.BLOCK_BIT |
                 JumpAndRun.GEGNER_BIT |
                 JumpAndRun.OBJEKT_BIT |

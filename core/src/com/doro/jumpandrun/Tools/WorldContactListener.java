@@ -13,6 +13,7 @@ import com.doro.jumpandrun.Screens.PlayScreen;
 import com.doro.jumpandrun.Screens.WinScreen;
 import com.doro.jumpandrun.Sprites.Hero;
 import com.doro.jumpandrun.Screens.PlayScreen;
+import com.doro.jumpandrun.Sprites.Muenzen;
 import com.doro.jumpandrun.Sprites.WinBrick;
 import com.doro.jumpandrun.Sprites.Gegner;
 
@@ -45,6 +46,31 @@ public class WorldContactListener implements ContactListener {
                 else
                     ((Gegner)fixB.getUserData()).hitOnKopf();
                 break;
+            case JumpAndRun.MUENZEN_BIT | JumpAndRun.HERO_BIT:
+                if(fixA.getFilterData().categoryBits == JumpAndRun.MUENZEN_BIT){
+                    Gdx.app.log("Münze", "Silber");
+
+                    ((Muenzen)fixA.getUserData()).eingesammelt();
+
+                }
+                else {
+                    Gdx.app.log("Münze", "Silber");
+                    ((Muenzen)fixB.getUserData()).eingesammelt();
+                }
+                break;
+            case JumpAndRun.MUENZEN_BIT | JumpAndRun.HERO_KOPF_BIT:
+                if(fixA.getFilterData().categoryBits == JumpAndRun.MUENZEN_BIT){
+                    Gdx.app.log("Münze", "Silber");
+
+                    ((Muenzen)fixA.getUserData()).eingesammelt();
+
+                }
+                else {
+                    Gdx.app.log("Münze", "Silber");
+                    ((Muenzen)fixB.getUserData()).eingesammelt();
+                }
+                break;
+
 
             case JumpAndRun.GEGNER_BIT | JumpAndRun.OBJEKT_BIT:
                 if(fixA.getFilterData().categoryBits == JumpAndRun.GEGNER_BIT)

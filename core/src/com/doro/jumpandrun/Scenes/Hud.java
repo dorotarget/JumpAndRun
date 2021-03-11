@@ -114,6 +114,12 @@ public class Hud implements Disposable{
         Hero.lost= false;
     }
 
+    public static void sammleGeld (int value){
+        score += value;
+
+        scoreLabel.setText(String.format("%01d", leben));
+    }
+
     public static boolean verloren (){
 
         if (leben == 0){
