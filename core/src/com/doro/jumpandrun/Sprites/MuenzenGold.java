@@ -63,6 +63,7 @@ public class MuenzenGold extends Muenzen {
         }
         else if(!destroyed){
             b2Body.setLinearVelocity(tempo);
+            b2Body.applyForceToCenter(0,10, true);
             setPosition(b2Body.getPosition().x - ( getWidth() / 2), b2Body.getPosition().y - getHeight() / 2);
             setRegion(drehAnimation.getKeyFrame(statusZeit, true));}
     }
@@ -109,7 +110,7 @@ public class MuenzenGold extends Muenzen {
         b2Body.createFixture(fdef).setUserData(this);*/
     }
     public void draw(Batch batch){
-        if(!destroyed || statusZeit < 0.5f)
+        if(!destroyed || statusZeit < 0.1f)
             super.draw(batch);
     }
 
