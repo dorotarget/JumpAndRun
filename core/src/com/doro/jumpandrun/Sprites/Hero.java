@@ -245,7 +245,7 @@ public class Hero extends Sprite {
                 region = heroTot;
                 break;
             case VERLETZT:
-                if (statusTimer < 1  )
+                if (statusTimer < 0.5f  )
                     region = heroVerletzt;
                 else{
                     region = heroStehen;
