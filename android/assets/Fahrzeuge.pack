@@ -1,0 +1,19 @@
+
+Fahrzeuge.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+bus
+  rotate: false
+  xy: 1, 197
+  size: 900, 480
+  orig: 900, 480
+  offset: 0, 0
+  index: -1
+auto
+  rotate: false
+  xy: 1, 1
+  size: 510, 194
+  orig: 510, 194
+  offset: 0, 0
+  index: -1

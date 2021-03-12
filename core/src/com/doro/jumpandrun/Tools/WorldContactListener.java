@@ -77,6 +77,13 @@ public class WorldContactListener implements ContactListener {
                 else
                     ((Gegner)fixB.getUserData()).umdrehTempo(true, false);
                 break;
+            case JumpAndRun.GEGNER_KOPF_BIT | JumpAndRun.OBJEKT_BIT:
+                if(fixA.getFilterData().categoryBits == JumpAndRun.GEGNER_KOPF_BIT)
+                    ((Gegner)fixA.getUserData()).umdrehTempo(true, false);
+                else
+                    ((Gegner)fixB.getUserData()).umdrehTempo(true, false);
+                break;
+
             case JumpAndRun.GEGNER_BIT | JumpAndRun.GEGNER_BIT:
                 //((Gegner)fixA.getUserData()).gegnerTrifftGegner((Gegner)fixB.getUserData());
                 //((Gegner)fixB.getUserData()).gegnerTrifftGegner((Gegner)fixA.getUserData());
