@@ -17,6 +17,7 @@ public class MuenzenGold extends Muenzen {
 
 
     private float statusZeit;
+    private float sichtbarZeit;
     private Animation<TextureRegion> drehAnimation;
     private Array<TextureRegion> frames;
     private boolean zuEntfernen;
@@ -66,6 +67,7 @@ public class MuenzenGold extends Muenzen {
             b2Body.applyForceToCenter(0,10, true);
             setPosition(b2Body.getPosition().x - ( getWidth() / 2), b2Body.getPosition().y - getHeight() / 2);
             setRegion(drehAnimation.getKeyFrame(statusZeit, true));}
+
     }
 
     @Override

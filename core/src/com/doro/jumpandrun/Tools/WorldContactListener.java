@@ -119,12 +119,14 @@ public class WorldContactListener implements ContactListener {
                     ((PowerUp)fixA.getUserData()).eingesammelt();
                 }
                 else {
-                        Gdx.app.log("Item", "Hero");
+                        Gdx.app.log("Herz", "Hero");
                         ((PowerUp)fixB.getUserData()).eingesammelt();
                     }
                 break;
 /**TODO: mache PowerUp bouncy**/
-            /*case JumpAndRun.OBJEKT_BIT | JumpAndRun.ITEM_BIT:
+/*
+            case JumpAndRun.OBJEKT_BIT | JumpAndRun.ITEM_BIT:
+            case JumpAndRun.BODEN_BIT | JumpAndRun.ITEM_BIT:
 
                 if(fixA.getFilterData().categoryBits == JumpAndRun.ITEM_BIT) {
                     ((PowerUp)fixA.getUserData()).umdrehTempo(true, false);
@@ -134,9 +136,9 @@ public class WorldContactListener implements ContactListener {
                     ((PowerUp) fixB.getUserData()).umdrehTempo(true, false);
                 }
 
-                break;*/
+                break;
 
-
+*/
         }
     }
 

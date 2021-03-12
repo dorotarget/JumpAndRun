@@ -23,11 +23,11 @@ public class ExtraHerz extends PowerUp {
     private boolean entfernt;
 
     public ExtraHerz(PlayScreen screen, float x, float y) {
-        super(screen, x + 1, y);
+        super(screen, x + 1 , y);
         frames = new Array<TextureRegion>();
-        for(int i = 0; i < 2; i++)
+        for(int i = 1; i < 3; i++)
 
-            frames.add(new TextureRegion(screen.getMuenzenHerzAtlas().findRegion("Herz"), i * 64, 1, 32, 32));
+            frames.add(new TextureRegion(screen.getMuenzenHerzAtlas().findRegion("Herz"), i * 32, 1, 32, 32));
 
         blinkAnimation = new Animation(0.4f, frames);
         statusZeit = 0;
@@ -55,6 +55,10 @@ public class ExtraHerz extends PowerUp {
             setRegion(getFrame(dt));
 
         statusZeit += dt;
+        if (statusZeit > 3){
+            world.destroyBody(body);
+            zuEntfernen = true;
+        }
         if(zuEntfernen && !entfernt){
             world.destroyBody(body);
             entfernt = true;
@@ -67,6 +71,7 @@ public class ExtraHerz extends PowerUp {
             //body.applyForceToCenter(0,10, true);
             setPosition(body.getPosition().x - ( getWidth() / 2), body.getPosition().y - getHeight() / 2);
             setRegion(blinkAnimation.getKeyFrame(statusZeit, true));}
+
     }
 
     public void eingesammelt() {
@@ -100,7 +105,7 @@ public class ExtraHerz extends PowerUp {
     }
 
     public void draw(Batch batch){
-        if(!entfernt || statusZeit < 0.1f)
+        if(!entfernt || statusZeit < 0.2f)
             super.draw(batch);
     }
 
