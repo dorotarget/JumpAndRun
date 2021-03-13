@@ -18,8 +18,8 @@ public class MuenzenSilber extends Muenzen {
     private float statusZeit;
     private Animation<TextureRegion> drehAnimation;
     private Array<TextureRegion> frames;
-    private boolean setToDestroy;
-    private boolean destroyed;
+    private boolean zuEntfernen;
+    private boolean entfernt;
 
 
     public MuenzenSilber(PlayScreen screen, float x, float y) {
@@ -34,9 +34,9 @@ public class MuenzenSilber extends Muenzen {
         drehAnimation = new Animation(0.4f, frames);
         statusZeit = 0;
         setBounds(getX(), getY(), 16 / JumpAndRun.PPM, 16 / JumpAndRun.PPM);
-        setToDestroy = false;
+        zuEntfernen = false;
 
-        destroyed = false;
+        entfernt = false;
 
 
     }
@@ -51,19 +51,19 @@ public class MuenzenSilber extends Muenzen {
         return region;
     }
     public void update(float dt){
-        if (!setToDestroy)
+        if (!zuEntfernen)
             setRegion(getFrame(dt));
 
         statusZeit += dt;
-        if(setToDestroy && !destroyed){
+        if(zuEntfernen && !entfernt){
             world.destroyBody(b2Body);
-            destroyed = true;
+            entfernt = true;
            // setRegion(new TextureRegion(screen.getHeroAtlas().findRegion("Bandit_sterben"), 1, -3, 64, 64));
             statusZeit = 0;
             Hud.addScore(1000);
 
         }
-        else if(!destroyed){
+        else if(!entfernt){
             b2Body.setLinearVelocity(tempo);
             b2Body.applyForceToCenter(0,10, true);
             setPosition(b2Body.getPosition().x - getWidth() / 2, b2Body.getPosition().y - getHeight() / 2);
@@ -72,7 +72,7 @@ public class MuenzenSilber extends Muenzen {
 
     @Override
     public void eingesammelt() {
-        setToDestroy = true;
+        zuEntfernen = true;
     }
 
     @Override
@@ -114,7 +114,7 @@ public class MuenzenSilber extends Muenzen {
         b2Body.createFixture(fdef).setUserData(this);*/
     }
     public void draw(Batch batch){
-        if(!destroyed || statusZeit < 0.1f)
+        if(!entfernt || statusZeit < 0.1f)
             super.draw(batch);
     }
 

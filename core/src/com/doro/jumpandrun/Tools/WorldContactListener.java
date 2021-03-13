@@ -46,17 +46,6 @@ public class WorldContactListener implements ContactListener {
                     ((Gegner)fixB.getUserData()).hitOnKopf();
                 break;
             case JumpAndRun.MUENZEN_BIT | JumpAndRun.HERO_BIT:
-                if(fixA.getFilterData().categoryBits == JumpAndRun.MUENZEN_BIT){
-                    Gdx.app.log("Münze", "Silber");
-
-                    ((Muenzen)fixA.getUserData()).eingesammelt();
-
-                }
-                else {
-                    Gdx.app.log("Münze", "Silber");
-                    ((Muenzen)fixB.getUserData()).eingesammelt();
-                }
-                break;
             case JumpAndRun.MUENZEN_BIT | JumpAndRun.HERO_KOPF_BIT:
                 if(fixA.getFilterData().categoryBits == JumpAndRun.MUENZEN_BIT){
                     Gdx.app.log("Münze", "Silber");

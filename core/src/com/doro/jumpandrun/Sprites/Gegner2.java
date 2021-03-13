@@ -32,8 +32,8 @@ public class Gegner2 extends Gegner
         super(screen,x+1, y);
         frames = new Array<TextureRegion>();
         for(int i = 0; i < 2; i++)
-            //frames.add(new TextureRegion(screen.getAtlas().findRegion("gegner1"), i * 16, 0, 16, 16));
-            frames.add(new TextureRegion(screen.getHeroAtlas().findRegion("auto"), 1, 1, 510, 194));
+            /** gibt es nicht
+            frames.add(new TextureRegion(screen.getHeroAtlas().findRegion("auto"), 1, 1, 510, 194));*/
 
         laufAnimation = new Animation(0.4f, frames);
         statusZeit = 0;

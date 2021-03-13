@@ -188,6 +188,10 @@ public class PlayScreen implements Screen{
             gegner.draw(game.batch);
         for (Muenzen muenzen : creator.getMuenzen())
             muenzen.draw(game.batch);
+        /** wird erst funktionieren, wenn alles eingestellt ist
+        for (Gegner gegner : creator.getGegner())
+            gegner.draw(game.batch);
+         */
         game.batch.end();
 
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
