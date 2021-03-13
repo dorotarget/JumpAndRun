@@ -19,6 +19,7 @@ import com.doro.jumpandrun.JumpAndRun;
 import com.doro.jumpandrun.Scenes.Hud;
 import com.doro.jumpandrun.Sprites.Gegner;
 import com.doro.jumpandrun.Sprites.Gegner1;
+import com.doro.jumpandrun.Sprites.Gegner2;
 import com.doro.jumpandrun.Sprites.Hero;
 import com.doro.jumpandrun.Sprites.Muenzen;
 import com.doro.jumpandrun.Tools.B2WorldCreator;
@@ -31,6 +32,7 @@ public class PlayScreen implements Screen{
     private TextureAtlas atlas;
     private TextureAtlas heroAtlas;
     private TextureAtlas muenzenAtlas;
+    private TextureAtlas fahrzeugeAtlas;
 
 
 
@@ -51,12 +53,14 @@ public class PlayScreen implements Screen{
     //-----------Held
     private Hero heroSprite;
     private Gegner1 gegner1;
+    private Gegner2 gegner2;
 
 
     public PlayScreen(JumpAndRun game){
        atlas = new TextureAtlas("Mario_and_Enemies.pack");
        heroAtlas = new TextureAtlas("Hero_und_Bandit.pack");
         muenzenAtlas = new TextureAtlas("Muenzen.pack");
+        fahrzeugeAtlas = new TextureAtlas("Fahrzeuge.pack");
 
 
         this.game = game;
@@ -89,7 +93,7 @@ public class PlayScreen implements Screen{
 
         //-------Held wird in Welt erstellt
         heroSprite = new Hero(world, this);
-        //gegner1 = new Gegner1(this, .32f, .32f);
+        gegner2 = new Gegner2(this, .32f, .32f);
 
         world.setContactListener(new WorldContactListener());
     }
@@ -102,6 +106,9 @@ public class PlayScreen implements Screen{
     }
     public TextureAtlas getMuenzenAtlas(){
         return muenzenAtlas;
+    }
+    public TextureAtlas getFahrzeugeAtlas(){
+        return fahrzeugeAtlas;
     }
 
 
@@ -180,9 +187,9 @@ public class PlayScreen implements Screen{
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         heroSprite.draw(game.batch);
+    //    gegner2.draw(game.batch);
         for (Gegner gegner : creator.getGegner1Array())
             gegner.draw(game.batch);
-        //gegner1.draw(game.batch);
         for (Muenzen muenzen : creator.getMuenzen())
             muenzen.draw(game.batch);
         //gegner1.draw(game.batch);

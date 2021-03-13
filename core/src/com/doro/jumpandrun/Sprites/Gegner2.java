@@ -33,7 +33,7 @@ public class Gegner2 extends Gegner
         frames = new Array<TextureRegion>();
         for(int i = 0; i < 2; i++)
             //frames.add(new TextureRegion(screen.getAtlas().findRegion("gegner1"), i * 16, 0, 16, 16));
-            frames.add(new TextureRegion(screen.getHeroAtlas().findRegion("Bandit_gehen"), 1+i * 64, 4, 64, 64));
+            frames.add(new TextureRegion(screen.getFahrzeugeAtlas().findRegion("auto"), 1, 1, 510, 194));
 
         laufAnimation = new Animation(0.4f, frames);
         statusZeit = 0;
