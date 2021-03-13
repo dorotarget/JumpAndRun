@@ -154,6 +154,10 @@ public class Hero extends Sprite {
         die();
 
 
+    }
+    public void geld(Muenzen muenzen){
+        Hud.sammleGeld(1);
+
 
     }
     /*public boolean todesCheck{
@@ -181,15 +185,16 @@ public class Hero extends Sprite {
     //    shape.setRadius(6 / JumpAndRun.PPM);
         fdef.filter.categoryBits = JumpAndRun.HERO_BIT;
         fdef.filter.maskBits = JumpAndRun.BODEN_BIT |
+                JumpAndRun.MUENZEN_BIT|
                 JumpAndRun.GEGNER_KOPF_BIT;
 
         fdef.shape = shape;
         b2body.createFixture(fdef).setUserData(this);
 
         //b2body.createFixture(fdef);
-        fdef.filter.categoryBits = JumpAndRun.HERO_BIT;
+        //fdef.filter.categoryBits = JumpAndRun.HERO_BIT;
         fdef.filter.maskBits = JumpAndRun.BODEN_BIT |
-                JumpAndRun.GELD_BIT |
+                JumpAndRun.MUENZEN_BIT |
                 JumpAndRun.BLOCK_BIT |
                 JumpAndRun.GEGNER_BIT |
                 JumpAndRun.OBJEKT_BIT |
@@ -240,7 +245,7 @@ public class Hero extends Sprite {
                 region = heroTot;
                 break;
             case VERLETZT:
-                if (statusTimer < 1  )
+                if (statusTimer < 0.5f  )
                     region = heroVerletzt;
                 else{
                     region = heroStehen;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="240" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="277">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="240" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="321">
  <tileset firstgid="1" name="" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="1475" columns="59">
   <image source="Test2.png" width="1068" height="455"/>
  </tileset>
@@ -34,6 +34,10 @@
   <object id="271" x="1530.62" y="179.817" width="7.88689" height="13.6519"/>
   <object id="52" x="1538.42" y="179.897" width="253.733" height="12.1818"/>
   <object id="276" x="2464.33" y="179.667" width="623.333" height="12.6667"/>
+  <object id="297" x="3352.75" y="222" width="16.5" height="15"/>
+  <object id="298" x="3526.75" y="224" width="16.5" height="15"/>
+  <object id="299" x="3543.75" y="206.5" width="16.5" height="15"/>
+  <object id="300" x="3562.75" y="189.5" width="16.5" height="15"/>
  </objectgroup>
  <objectgroup id="5" name="objekt">
   <object id="23" x="432" y="144" width="64"/>
@@ -176,5 +180,41 @@
   <object id="259" x="1381.75" y="165" width="0.25" height="0.5"/>
   <object id="260" x="1381" y="168.682"/>
   <object id="275" x="2544" y="162.333" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="9" name="MuenzenSilber">
+  <object id="277" x="111.5" y="127" width="16" height="16"/>
+  <object id="278" x="130.5" y="109" width="16" height="16"/>
+  <object id="306" x="3232" y="224" width="16" height="16"/>
+  <object id="309" x="3018" y="223.5" width="16" height="16"/>
+  <object id="310" x="2925.5" y="222.5" width="16" height="16"/>
+  <object id="311" x="2332.5" y="147.5" width="16" height="16"/>
+  <object id="312" x="2379" y="157.5" width="16" height="16"/>
+  <object id="313" x="1849" y="157" width="16" height="16"/>
+  <object id="314" x="1681" y="162.5" width="16" height="16"/>
+  <object id="315" x="1474" y="99.5" width="16" height="16"/>
+  <object id="316" x="1538" y="161.5" width="16" height="16"/>
+  <object id="317" x="1381.5" y="159.5" width="16" height="16"/>
+  <object id="318" x="445.5" y="126.5" width="16" height="16"/>
+  <object id="319" x="429" y="126" width="16" height="16"/>
+  <object id="320" x="273.5" y="93.5" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="10" name="MuenzenGold">
+  <object id="280" x="147.5" y="110" width="16.5" height="15"/>
+  <object id="281" x="265.75" y="164" width="16.5" height="15"/>
+  <object id="282" x="1372.75" y="101" width="16.5" height="15"/>
+  <object id="283" x="1229.75" y="121" width="16.5" height="15"/>
+  <object id="284" x="1933.75" y="120.5" width="16.5" height="15"/>
+  <object id="285" x="2002.25" y="120.5" width="16.5" height="15"/>
+  <object id="286" x="2316.25" y="86.5" width="16.5" height="15"/>
+  <object id="287" x="2437.75" y="84.5" width="16.5" height="15"/>
+  <object id="288" x="2461.75" y="85" width="16.5" height="15"/>
+  <object id="289" x="2402.25" y="86" width="16.5" height="15"/>
+  <object id="290" x="2421.25" y="83.5" width="16.5" height="15"/>
+  <object id="291" x="3104.75" y="87.5" width="16.5" height="15"/>
+  <object id="292" x="3166.25" y="88" width="16.5" height="15"/>
+  <object id="293" x="3358.75" y="136.5" width="16.5" height="15"/>
+  <object id="294" x="3281.75" y="224" width="16.5" height="15"/>
+  <object id="295" x="3299.75" y="224" width="16.5" height="15"/>
+  <object id="296" x="3319.75" y="224" width="16.5" height="15"/>
  </objectgroup>
 </map>

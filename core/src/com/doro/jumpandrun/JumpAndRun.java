@@ -13,7 +13,7 @@ public class JumpAndRun extends Game {
 	public static final short BODEN_BIT = 1;
 	public static final short HERO_BIT = 2;
 	public static final short BLOCK_BIT = 4;
-	public static final short GELD_BIT = 8;
+	public static final short MUENZEN_BIT = 8;
 	public static final short GEWINN_BIT = 16;
 	public static final short OBJEKT_BIT = 32;
 	public static final short GEGNER_BIT = 64;
@@ -40,7 +40,7 @@ public class JumpAndRun extends Game {
 		super.render();
 	}
 
-	/** */
+
 
 	public Boolean getHasWon() {
 		return hasWon;
