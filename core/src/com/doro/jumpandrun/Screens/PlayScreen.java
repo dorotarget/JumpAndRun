@@ -31,6 +31,7 @@ public class PlayScreen implements Screen{
     private TextureAtlas atlas;
     private TextureAtlas heroAtlas;
     private TextureAtlas muenzenAtlas;
+    private TextureAtlas fahrzeugeAtlas;
 
 
 
@@ -57,6 +58,7 @@ public class PlayScreen implements Screen{
        atlas = new TextureAtlas("Mario_and_Enemies.pack");
        heroAtlas = new TextureAtlas("Hero_und_Bandit.pack");
         muenzenAtlas = new TextureAtlas("Muenzen.pack");
+        fahrzeugeAtlas = new TextureAtlas("Fahrzeuge.pack");
 
 
         this.game = game;
@@ -102,6 +104,9 @@ public class PlayScreen implements Screen{
     }
     public TextureAtlas getMuenzenAtlas(){
         return muenzenAtlas;
+    }
+    public TextureAtlas getFahrzeugeAtlas(){
+        return fahrzeugeAtlas;
     }
 
 
