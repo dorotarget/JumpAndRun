@@ -1,5 +1,6 @@
 package com.doro.jumpandrun.Sprites;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -92,8 +93,6 @@ public class Gegner1 extends Gegner
         b2Body = world.createBody(bdef);
 
         FixtureDef fdef = new FixtureDef();
-   //     CircleShape shape = new CircleShape();
-   //     shape.setRadius(6 / JumpAndRun.PPM);
         PolygonShape shape = new PolygonShape();
         Vector2[] vertice = new Vector2[4];
         vertice[0] = new Vector2(-4, 3).scl(1 / JumpAndRun.PPM);
@@ -120,7 +119,7 @@ public class Gegner1 extends Gegner
         fdef.filter.categoryBits = JumpAndRun.GEGNER_KOPF_BIT;
         b2Body.createFixture(fdef).setUserData(this);
     }
-
+/*
     public void gegnerTrifftGegner(Gegner gegner){
             reverseVelocity(true, false);
 
@@ -129,8 +128,10 @@ public class Gegner1 extends Gegner
     }
     public void gegnerTrifftHero(Gegner gegner){
         reverseVelocity(true, false);
-
     }
+
+    */
+
     //Verschwindet nach 1 sek
     public void draw(Batch batch){
         if(!destroyed || statusZeit < 1)

@@ -54,7 +54,7 @@ public class PlayScreen implements Screen{
 
 
     public PlayScreen(JumpAndRun game){
-       atlas = new TextureAtlas("Mario_and_Enemies.pack");
+       //atlas = new TextureAtlas("Mario_and_Enemies.pack");
        heroAtlas = new TextureAtlas("Hero_und_Bandit.pack");
         muenzenAtlas = new TextureAtlas("Muenzen.pack");
 
@@ -94,9 +94,7 @@ public class PlayScreen implements Screen{
         world.setContactListener(new WorldContactListener());
     }
 
-    public TextureAtlas getAtlas(){
-        return atlas;
-    }
+    // public TextureAtlas getAtlas(){ return atlas; }
     public TextureAtlas getHeroAtlas(){
         return heroAtlas;
     }
@@ -123,7 +121,6 @@ public class PlayScreen implements Screen{
             heroSprite.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), heroSprite.b2body.getWorldCenter(), true);
 
     }
-    //testkomentar23
 
     public void update(float dt){
 
@@ -134,23 +131,24 @@ public class PlayScreen implements Screen{
         world.step(1 / 60f, 6, 2);
 
         heroSprite.update(dt);
+
+        //-------Gegner und Münzen werden upgedatet
         for (Gegner gegner : creator.getGegner1Array()) {
             gegner.update(dt);
             if (gegner.getX() < heroSprite.getX() + 1.75f)
                 gegner.b2Body.setActive(true);
-            //gegner1.update(dt);
         }
         for (Muenzen muenzen : creator.getMuenzen()) {
             muenzen.update(dt);}
-       // for (Muenzen muenzen : creator.getMuenzenGoldArray()) {
-         //   muenzen.update(dt);}
+
         //----------gamecam bleibt bei Held
         gamecam.position.x = heroSprite.b2body.getPosition().x;
 
         //-------------aktualisiert gamecam
         gamecam.update();
-        //-------------das was man sieht wird gerender
 
+
+//_-----------überprüfen, ob Hero gewonnen hat oder heruntergefallen ist
         if (Hero.won == true) {
             game.setScreen(new WinScreen(game));
         }
@@ -159,6 +157,7 @@ public class PlayScreen implements Screen{
         }
         hud.update(dt);
 
+        //-------------das, was man sieht, wird gerendert
         renderer.setView(gamecam);
     }
 
@@ -182,10 +181,8 @@ public class PlayScreen implements Screen{
         heroSprite.draw(game.batch);
         for (Gegner gegner : creator.getGegner1Array())
             gegner.draw(game.batch);
-        //gegner1.draw(game.batch);
         for (Muenzen muenzen : creator.getMuenzen())
             muenzen.draw(game.batch);
-        //gegner1.draw(game.batch);
         game.batch.end();
 
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
@@ -201,16 +198,14 @@ public class PlayScreen implements Screen{
 
 
     }
-    public boolean gameOver(){
+   /* public boolean gameOver(){
         if(heroSprite.currentState == Hero.State.TOT && heroSprite.getStatusTimer() > 2){
             return true;
         }
         return false;
-    }
+    }*/
 
     public boolean won(){
-       // game.setScreen(new WinScreen(game));
-        //dispose();
 
         return true;
 

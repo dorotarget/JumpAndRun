@@ -54,20 +54,9 @@ public class Hero extends Sprite {
 
 
 
-    private TextureAtlas heroAtlas;
-
-
-/*
-    public void hit(){
-        won = true;
-
-    }*/
-
 
 
     public Hero(World world, PlayScreen screen){
-        //super(screen.getAtlas().findRegion("little_mario"));
-
 
         super(screen.getHeroAtlas().findRegion("Hero_gehen"));
 
@@ -95,15 +84,11 @@ public class Hero extends Sprite {
         heroSpringen = new Animation(0.1f, frames);
 
 
-
         heroStehen = new TextureRegion(getTexture(), 839, 131, 64, 64);
 
         heroTot = new TextureRegion(getTexture(), 133, 1, 64, 64);
 
         heroVerletzt = new TextureRegion(getTexture(), 133, 1, 64, 64);
-
-
-       // heroTot = new TextureRegion(screen.getHeroAtlas().findRegion("hero_sterben"), 0, 0, 64, 64);
 
 
         defineHero();

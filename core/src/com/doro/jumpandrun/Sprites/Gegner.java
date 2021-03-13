@@ -26,7 +26,7 @@ public abstract class Gegner extends Sprite {
     protected abstract void defineGegner();
     public abstract void update(float dt);
     public abstract void hitOnKopf();
-    public abstract void gegnerTrifftGegner(Gegner gegner);
+    //public abstract void gegnerTrifftGegner(Gegner gegner);
 
     public void umdrehTempo(boolean x, boolean y) {
         if (x)

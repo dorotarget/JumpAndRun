@@ -77,14 +77,13 @@ public class Hud implements Disposable{
     public void update (float dt){
         timeCount += dt;
 
-        //if(timeCount>=1) {
+        //Zeit wird heruntergezählt
         if (timeCount >= 1) {
             if (playTimer > 0) {
                 playTimer-=1;
             } else {
                 zeitVorbei = true;
             }
-            // playTimer -= 1;
             countdownLabel.setText(String.format("%03d", playTimer));
             timeCount = 0;
         }
@@ -118,11 +117,6 @@ public class Hud implements Disposable{
     public static boolean verloren (){
 
         if (leben == 0){
-            /*try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }*/
             Hero.lost = true;
             return true;}
         else
