@@ -83,7 +83,10 @@ public class Gegner1 extends Gegner
 
         }
         else if(!destroyed){
+            tempo.y = b2Body.getLinearVelocity().y;
+
             b2Body.setLinearVelocity(tempo);
+
             setPosition(b2Body.getPosition().x - getWidth() / 2, b2Body.getPosition().y - getHeight() / 2);
             setRegion(laufAnimation.getKeyFrame(statusZeit, true));}
     }
