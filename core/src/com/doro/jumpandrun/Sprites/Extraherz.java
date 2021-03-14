@@ -46,6 +46,7 @@ public class Extraherz extends PowerUp{
     public void update(float dt) {
         super.update(dt);
         setPosition(body.getPosition().x-getHeight()/2,body.getPosition().x-getHeight()/2);
+        //setPosition(1,1);
         body.setLinearVelocity(tempo);
     }@Override
     public void draw(Batch batch) {
