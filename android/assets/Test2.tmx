@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="240" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="324">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="240" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="14" nextobjectid="330">
  <tileset firstgid="1" name="" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="1475" columns="59">
   <image source="Test2.png" width="1068" height="455"/>
  </tileset>
  <layer id="1" name="Hintergrund" width="240" height="16">
   <data encoding="base64" compression="zlib">
-   eJzt2V0KgkAUhuGRwn6WYLUYqxUIVstoAVZbsFqW1Zr6oBsRoRiEGTrvgQd8wZ9zMXcWzrkCAAAAAIA/l8lClrIy1FlEu9C0b5eyk70cDHUZ0S407du1XOUmd0NdR7QLTft2Iw95ystQNxHtQtO+nSbOTWQqs8ROpxHtQtO+nctaNrI11HlEu9C0b1dykrNcDHUV0S407dvtf0nz0Uf7+lv3Pdu9v6vvfb9+P/T/NgAAhnAcIwSGGWJCn2OrGGaICX2OrWKYIeYNzr22KQ==
+   eJzt2dkJwkAURuEJSlxKiNqDLbhUEIhahgVEbSFqWVFr8gdfQogLQyCD91z4IAey3Id5S+qcSwEAAAAA+HOJTGQqM0OdBLQLTft2JhvZys5QZwHtQtO+XchZLnI11EVAu9C0b5dyk7s8DHUZ0C407dtx5NxAhjKK7HQc0C407dsLWcpK1oZ6EdAuNO3buRzkKCdDnQe0C01/6nnvveq/pHHvpXr9rZuerd9f1/S+X7/f9f82AADasO+jCwzTxnR9jq1imDam63NsFcO0MU/shrQY
   </data>
  </layer>
  <layer id="3" name="Grafik" width="240" height="16">
@@ -34,10 +34,6 @@
   <object id="271" x="1530.62" y="179.817" width="7.88689" height="13.6519"/>
   <object id="52" x="1538.42" y="179.897" width="253.733" height="12.1818"/>
   <object id="276" x="2464.33" y="179.667" width="623.333" height="12.6667"/>
-  <object id="297" x="3352.75" y="222" width="16.5" height="15"/>
-  <object id="298" x="3526.75" y="224" width="16.5" height="15"/>
-  <object id="299" x="3543.75" y="206.5" width="16.5" height="15"/>
-  <object id="300" x="3562.75" y="189.5" width="16.5" height="15"/>
   <object id="83" x="263.545" y="112.333" width="55.4545" height="16"/>
  </objectgroup>
  <objectgroup id="5" name="objekt">
@@ -197,6 +193,8 @@
   <object id="318" x="445.5" y="126.5" width="16" height="16"/>
   <object id="319" x="429" y="126" width="16" height="16"/>
   <object id="320" x="273.5" y="93.5" width="16" height="16"/>
+  <object id="298" x="3526.75" y="224" width="16.5" height="15"/>
+  <object id="300" x="3562.75" y="189.5" width="16.5" height="15"/>
  </objectgroup>
  <objectgroup id="10" name="MuenzenGold">
   <object id="280" x="147.5" y="110" width="16.5" height="15"/>
@@ -213,11 +211,18 @@
   <object id="291" x="3104.75" y="87.5" width="16.5" height="15"/>
   <object id="292" x="3166.25" y="88" width="16.5" height="15"/>
   <object id="293" x="3358.75" y="136.5" width="16.5" height="15"/>
-  <object id="294" x="3281.75" y="224" width="16.5" height="15"/>
-  <object id="295" x="3299.75" y="224" width="16.5" height="15"/>
-  <object id="296" x="3319.75" y="224" width="16.5" height="15"/>
+  <object id="294" x="3272.75" y="217" width="16.5" height="15"/>
+  <object id="295" x="3299.75" y="216" width="16.5" height="15"/>
+  <object id="296" x="3335.75" y="221" width="16.5" height="15"/>
+  <object id="299" x="3543.75" y="206.5" width="16.5" height="15"/>
  </objectgroup>
  <objectgroup id="12" name="gegner2">
+  <object id="326" x="1929" y="152.5" width="67" height="21.5"/>
+  <object id="327" x="2028" y="319.5"/>
+  <object id="328" x="890" y="157" width="47.5" height="21"/>
+ </objectgroup>
+ <objectgroup id="13" name="gegner3">
   <object id="323" x="304.5" y="159.5" width="28" height="21"/>
+  <object id="324" x="3488.5" y="157" width="62.5" height="21.5"/>
  </objectgroup>
 </map>
