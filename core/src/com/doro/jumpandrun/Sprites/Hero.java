@@ -162,23 +162,15 @@ public class Hero extends Sprite {
     //    shape.setRadius(6 / JumpAndRun.PPM);
         fdef.filter.categoryBits = JumpAndRun.HERO_BIT;
         fdef.filter.maskBits = JumpAndRun.BODEN_BIT |
-                JumpAndRun.MUENZEN_BIT|
-                JumpAndRun.POWERUP_BIT|
-                JumpAndRun.GEGNER_KOPF_BIT;
-
-        fdef.shape = shape;
-        b2body.createFixture(fdef).setUserData(this);
-
-        //b2body.createFixture(fdef);
-        //fdef.filter.categoryBits = JumpAndRun.HERO_BIT;
-        fdef.filter.maskBits = JumpAndRun.BODEN_BIT |
+                JumpAndRun.GEGNER_KOPF_BIT|
                 JumpAndRun.MUENZEN_BIT |
                 JumpAndRun.BLOCK_BIT |
                 JumpAndRun.GEGNER_BIT |
                 JumpAndRun.OBJEKT_BIT |
-                JumpAndRun.GEGNER_KOPF_BIT |
+                JumpAndRun.FAHRZEUG_BIT |
                 JumpAndRun.GEWINN_BIT |
                 JumpAndRun.POWERUP_BIT;
+        fdef.shape = shape;
         b2body.createFixture(fdef).setUserData(this);
 
         EdgeShape head = new EdgeShape();

@@ -60,8 +60,7 @@ public class PlayScreen implements Screen{
 
     //-----------Held
     private Hero heroSprite;
-    private Gegner1 gegner1;
-    private Gegner2 gegner2;
+
 
     private Array<PowerUp> powerUps;
     //private PriorityQueue<PowerUpDef> powerUpsToSpawn;
@@ -73,7 +72,6 @@ public class PlayScreen implements Screen{
        heroAtlas = new TextureAtlas("Hero_und_Bandit.pack");
         muenzenAtlas = new TextureAtlas("Muenzen.pack");
         muenzenHerzAtlas = new TextureAtlas("Muenzen_und_Herz.pack");
-
         fahrzeugeAtlas = new TextureAtlas("Fahrzeuge.pack");
 
 
@@ -179,7 +177,7 @@ public class PlayScreen implements Screen{
         heroSprite.update(dt);
 
         //-------Gegner und Münzen werden upgedatet
-        for (Gegner gegner : creator.getGegner1Array()) {
+        for (Gegner gegner : creator.getGegner()) {
             gegner.update(dt);
             if (gegner.getX() < heroSprite.getX() + 1.75f)
                 gegner.b2Body.setActive(true);
@@ -228,7 +226,7 @@ public class PlayScreen implements Screen{
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         heroSprite.draw(game.batch);
-        for (Gegner gegner : creator.getGegner1Array())
+        for (Gegner gegner : creator.getGegner())
             gegner.draw(game.batch);
         for (Muenzen muenzen : creator.getMuenzen())
             muenzen.draw(game.batch);

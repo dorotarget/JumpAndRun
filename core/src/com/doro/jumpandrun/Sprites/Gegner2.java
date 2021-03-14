@@ -38,7 +38,7 @@ public class Gegner2 extends Gegner
 
         laufAnimation = new Animation(0.4f, frames);
         statusZeit = 0;
-        setBounds(getX(), getY(), 24 / JumpAndRun.PPM, 24 / JumpAndRun.PPM);
+        setBounds(getX(), getY(), 70 / JumpAndRun.PPM, 35 / JumpAndRun.PPM);
         setToDestroy = false;
         tempo = new Vector2(-1 , 0);
         destroyed = false;
@@ -52,19 +52,19 @@ public class Gegner2 extends Gegner
 
 
         region = laufAnimation.getKeyFrame(statusZeit, true);
-        /*
+
 
         if(tempo.x > 0 && region.isFlipX() == true && !setToDestroy){
-            region.flip(true, false);
+            region.flip(false, false);
         }
         if(tempo.x < 0 && region.isFlipX() == false && !setToDestroy){
-            region.flip(true, false);
-        }*/
+            region.flip(false, false);
+        }
 
 
         return region;
     }
-    public void update(float dt){/*
+    public void update(float dt){
         if (!setToDestroy)
             setRegion(getFrame(dt));
 
@@ -81,7 +81,7 @@ public class Gegner2 extends Gegner
             b2Body.setLinearVelocity(tempo);
             setPosition(b2Body.getPosition().x - getWidth() / 2, b2Body.getPosition().y - getHeight() / 2);
             setRegion(laufAnimation.getKeyFrame(statusZeit, true));}
-    */}
+    }
     @Override
     protected void defineGegner(){
 
@@ -94,11 +94,13 @@ public class Gegner2 extends Gegner
    //     CircleShape shape = new CircleShape();
    //     shape.setRadius(6 / JumpAndRun.PPM);
         PolygonShape shape = new PolygonShape();
-        Vector2[] vertice = new Vector2[4];
-        vertice[0] = new Vector2(-8, 5).scl(1 / JumpAndRun.PPM);
-        vertice[1] = new Vector2(8, 5).scl(1 / JumpAndRun.PPM);
-        vertice[2] = new Vector2(-8, -5).scl(1 / JumpAndRun.PPM);
-        vertice[3] = new Vector2(8, -5).scl(1 / JumpAndRun.PPM);
+        Vector2[] vertice = new Vector2[6];
+        vertice[0] = new Vector2(-32, 0).scl(1 / JumpAndRun.PPM);
+        vertice[1] = new Vector2(32, 4).scl(1 / JumpAndRun.PPM);
+        vertice[2] = new Vector2(-33, -8).scl(1 / JumpAndRun.PPM);
+        vertice[3] = new Vector2(32, -8).scl(1 / JumpAndRun.PPM);
+        vertice[4] = new Vector2(0, 10).scl(1 / JumpAndRun.PPM);
+        vertice[5] = new Vector2(10, 9).scl(1 / JumpAndRun.PPM);
         shape.set(vertice);
         fdef.filter.categoryBits = JumpAndRun.FAHRZEUG_BIT;
         fdef.filter.maskBits = JumpAndRun.BODEN_BIT | JumpAndRun.HERO_BIT; // | JumpAndRun.GEGNER_BIT;
@@ -119,9 +121,9 @@ public class Gegner2 extends Gegner
         reverseVelocity(false, false);
 
     }
-    //Verschwindet nach 1 sek
+   // Verschwindet nach 1 sek
     public void draw(Batch batch){
-     //   if(!destroyed || statusZeit < 1)
-       //     super.draw(batch);
+        if(!destroyed || statusZeit < 1)
+            super.draw(batch);
     }
 }
