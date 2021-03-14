@@ -179,7 +179,7 @@ public class PlayScreen implements Screen{
         //-------Gegner und Münzen werden upgedatet
         for (Gegner gegner : creator.getGegner()) {
             gegner.update(dt);
-            if (gegner.getX() < heroSprite.getX() + 2f)
+            if (gegner.getX() < heroSprite.getX() + 2.75f)
                 gegner.b2Body.setActive(true);
         }
         for (Muenzen muenzen : creator.getMuenzen()) {

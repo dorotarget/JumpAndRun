@@ -34,13 +34,13 @@ public class Gegner3 extends Gegner
             //frames.add(new TextureRegion(screen.getAtlas().findRegion("gegner1"), i * 16, 0, 16, 16));
 
          //   frames.add(new TextureRegion(screen.getHeroAtlas().findRegion("Bandit_gehen"), 1+i * 64, 4, 64, 64));
-        frames.add(new TextureRegion(screen.getFahrzeugeAtlas().findRegion("auto"), 1, 1, 510, 194));
+        frames.add(new TextureRegion(screen.getFahrzeugeAtlas().findRegion("bus"), 1, 1, 900, 480));
 
         laufAnimation = new Animation(0.4f, frames);
         statusZeit = 0;
-        setBounds(getX(), getY(), 90 / JumpAndRun.PPM, 35 / JumpAndRun.PPM);
+        setBounds(getX(), getY(), 130 / JumpAndRun.PPM, 70 / JumpAndRun.PPM);
         setToDestroy = false;
-        tempo = new Vector2(-1 , 0);
+        tempo = new Vector2(-0.85f , 0);
         destroyed = false;
 
 
@@ -97,12 +97,12 @@ public class Gegner3 extends Gegner
    //     shape.setRadius(6 / JumpAndRun.PPM);
         PolygonShape shape = new PolygonShape();
         Vector2[] vertice = new Vector2[6];
-        vertice[0] = new Vector2(-42, -0.5f).scl(1 / JumpAndRun.PPM);
-        vertice[1] = new Vector2(42, 3.5f).scl(1 / JumpAndRun.PPM);
-        vertice[2] = new Vector2(-42, -8.5f).scl(1 / JumpAndRun.PPM);
-        vertice[3] = new Vector2(42, -8.5f).scl(1 / JumpAndRun.PPM);
-        vertice[4] = new Vector2(0, 9.5f).scl(1 / JumpAndRun.PPM);
-        vertice[5] = new Vector2(10, 8.5f).scl(1 / JumpAndRun.PPM);
+        vertice[0] = new Vector2(-65, -23).scl(1 / JumpAndRun.PPM);
+        vertice[1] = new Vector2(50, -23).scl(1 / JumpAndRun.PPM);
+        vertice[2] = new Vector2(-65, 13).scl(1 / JumpAndRun.PPM);
+        vertice[3] = new Vector2(50, 13).scl(1 / JumpAndRun.PPM);
+        vertice[4] = new Vector2(-63, 25).scl(1 / JumpAndRun.PPM);
+        vertice[5] = new Vector2(-63, 14).scl(1 / JumpAndRun.PPM);
         shape.set(vertice);
         fdef.filter.categoryBits = JumpAndRun.FAHRZEUG_BIT;
         fdef.filter.maskBits = JumpAndRun.BODEN_BIT | JumpAndRun.HERO_BIT; // | JumpAndRun.GEGNER_BIT;

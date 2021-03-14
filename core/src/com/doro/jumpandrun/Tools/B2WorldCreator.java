@@ -184,7 +184,4 @@ public class B2WorldCreator {
         gegner.addAll(gegner3Array);
         return gegner;
     }
-
 }
-
-
