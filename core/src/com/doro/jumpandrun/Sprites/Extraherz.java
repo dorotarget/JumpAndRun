@@ -13,6 +13,8 @@ import com.doro.jumpandrun.Scenes.Hud;
 import com.doro.jumpandrun.Screens.PlayScreen;
 
 public class Extraherz extends PowerUp{
+
+    private boolean entfernt;
     /**----------------------*/
     private float statusZeit;
     private Animation<TextureRegion> blinkAnimation;
@@ -34,6 +36,7 @@ public class Extraherz extends PowerUp{
         setBounds(getX(), getY(), 16 / JumpAndRun.PPM, 16 / JumpAndRun.PPM);
         /**----------------------*/
         tempo = new Vector2(0.7f,0);
+        entfernt = false;
 
 
     }
@@ -76,9 +79,10 @@ public class Extraherz extends PowerUp{
 
     @Override
     public void use() {
+        if (!entfernt)
+            Hud.gewinneLeben(1);
         entfernen();
 
-        Hud.gewinneLeben(1);
 
     }
 
@@ -106,7 +110,10 @@ public class Extraherz extends PowerUp{
 
     @Override
     public void entfernen() {
-        super.entfernen();
+        if (!entfernt) {
+            super.entfernen();
+            entfernt = true;
+        }
     }
 }
 

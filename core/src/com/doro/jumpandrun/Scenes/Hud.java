@@ -108,7 +108,7 @@ public class Hud implements Disposable{
         liveCountLabel.setText(String.format("%01d", leben));
     }
     public static void gewinneLeben (int value){
-        leben += 1;
+        leben += value;
         liveCountLabel.setText(String.format("%01d", leben));
     }
 
