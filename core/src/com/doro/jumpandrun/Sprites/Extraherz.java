@@ -74,6 +74,7 @@ public class Extraherz extends PowerUp{
                 JumpAndRun.OBJEKT_BIT;
 
         fdef.shape = shape;
+        fdef.restitution = 0.3f;
         body.createFixture(fdef).setUserData(this);
     }
 

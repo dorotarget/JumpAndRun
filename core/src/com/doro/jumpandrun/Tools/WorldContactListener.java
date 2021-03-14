@@ -61,9 +61,9 @@ public class WorldContactListener implements ContactListener {
                 break;
             case JumpAndRun.POWERUP_BIT | JumpAndRun.OBJEKT_BIT:
                 if(fixA.getFilterData().categoryBits == JumpAndRun.POWERUP_BIT)
-                    ((PowerUp)fixA.getUserData()).umdrehTempo(true, false);
+                    ((PowerUp)fixA.getUserData()).umdrehTempo(true, true);
                 else
-                    ((PowerUp)fixB.getUserData()).umdrehTempo(true, false);
+                    ((PowerUp)fixB.getUserData()).umdrehTempo(true, true);
                 break;
             case JumpAndRun.POWERUP_BIT | JumpAndRun.HERO_BIT:
                 if(fixA.getFilterData().categoryBits == JumpAndRun.POWERUP_BIT)
