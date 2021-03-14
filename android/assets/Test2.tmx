@@ -23,7 +23,6 @@
   <object id="126" x="3168" y="240" width="16" height="16"/>
   <object id="127" x="3200" y="240" width="16" height="16"/>
   <object id="128" x="3232" y="240" width="352.333" height="16"/>
-  <object id="145" x="1488" y="179.273" width="16" height="76.394"/>
   <object id="146" x="1336.73" y="178.909" width="95.6364" height="13.0909"/>
   <object id="147" x="1272.18" y="179.455" width="16" height="12.5455"/>
   <object id="148" x="1072.5" y="179.636" width="151.318" height="12.3636"/>
@@ -35,14 +34,14 @@
   <object id="52" x="1538.42" y="179.897" width="253.733" height="12.1818"/>
   <object id="276" x="2464.33" y="179.667" width="623.333" height="12.6667"/>
   <object id="83" x="263.545" y="112.333" width="55.4545" height="16"/>
+  <object id="27" x="1792.18" y="176" width="671.648" height="16"/>
+  <object id="46" x="661.989" y="179.218" width="274.136" height="12.2225"/>
+  <object id="28" x="3232" y="180.667" width="343.75" height="11.3333"/>
  </objectgroup>
  <objectgroup id="5" name="objekt">
   <object id="23" x="432" y="144" width="64"/>
-  <object id="27" x="1792.18" y="176" width="671.648" height="16"/>
-  <object id="28" x="3232" y="180.667" width="343.75" height="11.3333"/>
   <object id="30" x="144" y="160.545" width="64" height="19.6364"/>
   <object id="31" x="160" y="144" width="32" height="16"/>
-  <object id="46" x="661.989" y="179.218" width="274.136" height="12.2225"/>
   <object id="65" x="921.75" y="129.5" width="25" height="15.5"/>
   <object id="66" x="984.5" y="131" width="25.5" height="12.75"/>
   <object id="67" x="1048" y="129.75" width="26.5" height="14.75"/>
@@ -160,6 +159,7 @@
   <object id="270" x="1432.24" y="178.81" width="7.88689" height="13.6519"/>
   <object id="273" x="2239.97" y="150.938" width="4.40625" height="5.09375"/>
   <object id="274" x="2347.25" y="151.063" width="4.5625" height="4.6875"/>
+  <object id="145" x="1488" y="179.273" width="16" height="76.394"/>
  </objectgroup>
  <objectgroup id="7" name="ziel">
   <object id="175" x="3728" y="163.667" width="112.333" height="16"/>
