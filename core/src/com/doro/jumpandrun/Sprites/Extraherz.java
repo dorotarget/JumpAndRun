@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.utils.Array;
 import com.doro.jumpandrun.JumpAndRun;
+import com.doro.jumpandrun.Scenes.Hud;
 import com.doro.jumpandrun.Screens.PlayScreen;
 
 public class Extraherz extends PowerUp{
@@ -32,7 +33,7 @@ public class Extraherz extends PowerUp{
         statusZeit = 0;
         setBounds(getX(), getY(), 16 / JumpAndRun.PPM, 16 / JumpAndRun.PPM);
         /**----------------------*/
-        tempo = new Vector2(0,0);
+        tempo = new Vector2(0.7f,0);
 
 
     }
@@ -64,9 +65,10 @@ public class Extraherz extends PowerUp{
         CircleShape shape = new CircleShape();
         shape.setRadius(5/ JumpAndRun.PPM);
 
-        fdef.filter.categoryBits = JumpAndRun.ITEM_BIT;
+        fdef.filter.categoryBits = JumpAndRun.POWERUP_BIT;
         fdef.filter.maskBits = JumpAndRun.HERO_BIT |
-                JumpAndRun.BODEN_BIT;
+                JumpAndRun.BODEN_BIT|
+                JumpAndRun.OBJEKT_BIT;
 
         fdef.shape = shape;
         body.createFixture(fdef).setUserData(this);
@@ -76,17 +78,25 @@ public class Extraherz extends PowerUp{
     public void use() {
         entfernen();
 
+        Hud.gewinneLeben(1);
+
     }
 
     @Override
     public void update(float dt) {
         super.update(dt);
+        if (statusZeit > 3)
+            entfernen();
         setPosition(body.getPosition().x-getHeight()/2,body.getPosition().x-getHeight()/2);
         //setPosition(1,1);
-        body.setLinearVelocity(tempo);
 
         setPosition(body.getPosition().x - ( getWidth() / 2), body.getPosition().y - getHeight() / 2);
         setRegion(blinkAnimation.getKeyFrame(statusZeit, true));
+        tempo.y = body.getLinearVelocity().y;
+        body.setLinearVelocity(tempo);
+
+        statusZeit += dt;
+
     }
 
     @Override

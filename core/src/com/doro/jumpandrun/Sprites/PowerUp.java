@@ -48,5 +48,12 @@ public abstract class PowerUp extends Sprite {
         zuEntfernen = true;
     }
 
+    public void umdrehTempo(boolean x, boolean y) {
+        if (x)
+            tempo.x = -tempo.x;
+        if (y)
+            tempo.y = -tempo.y;
+    }
+
 
 }
