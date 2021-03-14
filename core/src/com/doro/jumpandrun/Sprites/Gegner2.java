@@ -95,12 +95,12 @@ public class Gegner2 extends Gegner
    //     shape.setRadius(6 / JumpAndRun.PPM);
         PolygonShape shape = new PolygonShape();
         Vector2[] vertice = new Vector2[6];
-        vertice[0] = new Vector2(-32, 0).scl(1 / JumpAndRun.PPM);
-        vertice[1] = new Vector2(32, 4).scl(1 / JumpAndRun.PPM);
-        vertice[2] = new Vector2(-33, -8).scl(1 / JumpAndRun.PPM);
-        vertice[3] = new Vector2(32, -8).scl(1 / JumpAndRun.PPM);
-        vertice[4] = new Vector2(0, 10).scl(1 / JumpAndRun.PPM);
-        vertice[5] = new Vector2(10, 9).scl(1 / JumpAndRun.PPM);
+        vertice[0] = new Vector2(-32, -0.5f).scl(1 / JumpAndRun.PPM);
+        vertice[1] = new Vector2(32, 3.5f).scl(1 / JumpAndRun.PPM);
+        vertice[2] = new Vector2(-33, -8.5f).scl(1 / JumpAndRun.PPM);
+        vertice[3] = new Vector2(32, -8.5f).scl(1 / JumpAndRun.PPM);
+        vertice[4] = new Vector2(0, 9.5f).scl(1 / JumpAndRun.PPM);
+        vertice[5] = new Vector2(10, 8.5f).scl(1 / JumpAndRun.PPM);
         shape.set(vertice);
         fdef.filter.categoryBits = JumpAndRun.FAHRZEUG_BIT;
         fdef.filter.maskBits = JumpAndRun.BODEN_BIT | JumpAndRun.HERO_BIT; // | JumpAndRun.GEGNER_BIT;
