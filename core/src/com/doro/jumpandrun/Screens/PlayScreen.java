@@ -193,7 +193,7 @@ public class PlayScreen implements Screen{
 
 
 //_-----------überprüfen, ob Hero gewonnen hat oder heruntergefallen ist
-        if (Hero.won == true) {
+        if (Hero.gewonnen == true) {
             game.setScreen(new WinScreen(game));
         }
         if (Hero.unten ){
@@ -239,7 +239,7 @@ public class PlayScreen implements Screen{
         hud.stage.draw();
 
 
-        if ((Hero.lost == true && heroSprite.getStatusTimer() > 2) | Hud.spielTimer < 1){
+        if ((Hero.verloren == true && heroSprite.getStatusTimer() > 2) | Hud.spielTimer < 1){
 
             game.setScreen(new LostScreen(game));
             dispose();

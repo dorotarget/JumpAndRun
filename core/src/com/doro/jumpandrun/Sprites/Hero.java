@@ -19,15 +19,15 @@ import com.doro.jumpandrun.Scenes.Hud;
 import com.doro.jumpandrun.Screens.PlayScreen;
 
 public class Hero extends Sprite {
-    public static boolean won;
-    public static boolean lost;
+    public static boolean gewonnen;
+    public static boolean verloren;
 
     public static boolean unten;
 
 
     public enum State {FALLEN, SPRINGEN, STEHEN, RENNEN, TOT, VERLETZT  }
-    public State currentState;
-    public State previousState;
+    public State jetzigerState;
+    public State vorherigerState;
     public World world;
     public Body b2body;
     private TextureRegion heroStehen;
@@ -55,13 +55,13 @@ public class Hero extends Sprite {
 
         this.world = world;
 
-        currentState = State.STEHEN;
-        previousState = State.STEHEN;
+        jetzigerState = State.STEHEN;
+        vorherigerState = State.STEHEN;
         statusTimer = 0;
         rennenRechts = true;
 
-        won = false;
-        lost= false;
+        gewonnen = false;
+        verloren = false;
         unten = false;
 
 
@@ -93,7 +93,7 @@ public class Hero extends Sprite {
 
         if (!istTot() && !istVerletzt()) {
 
-            // MarioBros.manager.get("audio/music/mario_music.ogg", Music.class).stop();
+            // JumpAndRun.manager.get("audio/music/mario_music.ogg", Music.class).stop();
             if (Hud.verloren()) {
                 heroIstTot = true;
                 Filter filter = new Filter();
@@ -195,12 +195,12 @@ public class Hero extends Sprite {
 
     }
     public TextureRegion getFrame(float dt){
-        currentState = getState();
-        statusTimer = currentState == previousState ? statusTimer + dt : 0;
-        previousState = currentState;
+        jetzigerState = getState();
+        statusTimer = jetzigerState == vorherigerState ? statusTimer + dt : 0;
+        vorherigerState = jetzigerState;
 
         TextureRegion region;
-        switch(currentState){
+        switch(jetzigerState){
             case SPRINGEN:
                 region = heroSpringen.getKeyFrame(statusTimer);
                 break;
@@ -245,7 +245,7 @@ public class Hero extends Sprite {
         //}
         if(heroIstVerletzt)
             return State.VERLETZT;
-        if(b2body.getLinearVelocity().y > 0.1f || (b2body.getLinearVelocity().y < 0 && previousState == State.SPRINGEN))
+        if(b2body.getLinearVelocity().y > 0.1f || (b2body.getLinearVelocity().y < 0 && vorherigerState == State.SPRINGEN))
             return State.SPRINGEN;
         else if(b2body.getLinearVelocity().y < 0)
             return State.FALLEN;

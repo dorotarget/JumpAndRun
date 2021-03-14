@@ -19,7 +19,7 @@ public class Hud implements Disposable{
     public Stage stage;
     private Viewport viewport;
 
-    public static boolean lost;
+    //public static boolean lost;
 
     //------------Score und Zeit
     public static Integer spielTimer;
@@ -38,7 +38,7 @@ public class Hud implements Disposable{
 
     public Hud(SpriteBatch sb){
         //------------Variablen zu Beginn: Zeitguthaben, Zeitzähler, Punkte
-        spielTimer = 300;
+        spielTimer = 100;
         zeitCount = 0;
         score = 0;
         leben = 3;
@@ -88,12 +88,12 @@ public class Hud implements Disposable{
             zeitCount = 0;
         }
         //}
-
+/*
         if (verloren())
             lost = true;
         else
             lost = false;
-
+*/
     }
     public static void addScore(int value){
         score += value;
@@ -121,7 +121,7 @@ public class Hud implements Disposable{
     public static boolean verloren (){
 
         if (leben == 0| zeitVorbei){
-            Hero.lost = true;
+            //Hero.lost = true;
             return true;}
         else
             return false;

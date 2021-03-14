@@ -5,16 +5,12 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.Joint;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.doro.jumpandrun.JumpAndRun;
 import com.doro.jumpandrun.Screens.PlayScreen;
-import com.doro.jumpandrun.Screens.WinScreen;
 import com.doro.jumpandrun.Sprites.Hero;
-import com.doro.jumpandrun.Screens.PlayScreen;
 import com.doro.jumpandrun.Sprites.Muenzen;
 import com.doro.jumpandrun.Sprites.PowerUp;
-import com.doro.jumpandrun.Sprites.WinBrick;
 import com.doro.jumpandrun.Sprites.Gegner;
 
 
@@ -114,7 +110,7 @@ public class WorldContactListener implements ContactListener {
                 //WinBrick.reachGoal();
                 //screen.won();
                 //game.setScreen(new WinScreen(game));
-                Hero.won = true;
+                Hero.gewonnen = true;
 
                 //Gdx.app.log("Kontakt","Kontakt");
 
