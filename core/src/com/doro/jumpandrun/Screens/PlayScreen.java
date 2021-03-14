@@ -21,6 +21,7 @@ import com.doro.jumpandrun.Scenes.Hud;
 import com.doro.jumpandrun.Sprites.Extraherz;
 import com.doro.jumpandrun.Sprites.Gegner;
 import com.doro.jumpandrun.Sprites.Gegner1;
+import com.doro.jumpandrun.Sprites.Gegner2;
 import com.doro.jumpandrun.Sprites.Hero;
 import com.doro.jumpandrun.Sprites.Muenzen;
 import com.doro.jumpandrun.Sprites.PowerUp;
@@ -60,6 +61,7 @@ public class PlayScreen implements Screen{
     //-----------Held
     private Hero heroSprite;
     private Gegner1 gegner1;
+    private Gegner2 gegner2;
 
     private Array<PowerUp> powerUps;
     //private PriorityQueue<PowerUpDef> powerUpsToSpawn;
