@@ -15,6 +15,7 @@ import com.doro.jumpandrun.Screens.PlayScreen;
 import com.doro.jumpandrun.Sprites.Gegner;
 import com.doro.jumpandrun.Sprites.Gegner1;
 import com.doro.jumpandrun.Sprites.Gegner2;
+import com.doro.jumpandrun.Sprites.Gegner3;
 import com.doro.jumpandrun.Sprites.Muenzen;
 import com.doro.jumpandrun.Sprites.MuenzenGold;
 import com.doro.jumpandrun.Sprites.MuenzenSilber;
@@ -23,6 +24,7 @@ import com.doro.jumpandrun.Sprites.MuenzenSilber;
 public class B2WorldCreator {
     private Array<Gegner1> gegner1Array;
     private Array<Gegner2> gegner2Array;
+    private Array<Gegner3> gegner3Array;
 
     private Array<MuenzenSilber> muenzenSilberArray;
     private Array<MuenzenGold> muenzenGoldArray;
@@ -83,6 +85,13 @@ public class B2WorldCreator {
         for(MapObject object : map.getLayers().get(8).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
             gegner2Array.add(new Gegner2(screen, rect.getX() / JumpAndRun.PPM, rect.getY() / JumpAndRun.PPM));
+
+        }
+
+        gegner3Array = new Array<Gegner3>();
+        for(MapObject object : map.getLayers().get(9).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+            gegner3Array.add(new Gegner3(screen, rect.getX() / JumpAndRun.PPM, rect.getY() / JumpAndRun.PPM));
 
         }
         //-----------SilberMünzen
@@ -152,6 +161,9 @@ public class B2WorldCreator {
     public Array<Gegner2> getGegner2Array() {
         return gegner2Array;
     }
+    public Array<Gegner3> getGegner3Array() {
+        return gegner3Array;
+    }
     public Array<MuenzenSilber> getMuenzenSilberArray() {
         return muenzenSilberArray;
     }
@@ -169,6 +181,7 @@ public class B2WorldCreator {
         Array<Gegner> gegner = new Array<Gegner>();
         gegner.addAll(gegner1Array);
         gegner.addAll(gegner2Array);
+        gegner.addAll(gegner3Array);
         return gegner;
     }
 
