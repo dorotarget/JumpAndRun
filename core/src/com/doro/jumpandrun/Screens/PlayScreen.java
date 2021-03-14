@@ -20,8 +20,6 @@ import com.doro.jumpandrun.JumpAndRun;
 import com.doro.jumpandrun.Scenes.Hud;
 import com.doro.jumpandrun.Sprites.Extraherz;
 import com.doro.jumpandrun.Sprites.Gegner;
-import com.doro.jumpandrun.Sprites.Gegner1;
-import com.doro.jumpandrun.Sprites.Gegner2;
 import com.doro.jumpandrun.Sprites.Hero;
 import com.doro.jumpandrun.Sprites.Muenzen;
 import com.doro.jumpandrun.Sprites.PowerUp;
@@ -29,7 +27,6 @@ import com.doro.jumpandrun.Sprites.PowerUpDef;
 import com.doro.jumpandrun.Tools.B2WorldCreator;
 import com.doro.jumpandrun.Tools.WorldContactListener;
 
-import java.util.PriorityQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 
@@ -242,7 +239,7 @@ public class PlayScreen implements Screen{
         hud.stage.draw();
 
 
-        if ((Hero.lost == true && heroSprite.getStatusTimer() > 2) | Hud.playTimer < 0){
+        if ((Hero.lost == true && heroSprite.getStatusTimer() > 2) | Hud.spielTimer < 1){
 
             game.setScreen(new LostScreen(game));
             dispose();

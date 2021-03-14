@@ -22,11 +22,11 @@ public class Hud implements Disposable{
     public static boolean lost;
 
     //------------Score und Zeit
-    public static Integer playTimer;
-    private float timeCount;
+    public static Integer spielTimer;
+    private float zeitCount;
     private static Integer score;
     private static Integer leben;
-    private boolean zeitVorbei;
+    private static boolean zeitVorbei;
 
     //Scene2D widgets
     private Label countdownLabel;
@@ -38,8 +38,8 @@ public class Hud implements Disposable{
 
     public Hud(SpriteBatch sb){
         //------------Variablen zu Beginn: Zeitguthaben, Zeitzähler, Punkte
-        playTimer = 300;
-        timeCount = 0;
+        spielTimer = 300;
+        zeitCount = 0;
         score = 0;
         leben = 3;
 
@@ -54,7 +54,7 @@ public class Hud implements Disposable{
         table.setFillParent(true);
 
         //--------------Label-Definitionen
-        countdownLabel = new Label(String.format("%03d", playTimer), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        countdownLabel = new Label(String.format("%03d", spielTimer), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         scoreLabel =new Label(String.format("%06d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         liveLabel = new Label("Leben", new Label.LabelStyle(new BitmapFont(), Color.GREEN));
         liveCountLabel = new Label(String.format("%01d", leben), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
@@ -75,17 +75,17 @@ public class Hud implements Disposable{
 
     }
     public void update (float dt){
-        timeCount += dt;
+        zeitCount += dt;
 
         //Zeit wird heruntergezählt
-        if (timeCount >= 1) {
-            if (playTimer > 0) {
-                playTimer-=1;
+        if (zeitCount >= 1) {
+            if (spielTimer > 0) {
+                spielTimer -=1;
             } else {
                 zeitVorbei = true;
             }
-            countdownLabel.setText(String.format("%03d", playTimer));
-            timeCount = 0;
+            countdownLabel.setText(String.format("%03d", spielTimer));
+            zeitCount = 0;
         }
         //}
 
@@ -120,7 +120,7 @@ public class Hud implements Disposable{
 
     public static boolean verloren (){
 
-        if (leben == 0){
+        if (leben == 0| zeitVorbei){
             Hero.lost = true;
             return true;}
         else
@@ -132,7 +132,7 @@ public class Hud implements Disposable{
     public void dispose() {
         stage.dispose();
     }
-    public boolean isTimeUp() { return zeitVorbei; }
+   // public boolean zeitIstVorbei() { return zeitVorbei; }
 
 
 
