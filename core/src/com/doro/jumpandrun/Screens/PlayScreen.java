@@ -13,16 +13,23 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.doro.jumpandrun.JumpAndRun;
 import com.doro.jumpandrun.Scenes.Hud;
+import com.doro.jumpandrun.Sprites.Extraherz;
 import com.doro.jumpandrun.Sprites.Gegner;
 import com.doro.jumpandrun.Sprites.Gegner1;
 import com.doro.jumpandrun.Sprites.Hero;
 import com.doro.jumpandrun.Sprites.Muenzen;
+import com.doro.jumpandrun.Sprites.PowerUp;
+import com.doro.jumpandrun.Sprites.PowerUpDef;
 import com.doro.jumpandrun.Tools.B2WorldCreator;
 import com.doro.jumpandrun.Tools.WorldContactListener;
+
+import java.util.PriorityQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 
 public class PlayScreen implements Screen{
@@ -31,6 +38,7 @@ public class PlayScreen implements Screen{
     private TextureAtlas atlas;
     private TextureAtlas heroAtlas;
     private TextureAtlas muenzenAtlas;
+    private TextureAtlas muenzenHerzAtlas;
     private TextureAtlas fahrzeugeAtlas;
 
 
@@ -53,11 +61,17 @@ public class PlayScreen implements Screen{
     private Hero heroSprite;
     private Gegner1 gegner1;
 
+    private Array<PowerUp> powerUps;
+    //private PriorityQueue<PowerUpDef> powerUpsToSpawn;
+    //public LinkedBlockingQueue<PowerUpDef> powerUpsToSpawn;
+    private LinkedBlockingQueue<PowerUpDef> powerUpsZuErstellen;
 
     public PlayScreen(JumpAndRun game){
        //atlas = new TextureAtlas("Mario_and_Enemies.pack");
        heroAtlas = new TextureAtlas("Hero_und_Bandit.pack");
         muenzenAtlas = new TextureAtlas("Muenzen.pack");
+        muenzenHerzAtlas = new TextureAtlas("Muenzen_und_Herz.pack");
+
         fahrzeugeAtlas = new TextureAtlas("Fahrzeuge.pack");
 
 
@@ -94,6 +108,26 @@ public class PlayScreen implements Screen{
         //gegner1 = new Gegner1(this, .32f, .32f);
 
         world.setContactListener(new WorldContactListener());
+
+        powerUps = new Array<PowerUp>();
+        //powerUpsToSpawn = new PriorityQueue<PowerUpDef>();
+        //powerUpsToSpawn = new LinkedBlockingQueue<PowerUpDef>();
+        powerUpsZuErstellen = new LinkedBlockingQueue<PowerUpDef>();
+
+    }
+
+    public void spawnPowerUp (PowerUpDef pudef){
+        //powerUpsToSpawn.add(pudef);
+        powerUpsZuErstellen.add(pudef);
+    }
+
+    public void handlePowerUpSpawns(){
+        if(!powerUpsZuErstellen.isEmpty()){
+            PowerUpDef idef = powerUpsZuErstellen.poll();
+            if(idef.type == Extraherz.class){
+                powerUps.add(new Extraherz(this, idef.position.x, idef.position.y));
+            }
+        }
     }
 
     // public TextureAtlas getAtlas(){ return atlas; }
@@ -103,6 +137,10 @@ public class PlayScreen implements Screen{
     public TextureAtlas getMuenzenAtlas(){
         return muenzenAtlas;
     }
+    public TextureAtlas getMuenzenHerzAtlas(){
+        return muenzenHerzAtlas;
+    }
+
     public TextureAtlas getFahrzeugeAtlas(){
         return fahrzeugeAtlas;
     }
@@ -131,6 +169,7 @@ public class PlayScreen implements Screen{
 
         //------------Input vom Spieler geht vor
         handleInput(dt);
+        handlePowerUpSpawns();
 
         //-------------wie oft pro sekunde
         world.step(1 / 60f, 6, 2);
@@ -145,6 +184,9 @@ public class PlayScreen implements Screen{
         }
         for (Muenzen muenzen : creator.getMuenzen()) {
             muenzen.update(dt);}
+
+        for(PowerUp powerUp : powerUps)
+            powerUp.update(dt);
 
         //----------gamecam bleibt bei Held
         gamecam.position.x = heroSprite.b2body.getPosition().x;
@@ -192,6 +234,8 @@ public class PlayScreen implements Screen{
         for (Gegner gegner : creator.getGegner())
             gegner.draw(game.batch);
          */
+        for (PowerUp powerUp : powerUps)
+            powerUp.draw(game.batch);
         game.batch.end();
 
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
