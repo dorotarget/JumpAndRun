@@ -20,6 +20,7 @@ public class Gegner1 extends Gegner
     @Override
     public void hitOnKopf() {
         setToDestroy = true;
+
     }
 
 
@@ -79,10 +80,15 @@ public class Gegner1 extends Gegner
             setRegion(new TextureRegion(screen.getHeroAtlas().findRegion("Bandit_sterben"), 1, -3, 64, 64));
             statusZeit = 0;
             Hud.addScore(500);
+            screen.spawnPowerUp(new PowerUpDef(new Vector2(b2Body.getPosition().x, b2Body.getPosition().y+64/JumpAndRun.PPM),
+                    Extraherz.class));
 
         }
         else if(!destroyed){
+            tempo.y = b2Body.getLinearVelocity().y;
+
             b2Body.setLinearVelocity(tempo);
+
             setPosition(b2Body.getPosition().x - getWidth() / 2, b2Body.getPosition().y - getHeight() / 2);
             setRegion(laufAnimation.getKeyFrame(statusZeit, true));}
     }
