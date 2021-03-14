@@ -19,8 +19,6 @@ public class Gegner2 extends Gegner
         setToDestroy = true;
     }
 
-
-
     private float statusZeit;
     private Animation<TextureRegion> laufAnimation;
     private Array<TextureRegion> frames;
@@ -28,18 +26,21 @@ public class Gegner2 extends Gegner
     private boolean destroyed;
 
 
+
     public Gegner2(PlayScreen screen, float x, float y) {
         super(screen,x+1, y);
         frames = new Array<TextureRegion>();
         for(int i = 0; i < 2; i++)
-            /** gibt es nicht
-            frames.add(new TextureRegion(screen.getHeroAtlas().findRegion("auto"), 1, 1, 510, 194));*/
+            //frames.add(new TextureRegion(screen.getAtlas().findRegion("gegner1"), i * 16, 0, 16, 16));
+
+         //   frames.add(new TextureRegion(screen.getHeroAtlas().findRegion("Bandit_gehen"), 1+i * 64, 4, 64, 64));
+        frames.add(new TextureRegion(screen.getFahrzeugeAtlas().findRegion("auto"), 1, 1, 510, 194));
 
         laufAnimation = new Animation(0.4f, frames);
         statusZeit = 0;
-        setBounds(getX(), getY(), 25 / JumpAndRun.PPM, 25 / JumpAndRun.PPM);
+        setBounds(getX(), getY(), 24 / JumpAndRun.PPM, 24 / JumpAndRun.PPM);
         setToDestroy = false;
-
+        tempo = new Vector2(-1 , 0);
         destroyed = false;
 
 
@@ -51,19 +52,19 @@ public class Gegner2 extends Gegner
 
 
         region = laufAnimation.getKeyFrame(statusZeit, true);
-
+        /*
 
         if(tempo.x > 0 && region.isFlipX() == true && !setToDestroy){
             region.flip(true, false);
         }
         if(tempo.x < 0 && region.isFlipX() == false && !setToDestroy){
             region.flip(true, false);
-        }
+        }*/
 
 
         return region;
     }
-    public void update(float dt){
+    public void update(float dt){/*
         if (!setToDestroy)
             setRegion(getFrame(dt));
 
@@ -80,7 +81,7 @@ public class Gegner2 extends Gegner
             b2Body.setLinearVelocity(tempo);
             setPosition(b2Body.getPosition().x - getWidth() / 2, b2Body.getPosition().y - getHeight() / 2);
             setRegion(laufAnimation.getKeyFrame(statusZeit, true));}
-    }
+    */}
     @Override
     protected void defineGegner(){
 
@@ -94,44 +95,33 @@ public class Gegner2 extends Gegner
    //     shape.setRadius(6 / JumpAndRun.PPM);
         PolygonShape shape = new PolygonShape();
         Vector2[] vertice = new Vector2[4];
-        vertice[0] = new Vector2(-4, 3).scl(1 / JumpAndRun.PPM);
-        vertice[1] = new Vector2(4, 3).scl(1 / JumpAndRun.PPM);
-        vertice[2] = new Vector2(-4, -5).scl(1 / JumpAndRun.PPM);
-        vertice[3] = new Vector2(4, -5).scl(1 / JumpAndRun.PPM);
+        vertice[0] = new Vector2(-8, 5).scl(1 / JumpAndRun.PPM);
+        vertice[1] = new Vector2(8, 5).scl(1 / JumpAndRun.PPM);
+        vertice[2] = new Vector2(-8, -5).scl(1 / JumpAndRun.PPM);
+        vertice[3] = new Vector2(8, -5).scl(1 / JumpAndRun.PPM);
         shape.set(vertice);
-        fdef.filter.categoryBits = JumpAndRun.GEGNER_BIT;
-        fdef.filter.maskBits = JumpAndRun.BODEN_BIT | JumpAndRun.OBJEKT_BIT | JumpAndRun.HERO_BIT | JumpAndRun.GEGNER_BIT;
+        fdef.filter.categoryBits = JumpAndRun.FAHRZEUG_BIT;
+        fdef.filter.maskBits = JumpAndRun.BODEN_BIT | JumpAndRun.HERO_BIT; // | JumpAndRun.GEGNER_BIT;
 
         fdef.shape = shape;
         b2Body.createFixture(fdef).setUserData(this);
 
-        PolygonShape kopf = new PolygonShape();
-        Vector2[] vertice2 = new Vector2[4];
-        vertice2[0] = new Vector2(-3, 9).scl(1 / JumpAndRun.PPM);
-        vertice2[1] = new Vector2(3, 9).scl(1 / JumpAndRun.PPM);
-        vertice2[2] = new Vector2(-1, 4).scl(1 / JumpAndRun.PPM);
-        vertice2[3] = new Vector2(1, 4).scl(1 / JumpAndRun.PPM);
-        kopf.set(vertice2);
 
-        fdef.shape = kopf;
-        fdef.restitution = 1.0f;
-        fdef.filter.categoryBits = JumpAndRun.GEGNER_KOPF_BIT;
-        b2Body.createFixture(fdef).setUserData(this);
     }
 
     public void gegnerTrifftGegner(Gegner gegner){
-            reverseVelocity(true, false);
+            reverseVelocity(false, false);
 
 
 
     }
     public void gegnerTrifftHero(Gegner gegner){
-        reverseVelocity(true, false);
+        reverseVelocity(false, false);
 
     }
     //Verschwindet nach 1 sek
     public void draw(Batch batch){
-        if(!destroyed || statusZeit < 1)
-            super.draw(batch);
+     //   if(!destroyed || statusZeit < 1)
+       //     super.draw(batch);
     }
 }

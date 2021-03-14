@@ -19,6 +19,7 @@ import com.doro.jumpandrun.JumpAndRun;
 import com.doro.jumpandrun.Scenes.Hud;
 import com.doro.jumpandrun.Sprites.Gegner;
 import com.doro.jumpandrun.Sprites.Gegner1;
+import com.doro.jumpandrun.Sprites.Gegner2;
 import com.doro.jumpandrun.Sprites.Hero;
 import com.doro.jumpandrun.Sprites.Muenzen;
 import com.doro.jumpandrun.Tools.B2WorldCreator;
@@ -52,13 +53,14 @@ public class PlayScreen implements Screen{
     //-----------Held
     private Hero heroSprite;
     private Gegner1 gegner1;
+    private Gegner2 gegner2;
 
 
     public PlayScreen(JumpAndRun game){
        //atlas = new TextureAtlas("Mario_and_Enemies.pack");
        heroAtlas = new TextureAtlas("Hero_und_Bandit.pack");
-        muenzenAtlas = new TextureAtlas("Muenzen.pack");
-        fahrzeugeAtlas = new TextureAtlas("Fahrzeuge.pack");
+       muenzenAtlas = new TextureAtlas("Muenzen.pack");
+       fahrzeugeAtlas = new TextureAtlas("Fahrzeuge.pack");
 
 
         this.game = game;
@@ -138,7 +140,7 @@ public class PlayScreen implements Screen{
         heroSprite.update(dt);
 
         //-------Gegner und Münzen werden upgedatet
-        for (Gegner gegner : creator.getGegner1Array()) {
+        for (Gegner gegner : creator.getGegner()) {
             gegner.update(dt);
             if (gegner.getX() < heroSprite.getX() + 1.75f)
                 gegner.b2Body.setActive(true);
@@ -185,6 +187,8 @@ public class PlayScreen implements Screen{
         game.batch.begin();
         heroSprite.draw(game.batch);
         for (Gegner gegner : creator.getGegner1Array())
+            gegner.draw(game.batch);
+        for (Gegner gegner : creator.getGegner2Array())
             gegner.draw(game.batch);
         for (Muenzen muenzen : creator.getMuenzen())
             muenzen.draw(game.batch);

@@ -34,15 +34,17 @@ public class Gegner1 extends Gegner
     public Gegner1(PlayScreen screen, float x, float y) {
         super(screen,x+1, y);
         frames = new Array<TextureRegion>();
+
         for(int i = 0; i < 2; i++)
             //frames.add(new TextureRegion(screen.getAtlas().findRegion("gegner1"), i * 16, 0, 16, 16));
+
             frames.add(new TextureRegion(screen.getHeroAtlas().findRegion("Bandit_gehen"), 1+i * 64, 4, 64, 64));
 
         laufAnimation = new Animation(0.4f, frames);
         statusZeit = 0;
         setBounds(getX(), getY(), 16 / JumpAndRun.PPM, 16 / JumpAndRun.PPM);
         setToDestroy = false;
-
+        tempo = new Vector2(1 , 0);
         destroyed = false;
 
 
