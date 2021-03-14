@@ -15,6 +15,7 @@ import com.doro.jumpandrun.Screens.PlayScreen;
 public class Extraherz extends PowerUp{
 
     private boolean entfernt;
+    private boolean startImpuls;
     /**----------------------*/
     private float statusZeit;
     private Animation<TextureRegion> blinkAnimation;
@@ -37,6 +38,7 @@ public class Extraherz extends PowerUp{
         /**----------------------*/
         tempo = new Vector2(0.7f,0);
         entfernt = false;
+        startImpuls = true;
 
 
     }
@@ -99,7 +101,9 @@ public class Extraherz extends PowerUp{
         setRegion(blinkAnimation.getKeyFrame(statusZeit, true));
         tempo.y = body.getLinearVelocity().y;
         body.setLinearVelocity(tempo);
-
+        if (startImpuls)
+            body.applyLinearImpulse(0,3, body.getPosition().x, body.getPosition().y, true);
+            startImpuls= false;
         statusZeit += dt;
 
     }
