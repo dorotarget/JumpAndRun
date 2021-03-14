@@ -19,14 +19,14 @@ public abstract class Gegner extends Sprite {
         this.screen = screen;
         setPosition(x -64 /JumpAndRun.PPM, y + 4/ JumpAndRun.PPM);
         defineGegner();
-        tempo = new Vector2(1 , 0);
+
         b2Body.setActive(false);
     }
 
     protected abstract void defineGegner();
     public abstract void update(float dt);
     public abstract void hitOnKopf();
-    public abstract void gegnerTrifftGegner(Gegner gegner);
+    //public abstract void gegnerTrifftGegner(Gegner gegner);
 
     public void umdrehTempo(boolean x, boolean y) {
         if (x)

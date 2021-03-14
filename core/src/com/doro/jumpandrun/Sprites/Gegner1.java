@@ -1,5 +1,6 @@
 package com.doro.jumpandrun.Sprites;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -19,6 +20,7 @@ public class Gegner1 extends Gegner
     @Override
     public void hitOnKopf() {
         setToDestroy = true;
+
     }
 
 
@@ -33,8 +35,10 @@ public class Gegner1 extends Gegner
     public Gegner1(PlayScreen screen, float x, float y) {
         super(screen,x+1, y);
         frames = new Array<TextureRegion>();
+
         for(int i = 0; i < 2; i++)
             //frames.add(new TextureRegion(screen.getAtlas().findRegion("gegner1"), i * 16, 0, 16, 16));
+
             frames.add(new TextureRegion(screen.getHeroAtlas().findRegion("Bandit_gehen"), 1+i * 64, 4, 64, 64));
 
         laufAnimation = new Animation(0.4f, frames);
@@ -76,10 +80,15 @@ public class Gegner1 extends Gegner
             setRegion(new TextureRegion(screen.getHeroAtlas().findRegion("Bandit_sterben"), 1, -3, 64, 64));
             statusZeit = 0;
             Hud.addScore(500);
+            screen.spawnPowerUp(new PowerUpDef(new Vector2(b2Body.getPosition().x, b2Body.getPosition().y+64/JumpAndRun.PPM),
+                    Extraherz.class));
 
         }
         else if(!destroyed){
+            tempo.y = b2Body.getLinearVelocity().y;
+
             b2Body.setLinearVelocity(tempo);
+
             setPosition(b2Body.getPosition().x - getWidth() / 2, b2Body.getPosition().y - getHeight() / 2);
             setRegion(laufAnimation.getKeyFrame(statusZeit, true));}
     }
@@ -92,8 +101,6 @@ public class Gegner1 extends Gegner
         b2Body = world.createBody(bdef);
 
         FixtureDef fdef = new FixtureDef();
-   //     CircleShape shape = new CircleShape();
-   //     shape.setRadius(6 / JumpAndRun.PPM);
         PolygonShape shape = new PolygonShape();
         Vector2[] vertice = new Vector2[4];
         vertice[0] = new Vector2(-4, 3).scl(1 / JumpAndRun.PPM);
@@ -109,10 +116,10 @@ public class Gegner1 extends Gegner
 
         PolygonShape kopf = new PolygonShape();
         Vector2[] vertice2 = new Vector2[4];
-        vertice2[0] = new Vector2(-2, 8).scl(1 / JumpAndRun.PPM);
-        vertice2[1] = new Vector2(2, 8).scl(1 / JumpAndRun.PPM);
-        vertice2[2] = new Vector2(-1, 5).scl(1 / JumpAndRun.PPM);
-        vertice2[3] = new Vector2(1, 5).scl(1 / JumpAndRun.PPM);
+        vertice2[0] = new Vector2(-3, 9).scl(1 / JumpAndRun.PPM);
+        vertice2[1] = new Vector2(3, 9).scl(1 / JumpAndRun.PPM);
+        vertice2[2] = new Vector2(-1, 4).scl(1 / JumpAndRun.PPM);
+        vertice2[3] = new Vector2(1, 4).scl(1 / JumpAndRun.PPM);
         kopf.set(vertice2);
 
         fdef.shape = kopf;
@@ -120,17 +127,19 @@ public class Gegner1 extends Gegner
         fdef.filter.categoryBits = JumpAndRun.GEGNER_KOPF_BIT;
         b2Body.createFixture(fdef).setUserData(this);
     }
-
+/*
     public void gegnerTrifftGegner(Gegner gegner){
-            umdrehTempo(true, false);
+            reverseVelocity(true, false);
 
 
 
     }
     public void gegnerTrifftHero(Gegner gegner){
-        umdrehTempo(true, false);
-
+        reverseVelocity(true, false);
     }
+
+    */
+
     //Verschwindet nach 1 sek
     public void draw(Batch batch){
         if(!destroyed || statusZeit < 1)

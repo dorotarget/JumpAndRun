@@ -13,17 +13,24 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.doro.jumpandrun.JumpAndRun;
 import com.doro.jumpandrun.Scenes.Hud;
+import com.doro.jumpandrun.Sprites.Extraherz;
 import com.doro.jumpandrun.Sprites.Gegner;
 import com.doro.jumpandrun.Sprites.Gegner1;
 import com.doro.jumpandrun.Sprites.Gegner2;
 import com.doro.jumpandrun.Sprites.Hero;
 import com.doro.jumpandrun.Sprites.Muenzen;
+import com.doro.jumpandrun.Sprites.PowerUp;
+import com.doro.jumpandrun.Sprites.PowerUpDef;
 import com.doro.jumpandrun.Tools.B2WorldCreator;
 import com.doro.jumpandrun.Tools.WorldContactListener;
+
+import java.util.PriorityQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 
 public class PlayScreen implements Screen{
@@ -32,6 +39,7 @@ public class PlayScreen implements Screen{
     private TextureAtlas atlas;
     private TextureAtlas heroAtlas;
     private TextureAtlas muenzenAtlas;
+    private TextureAtlas muenzenHerzAtlas;
     private TextureAtlas fahrzeugeAtlas;
 
 
@@ -55,11 +63,17 @@ public class PlayScreen implements Screen{
     private Gegner1 gegner1;
     private Gegner2 gegner2;
 
+    private Array<PowerUp> powerUps;
+    //private PriorityQueue<PowerUpDef> powerUpsToSpawn;
+    //public LinkedBlockingQueue<PowerUpDef> powerUpsToSpawn;
+    private LinkedBlockingQueue<PowerUpDef> powerUpsZuErstellen;
 
     public PlayScreen(JumpAndRun game){
-       atlas = new TextureAtlas("Mario_and_Enemies.pack");
+       //atlas = new TextureAtlas("Mario_and_Enemies.pack");
        heroAtlas = new TextureAtlas("Hero_und_Bandit.pack");
         muenzenAtlas = new TextureAtlas("Muenzen.pack");
+        muenzenHerzAtlas = new TextureAtlas("Muenzen_und_Herz.pack");
+
         fahrzeugeAtlas = new TextureAtlas("Fahrzeuge.pack");
 
 
@@ -93,20 +107,42 @@ public class PlayScreen implements Screen{
 
         //-------Held wird in Welt erstellt
         heroSprite = new Hero(world, this);
-        gegner2 = new Gegner2(this, .32f, .32f);
+        //gegner1 = new Gegner1(this, .32f, .32f);
 
         world.setContactListener(new WorldContactListener());
+
+        powerUps = new Array<PowerUp>();
+        //powerUpsToSpawn = new PriorityQueue<PowerUpDef>();
+        //powerUpsToSpawn = new LinkedBlockingQueue<PowerUpDef>();
+        powerUpsZuErstellen = new LinkedBlockingQueue<PowerUpDef>();
+
     }
 
-    public TextureAtlas getAtlas(){
-        return atlas;
+    public void spawnPowerUp (PowerUpDef pudef){
+        //powerUpsToSpawn.add(pudef);
+        powerUpsZuErstellen.add(pudef);
     }
+
+    public void handlePowerUpSpawns(){
+        if(!powerUpsZuErstellen.isEmpty()){
+            PowerUpDef idef = powerUpsZuErstellen.poll();
+            if(idef.type == Extraherz.class){
+                powerUps.add(new Extraherz(this, idef.position.x, idef.position.y));
+            }
+        }
+    }
+
+    // public TextureAtlas getAtlas(){ return atlas; }
     public TextureAtlas getHeroAtlas(){
         return heroAtlas;
     }
     public TextureAtlas getMuenzenAtlas(){
         return muenzenAtlas;
     }
+    public TextureAtlas getMuenzenHerzAtlas(){
+        return muenzenHerzAtlas;
+    }
+
     public TextureAtlas getFahrzeugeAtlas(){
         return fahrzeugeAtlas;
     }
@@ -130,34 +166,38 @@ public class PlayScreen implements Screen{
             heroSprite.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), heroSprite.b2body.getWorldCenter(), true);
 
     }
-    //testkomentar23
 
     public void update(float dt){
 
         //------------Input vom Spieler geht vor
         handleInput(dt);
+        handlePowerUpSpawns();
 
         //-------------wie oft pro sekunde
         world.step(1 / 60f, 6, 2);
 
         heroSprite.update(dt);
+
+        //-------Gegner und Münzen werden upgedatet
         for (Gegner gegner : creator.getGegner1Array()) {
             gegner.update(dt);
             if (gegner.getX() < heroSprite.getX() + 1.75f)
                 gegner.b2Body.setActive(true);
-            //gegner1.update(dt);
         }
         for (Muenzen muenzen : creator.getMuenzen()) {
             muenzen.update(dt);}
-       // for (Muenzen muenzen : creator.getMuenzenGoldArray()) {
-         //   muenzen.update(dt);}
+
+        for(PowerUp powerUp : powerUps)
+            powerUp.update(dt);
+
         //----------gamecam bleibt bei Held
         gamecam.position.x = heroSprite.b2body.getPosition().x;
 
         //-------------aktualisiert gamecam
         gamecam.update();
-        //-------------das was man sieht wird gerender
 
+
+//_-----------überprüfen, ob Hero gewonnen hat oder heruntergefallen ist
         if (Hero.won == true) {
             game.setScreen(new WinScreen(game));
         }
@@ -166,6 +206,7 @@ public class PlayScreen implements Screen{
         }
         hud.update(dt);
 
+        //-------------das, was man sieht, wird gerendert
         renderer.setView(gamecam);
     }
 
@@ -187,12 +228,16 @@ public class PlayScreen implements Screen{
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         heroSprite.draw(game.batch);
-    //    gegner2.draw(game.batch);
         for (Gegner gegner : creator.getGegner1Array())
             gegner.draw(game.batch);
         for (Muenzen muenzen : creator.getMuenzen())
             muenzen.draw(game.batch);
-        //gegner1.draw(game.batch);
+        /** wird erst funktionieren, wenn alles eingestellt ist
+        for (Gegner gegner : creator.getGegner())
+            gegner.draw(game.batch);
+         */
+        for (PowerUp powerUp : powerUps)
+            powerUp.draw(game.batch);
         game.batch.end();
 
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
@@ -208,16 +253,14 @@ public class PlayScreen implements Screen{
 
 
     }
-    public boolean gameOver(){
+   /* public boolean gameOver(){
         if(heroSprite.currentState == Hero.State.TOT && heroSprite.getStatusTimer() > 2){
             return true;
         }
         return false;
-    }
+    }*/
 
     public boolean won(){
-       // game.setScreen(new WinScreen(game));
-        //dispose();
 
         return true;
 

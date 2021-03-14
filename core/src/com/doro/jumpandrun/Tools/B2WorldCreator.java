@@ -12,7 +12,9 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.doro.jumpandrun.JumpAndRun;
 import com.doro.jumpandrun.Screens.PlayScreen;
+import com.doro.jumpandrun.Sprites.Gegner;
 import com.doro.jumpandrun.Sprites.Gegner1;
+import com.doro.jumpandrun.Sprites.Gegner2;
 import com.doro.jumpandrun.Sprites.Muenzen;
 import com.doro.jumpandrun.Sprites.MuenzenGold;
 import com.doro.jumpandrun.Sprites.MuenzenSilber;
@@ -20,8 +22,11 @@ import com.doro.jumpandrun.Sprites.MuenzenSilber;
 
 public class B2WorldCreator {
     private Array<Gegner1> gegner1Array;
+    private Array<Gegner2> gegner2Array;
+
     private Array<MuenzenSilber> muenzenSilberArray;
     private Array<MuenzenGold> muenzenGoldArray;
+
 
 
     public B2WorldCreator(PlayScreen screen){
@@ -69,6 +74,15 @@ public class B2WorldCreator {
         for(MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
             gegner1Array.add(new Gegner1(screen, rect.getX() / JumpAndRun.PPM, rect.getY() / JumpAndRun.PPM));
+
+        }
+
+        //-----------gegner2
+
+        gegner2Array = new Array<Gegner2>();
+        for(MapObject object : map.getLayers().get(8).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+            gegner2Array.add(new Gegner2(screen, rect.getX() / JumpAndRun.PPM, rect.getY() / JumpAndRun.PPM));
 
         }
         //-----------SilberMünzen
@@ -135,17 +149,27 @@ public class B2WorldCreator {
     public Array<Gegner1> getGegner1Array() {
         return gegner1Array;
     }
+    public Array<Gegner2> getGegner2Array() {
+        return gegner2Array;
+    }
     public Array<MuenzenSilber> getMuenzenSilberArray() {
         return muenzenSilberArray;
     }
     public Array<MuenzenGold> getMuenzenGoldArray() {
         return muenzenGoldArray;
     }
+
     public Array<Muenzen> getMuenzen(){
         Array<Muenzen> muenzen = new Array<Muenzen>();
         muenzen.addAll(muenzenSilberArray);
         muenzen.addAll(muenzenGoldArray);
         return muenzen;
+    }
+    public Array<Gegner> getGegner(){
+        Array<Gegner> gegner = new Array<Gegner>();
+        gegner.addAll(gegner1Array);
+        gegner.addAll(gegner2Array);
+        return gegner;
     }
 
 }

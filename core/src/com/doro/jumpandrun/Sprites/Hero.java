@@ -1,18 +1,12 @@
 package com.doro.jumpandrun.Sprites;
 
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.Fixture;
@@ -23,8 +17,6 @@ import com.badlogic.gdx.utils.Array;
 import com.doro.jumpandrun.JumpAndRun;
 import com.doro.jumpandrun.Scenes.Hud;
 import com.doro.jumpandrun.Screens.PlayScreen;
-
-import java.sql.Struct;
 
 public class Hero extends Sprite {
     public static boolean won;
@@ -54,20 +46,9 @@ public class Hero extends Sprite {
 
 
 
-    private TextureAtlas heroAtlas;
-
-
-/*
-    public void hit(){
-        won = true;
-
-    }*/
-
 
 
     public Hero(World world, PlayScreen screen){
-        //super(screen.getAtlas().findRegion("little_mario"));
-
 
         super(screen.getHeroAtlas().findRegion("Hero_gehen"));
 
@@ -95,15 +76,11 @@ public class Hero extends Sprite {
         heroSpringen = new Animation(0.1f, frames);
 
 
-
         heroStehen = new TextureRegion(getTexture(), 839, 131, 64, 64);
 
         heroTot = new TextureRegion(getTexture(), 133, 1, 64, 64);
 
         heroVerletzt = new TextureRegion(getTexture(), 133, 1, 64, 64);
-
-
-       // heroTot = new TextureRegion(screen.getHeroAtlas().findRegion("hero_sterben"), 0, 0, 64, 64);
 
 
         defineHero();
@@ -186,6 +163,7 @@ public class Hero extends Sprite {
         fdef.filter.categoryBits = JumpAndRun.HERO_BIT;
         fdef.filter.maskBits = JumpAndRun.BODEN_BIT |
                 JumpAndRun.MUENZEN_BIT|
+                JumpAndRun.POWERUP_BIT|
                 JumpAndRun.GEGNER_KOPF_BIT;
 
         fdef.shape = shape;
@@ -200,7 +178,7 @@ public class Hero extends Sprite {
                 JumpAndRun.OBJEKT_BIT |
                 JumpAndRun.GEGNER_KOPF_BIT |
                 JumpAndRun.GEWINN_BIT |
-                JumpAndRun.ITEM_BIT;
+                JumpAndRun.POWERUP_BIT;
         b2body.createFixture(fdef).setUserData(this);
 
         EdgeShape head = new EdgeShape();

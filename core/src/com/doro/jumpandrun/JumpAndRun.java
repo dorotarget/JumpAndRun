@@ -18,7 +18,7 @@ public class JumpAndRun extends Game {
 	public static final short OBJEKT_BIT = 32;
 	public static final short GEGNER_BIT = 64;
 	public static final short GEGNER_KOPF_BIT = 128;
-	public static final short ITEM_BIT = 256;
+	public static final short POWERUP_BIT = 256;
 	public static final short HERO_KOPF_BIT = 512;
 	public static final short FAHRZEUG_BIT = 1024;
 
