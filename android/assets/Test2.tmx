@@ -13,7 +13,7 @@
    eJztmbtOIzEUhh3PDETQcnsHeAMK0vEMLBKigtcYaeEJuBRAEZAoCBJVVlRIaaGBLXZX2yAegYqac8AmjmN77MRhJnA+6Zd9fJnxGP9jT2CMIAiC+O7c1MoeAUEQBEEQBEGMntVasQiCqD7Laa8Igvh6rCVuFbWrKgsJ23TFX42zWq9U1jnLUT9Aa6BSBviJvMDz/+L9gvJcb9eG+Wgb6gh/cB5x/mQa45rzwq+29DtxCGsUdQDaj+zfW1j7d9ydlxzBOfAYdJIWxzsBZ0Z93UC+ccX7BeUdtd81Z03wbqdtqBslzzW2uci761CPTd+9pn1zV3lP747423iD24XzjfMn02HuMyf8WZSOK2J/zUP6SO8+gO5Brr06lBTWUpa485I/4Mm/oH+pX+yLvm7qlnOhXo7+bcD6k6oK4NeGK0Z8zszDIrz59m5U81gXc69FZoUvfVMXixljS9nw5bFRPJeHePi38O50wvKppNtvWO8iK7BeGok7Hxt97ej+K8O/RXuqHrvQf2cO/d15UC8r+6nq0493oy0fgxnhS9/UxRZ4cdvgx9Dyn2mvzhlr2gTjwncLng/wjM9McQfOeqps7fW+s5ok6F/bvWT8xLtyjS0kVq9pku/1/vN3yTo9NvWVbVAxnkXGPv/7qYJiPe8o4kfxt3/k7ti2zmV8Cl48y/rrZblv+5CYGG84vJ8TUArKQBOgSVBdyFVvK3f1GbSOcLNX9gCIIC5TEuld6N29AdcEUQ5lrxlSNSS9S/4dHy5g3lti/gfJq7KVx1LLkG95trP1sfW3PYc+D7b7FrW1jQm/b33SsiWfTdUrvIMSKg==
   </data>
  </layer>
- <objectgroup id="4" name="boden">
+ <objectgroup id="4" name="boden" visible="0">
   <object id="1" x="5.36364" y="180" width="426.473" height="12"/>
   <object id="7" x="432" y="144" width="64" height="16"/>
   <object id="10" x="464.364" y="179.625" width="136.591" height="12.375"/>
@@ -35,10 +35,9 @@
   <object id="28" x="3232" y="180.667" width="343.75" height="11.3333"/>
   <object id="225" x="1338.88" y="119.125" width="88.5" height="8.5"/>
   <object id="334" x="2218" y="163.5" width="16" height="16"/>
-  <object id="335" x="3254.5" y="158" width="16" height="16"/>
   <object id="339" x="1791.06" y="179.174" width="7.88689" height="13.6519"/>
  </objectgroup>
- <objectgroup id="5" name="objekt">
+ <objectgroup id="5" name="objekt" visible="0">
   <object id="23" x="432" y="144" width="64"/>
   <object id="30" x="145" y="159.545" width="64" height="19.6364"/>
   <object id="31" x="160" y="144" width="32" height="16"/>
@@ -167,11 +166,11 @@
   <object id="331" x="1328.56" y="178.674" width="7.88689" height="13.6519"/>
   <object id="337" x="2455.56" y="179.674" width="7.88689" height="13.6519"/>
  </objectgroup>
- <objectgroup id="7" name="ziel">
+ <objectgroup id="7" name="ziel" visible="0">
   <object id="175" x="3728" y="163.667" width="112.333" height="16"/>
   <object id="176" x="557.201" y="184.006" width="0.370233"/>
  </objectgroup>
- <objectgroup id="8" name="gegner1">
+ <objectgroup id="8" name="gegner1" visible="0">
   <object id="162" x="277.636" y="96.1818" width="16" height="16"/>
   <object id="163" x="322" y="163.636" width="16" height="16"/>
   <object id="164" x="544.25" y="163.75" width="16" height="16"/>
@@ -182,7 +181,7 @@
   <object id="259" x="1381.75" y="165" width="0.25" height="0.5"/>
   <object id="275" x="2544" y="162.333" width="16" height="16"/>
  </objectgroup>
- <objectgroup id="9" name="MuenzenSilber">
+ <objectgroup id="9" name="MuenzenSilber" visible="0">
   <object id="277" x="111.5" y="127" width="16" height="16"/>
   <object id="278" x="130.5" y="109" width="16" height="16"/>
   <object id="306" x="3232" y="224" width="16" height="16"/>
@@ -201,7 +200,7 @@
   <object id="298" x="3526.75" y="224" width="16.5" height="15"/>
   <object id="300" x="3562.75" y="189.5" width="16.5" height="15"/>
  </objectgroup>
- <objectgroup id="10" name="MuenzenGold">
+ <objectgroup id="10" name="MuenzenGold" visible="0">
   <object id="280" x="147.5" y="110" width="16.5" height="15"/>
   <object id="281" x="265.75" y="164" width="16.5" height="15"/>
   <object id="282" x="1372.75" y="101" width="16.5" height="15"/>
@@ -225,7 +224,6 @@
   <object id="326" x="1929" y="152.5" width="67" height="21.5"/>
   <object id="327" x="2028" y="319.5"/>
   <object id="328" x="890" y="157" width="47.5" height="21"/>
-  <object id="332" x="1344" y="160" width="15" height="16.5"/>
  </objectgroup>
  <objectgroup id="13" name="gegner3">
   <object id="324" x="3488.5" y="157" width="62.5" height="21.5"/>
