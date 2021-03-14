@@ -201,6 +201,11 @@ public class PlayScreen implements Screen{
         }
         hud.update(dt);
 
+        if ((Hero.verloren == true && heroSprite.getStatusTimer() > 2) | Hud.spielTimer < 1){
+
+            game.setScreen(new LostScreen(game));
+        }
+
         //-------------das, was man sieht, wird gerendert
         renderer.setView(gamecam);
     }
@@ -239,12 +244,12 @@ public class PlayScreen implements Screen{
         hud.stage.draw();
 
 
-        if ((Hero.verloren == true && heroSprite.getStatusTimer() > 2) | Hud.spielTimer < 1){
+        /*if ((Hero.verloren == true && heroSprite.getStatusTimer() > 2) | Hud.spielTimer < 1){
 
             game.setScreen(new LostScreen(game));
             dispose();
         }
-
+*/
 
 
     }

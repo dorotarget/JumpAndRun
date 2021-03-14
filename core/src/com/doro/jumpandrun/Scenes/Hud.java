@@ -38,7 +38,7 @@ public class Hud implements Disposable{
 
     public Hud(SpriteBatch sb){
         //------------Variablen zu Beginn: Zeitguthaben, Zeitzähler, Punkte
-        spielTimer = 100;
+        spielTimer = 10;
         zeitCount = 0;
         score = 0;
         leben = 3;
