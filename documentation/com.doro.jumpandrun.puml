@@ -1,0 +1,325 @@
+@startuml
+class com.doro.jumpandrun.Tools.WorldContactListener {
+- JumpAndRun game
+- PlayScreen screen
++ void beginContact(Contact)
++ void endContact(Contact)
++ void preSolve(Contact,Manifold)
++ void postSolve(Contact,ContactImpulse)
+}
+class com.doro.jumpandrun.Scenes.Hud {
++ Stage stage
+- Viewport viewport
++ {static} Integer spielTimer
+- float zeitCount
+- {static} Integer score
+- {static} Integer leben
+- {static} boolean zeitVorbei
+- Label countdownLabel
+~ {static} Label scoreLabel
+- Label liveLabel
+~ {static} Label liveCountLabel
+- Label timeLabel
+- Label coinLabel
++ void update(float)
++ {static} void addScore(int)
++ {static} void verliereLeben(int)
++ {static} void gewinneLeben(int)
++ {static} void sammleGeld(int)
++ {static} boolean verloren()
++ void dispose()
+}
+abstract class com.doro.jumpandrun.Sprites.PowerUp {
+# PlayScreen screen
+# World world
+# Vector2 tempo
+# boolean zuEntfernen
+# boolean entfernt
+# Body body
++ {abstract}void definePowerUp()
++ {abstract}void use()
++ void update(float)
++ void draw(Batch)
++ void entfernen()
++ void umdrehTempo(boolean,boolean)
+}
+class com.doro.jumpandrun.Sprites.Brick {
++ void onHeadHit(Hero)
++ void reachGoal(Hero)
+}
+class com.doro.jumpandrun.Sprites.Coin {
++ void onHeadHit(Hero)
++ void reachGoal(Hero)
+}
+abstract class com.doro.jumpandrun.Tools.InteractiveTileObject {
+# World world
+# TiledMap map
+# TiledMapTile tile
+# Rectangle bounds
+# Body body
+# PlayScreen screen
+# MapObject object
+# Fixture fixture
++ {abstract}void onHeadHit(Hero)
++ {abstract}void reachGoal(Hero)
++ void setCategoryFilter(short)
+}
+class com.doro.jumpandrun.Sprites.Gegner1 {
+- float statusZeit
+- Animation<TextureRegion> laufAnimation
+- Array<TextureRegion> frames
+- boolean setToDestroy
+- boolean destroyed
++ void hitOnKopf()
++ TextureRegion getFrame(float)
++ void update(float)
+# void defineGegner()
++ void draw(Batch)
+}
+abstract class com.doro.jumpandrun.Sprites.Gegner {
+# World world
+# PlayScreen screen
++ Body b2Body
++ Vector2 tempo
+# {abstract}void defineGegner()
++ {abstract}void update(float)
++ {abstract}void hitOnKopf()
++ void umdrehTempo(boolean,boolean)
++ void reverseVelocity(boolean,boolean)
+}
+class com.doro.jumpandrun.JumpAndRun {
++ {static} int V_WIDTH
++ {static} int V_HEIGHT
++ {static} float PPM
++ {static} short NOTHING_BIT
++ {static} short BODEN_BIT
++ {static} short HERO_BIT
++ {static} short BLOCK_BIT
++ {static} short MUENZEN_BIT
++ {static} short GEWINN_BIT
++ {static} short OBJEKT_BIT
++ {static} short GEGNER_BIT
++ {static} short GEGNER_KOPF_BIT
++ {static} short POWERUP_BIT
++ {static} short HERO_KOPF_BIT
++ {static} short FAHRZEUG_BIT
++ SpriteBatch batch
+- Boolean hasWon
++ void create()
++ void render()
++ Boolean getHasWon()
++ void setHasWon(Boolean)
+}
+class com.doro.jumpandrun.Sprites.WinBrick {
++ boolean gewonnen
+- PlayScreen playScreen
++ void onHeadHit(Hero)
++ void reachGoal(Hero)
+}
+class com.doro.jumpandrun.Sprites.MuenzenSilber {
+- float statusZeit
+- Animation<TextureRegion> drehAnimation
+- Array<TextureRegion> frames
+- boolean zuEntfernen
+- boolean entfernt
++ TextureRegion getFrame(float)
++ void update(float)
++ void eingesammelt()
+# void defineMuenze()
++ void draw(Batch)
+}
+class com.doro.jumpandrun.Screens.LostScreen {
+- Viewport viewport
+- Stage stage
+- Game game
++ void show()
++ void render(float)
++ void resize(int,int)
++ void pause()
++ void resume()
++ void hide()
++ void dispose()
+}
+class com.doro.jumpandrun.Tools.B2WorldCreator {
+- Array<Gegner1> gegner1Array
+- Array<Gegner2> gegner2Array
+- Array<Gegner3> gegner3Array
+- Array<MuenzenSilber> muenzenSilberArray
+- Array<MuenzenGold> muenzenGoldArray
++ Array<Gegner1> getGegner1Array()
++ Array<Gegner2> getGegner2Array()
++ Array<Gegner3> getGegner3Array()
++ Array<MuenzenSilber> getMuenzenSilberArray()
++ Array<MuenzenGold> getMuenzenGoldArray()
++ Array<Muenzen> getMuenzen()
++ Array<Gegner> getGegner()
+}
+class com.doro.jumpandrun.Sprites.Gegner3 {
+- float statusZeit
+- Animation<TextureRegion> laufAnimation
+- Array<TextureRegion> frames
+- boolean setToDestroy
+- boolean destroyed
++ void hitOnKopf()
++ TextureRegion getFrame(float)
++ void update(float)
+# void defineGegner()
++ void gegnerTrifftGegner(Gegner)
++ void gegnerTrifftHero(Gegner)
++ void draw(Batch)
+}
+class com.doro.jumpandrun.Screens.WinScreen {
+- Viewport viewport
+- Stage stage
+- Game game
++ void show()
++ void render(float)
++ void resize(int,int)
++ void pause()
++ void resume()
++ void hide()
++ void dispose()
+}
+class com.doro.jumpandrun.Sprites.Gegner2 {
+- float statusZeit
+- Animation<TextureRegion> laufAnimation
+- Array<TextureRegion> frames
+- boolean setToDestroy
+- boolean destroyed
++ void hitOnKopf()
++ TextureRegion getFrame(float)
++ void update(float)
+# void defineGegner()
++ void gegnerTrifftGegner(Gegner)
++ void gegnerTrifftHero(Gegner)
++ void draw(Batch)
+}
+class com.doro.jumpandrun.Sprites.Hero {
++ {static} boolean gewonnen
++ {static} boolean verloren
++ {static} boolean unten
++ State jetzigerState
++ State vorherigerState
++ World world
++ Body b2body
+- TextureRegion heroStehen
+- Animation<TextureRegion> heroRennen
+- Animation<TextureRegion> heroSpringen
+- TextureRegion heroTot
+- TextureRegion heroVerletzt
+- PlayScreen screen
+- float statusTimer
+- boolean rennenRechts
+- boolean heroIstTot
+- boolean heroIstVerletzt
++ void die()
++ boolean istTot()
++ boolean istVerletzt()
++ float getStatusTimer()
++ void getroffen(Gegner)
++ void geld(Muenzen)
++ void defineHero()
++ void update(float)
++ TextureRegion getFrame(float)
++ State getState()
++ State wiederbeleben()
+}
+class com.doro.jumpandrun.Sprites.MuenzenGold {
+- float statusZeit
+- Animation<TextureRegion> drehAnimation
+- Array<TextureRegion> frames
+- boolean setToDestroy
+- boolean destroyed
++ TextureRegion getFrame(float)
++ void update(float)
++ void eingesammelt()
+# void defineMuenze()
++ void draw(Batch)
+}
+abstract class com.doro.jumpandrun.Sprites.Muenzen {
+# World world
+# PlayScreen screen
++ Body b2Body
++ Vector2 tempo
+# {abstract}void defineMuenze()
++ {abstract}void update(float)
++ {abstract}void eingesammelt()
+}
+class com.doro.jumpandrun.Sprites.PowerUpDef {
++ Vector2 position
++ Class<?> type
+}
+class com.doro.jumpandrun.Screens.PlayScreen {
+- JumpAndRun game
+- TextureAtlas atlas
+- TextureAtlas heroAtlas
+- TextureAtlas muenzenAtlas
+- TextureAtlas muenzenHerzAtlas
+- TextureAtlas fahrzeugeAtlas
+- OrthographicCamera gamecam
+- Viewport gamePort
+- Hud hud
+- TmxMapLoader maploader
+- TiledMap map
+- OrthogonalTiledMapRenderer renderer
+- World world
+- Box2DDebugRenderer b2dr
+- B2WorldCreator creator
+- Hero heroSprite
+- Array<PowerUp> powerUps
+- LinkedBlockingQueue<PowerUpDef> powerUpsZuErstellen
++ void spawnPowerUp(PowerUpDef)
++ void handlePowerUpSpawns()
++ TextureAtlas getHeroAtlas()
++ TextureAtlas getMuenzenAtlas()
++ TextureAtlas getMuenzenHerzAtlas()
++ TextureAtlas getFahrzeugeAtlas()
++ void show()
++ void handleInput(float)
++ void update(float)
++ void render(float)
++ boolean won()
++ void resize(int,int)
++ TiledMap getMap()
++ World getWorld()
++ void pause()
++ void resume()
++ void hide()
++ void dispose()
++ Hud getHud()
+}
+class com.doro.jumpandrun.Sprites.Extraherz {
+- boolean entfernt
+- boolean startImpuls
+- float statusZeit
+- Animation<TextureRegion> blinkAnimation
+- Array<TextureRegion> frames
++ TextureRegion getFrame(float)
++ void definePowerUp()
++ void use()
++ void update(float)
++ void draw(Batch)
++ void entfernen()
+}
+
+
+com.badlogic.gdx.physics.box2d.ContactListener <|.. com.doro.jumpandrun.Tools.WorldContactListener
+com.badlogic.gdx.utils.Disposable <|.. com.doro.jumpandrun.Scenes.Hud
+com.badlogic.gdx.graphics.g2d.Sprite <|-- com.doro.jumpandrun.Sprites.PowerUp
+com.doro.jumpandrun.Sprites.InteractiveTileObject <|-- com.doro.jumpandrun.Sprites.Brick
+com.doro.jumpandrun.Tools.InteractiveTileObject <|-- com.doro.jumpandrun.Sprites.Coin
+com.doro.jumpandrun.Sprites.Gegner <|-- com.doro.jumpandrun.Sprites.Gegner1
+com.badlogic.gdx.graphics.g2d.Sprite <|-- com.doro.jumpandrun.Sprites.Gegner
+com.badlogic.gdx.Game <|-- com.doro.jumpandrun.JumpAndRun
+com.doro.jumpandrun.Tools.InteractiveTileObject <|-- com.doro.jumpandrun.Sprites.WinBrick
+com.doro.jumpandrun.Sprites.Muenzen <|-- com.doro.jumpandrun.Sprites.MuenzenSilber
+com.badlogic.gdx.Screen <|.. com.doro.jumpandrun.Screens.LostScreen
+com.doro.jumpandrun.Sprites.Gegner <|-- com.doro.jumpandrun.Sprites.Gegner3
+com.badlogic.gdx.Screen <|.. com.doro.jumpandrun.Screens.WinScreen
+com.doro.jumpandrun.Sprites.Gegner <|-- com.doro.jumpandrun.Sprites.Gegner2
+com.badlogic.gdx.graphics.g2d.Sprite <|-- com.doro.jumpandrun.Sprites.Hero
+com.doro.jumpandrun.Sprites.Muenzen <|-- com.doro.jumpandrun.Sprites.MuenzenGold
+com.badlogic.gdx.graphics.g2d.Sprite <|-- com.doro.jumpandrun.Sprites.Muenzen
+com.badlogic.gdx.Screen <|.. com.doro.jumpandrun.Screens.PlayScreen     
+com.doro.jumpandrun.Sprites.PowerUp <|-- com.doro.jumpandrun.Sprites.Extraherz
+@enduml

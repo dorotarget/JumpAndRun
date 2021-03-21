@@ -12,7 +12,10 @@ import com.doro.jumpandrun.Screens.PlayScreen;
 import java.util.jar.JarEntry;
 
 
-//------------haben wir zwar noch nicht, brauchen wir aber wahrscheinlich
+/**
+ * ------------haben wir zwar noch nicht, brauchen wir aber wahrscheinlich
+
+ */
 
 public class Brick extends com.doro.jumpandrun.Tools.InteractiveTileObject {
     public Brick(World world, TiledMap map, Rectangle bounce){
