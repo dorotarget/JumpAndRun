@@ -7,7 +7,7 @@ Kleines Jump-and-Run (siehe Screenshot):
 
 
 ## Dokumentation
-[javadoc](/documentation/javadoc/index.html)
+[javadoc (nur Dateien)](/documentation/javadoc/)
 
 Klassendiagramm:
 ![Klassendiagramm](/documentation/com_doro_jumpandrun.png)
