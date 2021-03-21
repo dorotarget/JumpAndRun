@@ -14,4 +14,6 @@ Klassendiagramm:
 
 Danke an [LibGDX](https://libgdx.com)!
 
-Lizenz: GPL 3.0
+Lizenz: [GPL 3.0](https://www.gnu.org/licenses/quick-guide-gplv3)
+
+
